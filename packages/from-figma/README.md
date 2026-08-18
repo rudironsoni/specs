@@ -10,7 +10,7 @@ This folder holds a clean-room Figma-to-spec engine by rudironsoni.
 
 See [ATTRIBUTION.md](ATTRIBUTION.md).
 
-Current milestone: REST and plugin entry points, anatomy (`detectedIn`), layout (`LAYOUT` / `PARENT_CHILDREN` / `BOTH`), styles, glyph fill walk, mixed text runs, image fill styles, typography/effects/gradient processors, pairings, slots, `$nested`, code-only extractors, image routing, `processing.states`, progress coordinator, `--get-images`, and a local license surface.
+Current milestone: REST and plugin entry points, anatomy (`detectedIn`), layout (`LAYOUT` / `PARENT_CHILDREN` / `BOTH`), styles, glyph fill walk, mixed text runs, image fill styles, typography/effects/gradient processors, pairings, slots, `$nested`, code-only extractors, image routing, `processing.states`, progress coordinator, and `--get-images`. All generate output is ungated.
 
 ## Public API
 
@@ -79,16 +79,6 @@ npx specs-from-figma --get-images --file spec.json --figma-file FILE_KEY --token
 ```
 
 Or call `resolveComponentImages()` from the library.
-
-### Local license surface
-
-Pass `{ key }` on the REST path. Use `setLicenseProxy(createLocalLicenseProxy(['dev-key']))`, or run:
-
-```bash
-npx specs-from-figma --license-proxy --port 8787 --keys dev-key
-```
-
-Then set `SPECS_LICENSE_PROXY_URL=http://127.0.0.1:8787`.
 
 ## Public API
 

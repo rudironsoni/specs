@@ -1,6 +1,5 @@
 import type { ResolvedConfig, Component as SchemaComponent } from '@rudironsoni/specs-schema';
 import type { StylesMap, VariablesMap, CollectionsMap } from '../Runtime/Foundations/FigmaRESTMaps.js';
-import type { RestLicenseInput } from '../License/types.js';
 import { Component } from '../Component/Component.js';
 
 export type ComponentsData = {
@@ -39,7 +38,6 @@ export class Components {
     config: ResolvedConfig,
     foundations: RestFoundations,
     onProgress: (event: ProgressEvent) => void,
-    license?: RestLicenseInput,
   ): Promise<ComponentsData[]> {
     const results: ComponentsData[] = [];
     const total = componentIds.length;
@@ -52,7 +50,6 @@ export class Components {
           componentId,
           config,
           foundations,
-          license,
         );
         results.push({ name: componentId, component: component.json() });
         onProgress({ component: componentId, index, total, status: 'success' });

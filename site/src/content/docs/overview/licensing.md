@@ -4,7 +4,7 @@ title: "Licensing"
 
 Specs does not use a paid subscription or a license key.
 
-The CLI and the local `specs-from-figma` engine expose the full generate output: anatomy, props, variants, token references, variable bindings, instance examples, and slot-content examples. There is no free-tier cut and no Polar checkout.
+The CLI and the local `specs-from-figma` engine expose the full generate output: anatomy, props, variants, token references, variable bindings, instance examples, and slot-content examples. There is no free-tier cut.
 
 Figma's own REST API still limits some endpoints. `file_variables:read` is an Enterprise-only Figma scope. That is a Figma plan limit, not a Specs subscription.
 

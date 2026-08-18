@@ -4,18 +4,14 @@ import './Adapters/RestApi/registerAdapters.js';
  * Clean-room recreation of the specs-from-figma public API.
  *
  * PUBLIC API
- * - Components.fromRestApi(ids, json, config, foundations, onProgress, license?)
- * - ComponentsData, ProgressEvent, RestLicenseInput
+ * - Components.fromRestApi(ids, json, config, foundations, onProgress)
+ * - ComponentsData, ProgressEvent
  * - StylesMap, VariablesMap, CollectionsMap
  */
 export { Components } from './Components/Components.js';
 export { Component } from './Component/Component.js';
 export type { ComponentsData, ProgressEvent, RestFoundations } from './Components/Components.js';
 export type { StylesMap, VariablesMap, CollectionsMap } from './Runtime/Foundations/FigmaRESTMaps.js';
-export type { RestLicenseInput, PluginLicenseInput, LicenseInput, LicenseResult, LicenseState } from './License/types.js';
-export { freeLicense, maskKey, descriptionFor } from './License/types.js';
-export { resolve as resolveLicense } from './License/LicenseManager.js';
-export { setLicenseProxy, createLocalLicenseProxy, createHttpLicenseProxy } from './License/ProxyClient.js';
 export { fetchImageFills, resolveImages, resolveComponentImages } from './Images/resolveImages.js';
 export { ProgressCoordinator } from './Progress/ProgressCoordinator.js';
 export { PHASE_NAMES } from './Progress/Progress.js';
@@ -24,7 +20,6 @@ export type { PhaseConfiguration } from './Progress/PhaseConfiguration.js';
 export { BINDING_KEY_MAP } from './Constants/BindingKeys.js';
 export { REST_TEXT_PROPERTIES, FONT_NAME_MEMBER_MAP } from './Constants/ApiMappings.js';
 export { DEV_SETTINGS } from './Constants/DevSettings.js';
-export { LICENSING, FREE, PRO, TIERS, tierForLevel } from './License/constants.js';
 export { isReferenceValue } from './Utilities/types.ReferenceValue.js';
 export type { ReferenceValue } from './Utilities/types.ReferenceValue.js';
 export { SlotContent } from './Component/SlotContent/SlotContent.js';

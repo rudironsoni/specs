@@ -25,12 +25,7 @@ export class Metadata {
     return {
       author: context?.author ?? 'Unknown',
       lastUpdated: new Date().toISOString(),
-      generator: {
-        ...generator,
-        license: context?.license
-          ? { status: context.license.state.status.toUpperCase(), level: context.license.level }
-          : undefined,
-      },
+      generator,
       schema: {
         url: METADATA.SCHEMA_URL,
         version: METADATA.SCHEMA_VERSION,

@@ -2,8 +2,6 @@ import { stringify as stringifyYaml } from 'yaml';
 import type { Component as SchemaComponent, ResolvedConfig } from '@rudironsoni/specs-schema';
 import type { ProcessingContext } from '../Runtime/Context/interfaces.js';
 import type { StylesMap, VariablesMap, CollectionsMap } from '../Runtime/Foundations/FigmaRESTMaps.js';
-import type { PluginLicenseInput, RestLicenseInput } from '../License/types.js';
-import { resolve as resolveLicense } from '../License/LicenseManager.js';
 import { RestLibraryFile } from '../Adapters/RestApi/RestLibraryFile.js';
 import { RestComponentNode } from '../Adapters/RestApi/RestComponentNode.js';
 import { wrapNode } from '../Adapters/RestApi/wrapNode.js';
@@ -83,7 +81,6 @@ export class Component {
     componentId: string,
     config: ResolvedConfig,
     options: RestOptions,
-    licenseInput?: RestLicenseInput,
   ): Promise<Component> {
     const file = new RestLibraryFile(libraryJson);
     const found = file.findComponent(componentId);
@@ -97,7 +94,6 @@ export class Component {
       runtime: 'REST',
       author: options.author,
       generator: options.generator,
-      license: await resolveLicense(licenseInput, 'cli'),
       coordinator: options.coordinator,
     };
     await component._process(context);
@@ -107,7 +103,7 @@ export class Component {
   static async fromPlugin(
     node: unknown,
     config: ResolvedConfig,
-    options?: { author?: string; license?: PluginLicenseInput },
+    options?: { author?: string },
   ): Promise<Component> {
     const data = await snapshotPluginNode(node as Parameters<typeof snapshotPluginNode>[0]);
     const wrapped = wrapNode(data);
@@ -117,7 +113,6 @@ export class Component {
       nodes: new FigmaPluginNodes(),
       runtime: 'PLUGIN',
       author: options?.author,
-      license: await resolveLicense(options?.license, 'plugin'),
     };
     await component._process(context);
     return component;

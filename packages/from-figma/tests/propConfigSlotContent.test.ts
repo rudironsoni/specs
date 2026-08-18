@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { DEFAULT_CONFIG, type ResolvedConfig } from '@rudironsoni/specs-schema';
-import { Components, isReferenceValue, LICENSING, RestTextNode } from '../src/index.js';
+import { Components, isReferenceValue, RestTextNode } from '../src/index.js';
 import { FontStyle } from '../src/Component/Typography/FontStyle.js';
 
 const foundations = {
@@ -123,8 +123,4 @@ describe('reference value guard', () => {
   });
 });
 
-describe('licensing constants', () => {
-  it('defaults the proxy URL to empty', () => {
-    expect(LICENSING.PROXY_URL).toBe(process.env.SPECS_LICENSE_PROXY_URL ?? '');
-  });
-});
+

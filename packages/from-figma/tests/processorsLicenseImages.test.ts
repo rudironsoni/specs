@@ -2,10 +2,7 @@ import { describe, expect, it } from 'vitest';
 import { DEFAULT_CONFIG, type ResolvedConfig } from '@rudironsoni/specs-schema';
 import {
   Components,
-  createLocalLicenseProxy,
   resolveComponentImages,
-  resolveLicense,
-  setLicenseProxy,
 } from '../src/index.js';
 
 const foundations = {
@@ -153,23 +150,6 @@ describe('glyph factory', () => {
     expect('component' in result).toBe(true);
     if (!('component' in result)) throw new Error('expected success');
     expect(result.component.default.elements?.['icon-check']?.content).toBe('check');
-  });
-});
-
-describe('license', () => {
-  it('stays free when no key is supplied', async () => {
-    const result = await resolveLicense(undefined, 'cli');
-    expect(result.level).toBe('FREE');
-    expect(result.isLicensed).toBe(false);
-  });
-
-  it('accepts a key through the local proxy', async () => {
-    setLicenseProxy(createLocalLicenseProxy(['dev-key']));
-    const result = await resolveLicense({ key: 'dev-key' }, 'cli');
-    setLicenseProxy(undefined);
-    expect(result.isLicensed).toBe(true);
-    expect(result.level).toBe('PRO');
-    expect(result.maskedKey).toBe('***key');
   });
 });
 
