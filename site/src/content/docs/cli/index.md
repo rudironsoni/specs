@@ -22,20 +22,9 @@ These options work with all commands:
 - `--help` - Show command help
 - `--version` - Show CLI version
 
-## Free vs. Pro
+## Output
 
-Specs CLI works without a license key. At the **free tier**, specs include full component structure: anatomy, props, variants, and raw style values.
-
-With a **Pro license**, specs also include design token references, variable bindings, and visibility bindings — connecting your specs directly to your design token system.
-
-| Feature | Free | Pro |
-|---------|------|-----|
-| Anatomy, props, variants | Yes | Yes |
-| Layout and raw style values | Yes | Yes |
-| Design token references | — | Yes |
-| Variable and visibility bindings | — | Yes |
-
-Set up your license key in your environment to unlock Pro features. See [Getting Started — License](/cli/getting-started/#step-3-set-your-license-key-optional).
+Generate includes the full spec: anatomy, props, variants, token references, variable bindings, instance examples, and slot-content examples. No license key is required.
 
 ## Output Format
 
@@ -93,7 +82,7 @@ data/
 - **Figma REST API data** (JSON files from Figma API endpoints, produced by `fetch`):
   - `file` — any Figma plan with REST API access
   - `variables` / `styles` — Figma restricts these REST endpoints to organizations on an **Enterprise** plan, regardless of your Specs license
-- **License key** (optional) via `SPECS_LICENSE_KEY` for Pro features
+- **Figma token** via `FIGMA_TOKEN` for fetch
 
 See [Getting Started](/cli/getting-started/) for installation instructions.
 

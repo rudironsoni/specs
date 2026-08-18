@@ -139,8 +139,6 @@ jobs:
 
       - name: Generate component specs
         run: specs generate
-        env:
-          SPECS_LICENSE_KEY: ${{ secrets.SPECS_LICENSE_KEY }}
 
       - name: Commit updated specs
         run: |
@@ -153,7 +151,6 @@ jobs:
 
 **Secrets Required:**
 - `FIGMA_TOKEN` - Figma Personal Access Token
-- `SPECS_LICENSE_KEY` - Specs license key (optional, for Pro features)
 
 ### Shell Script for Daily Sync
 

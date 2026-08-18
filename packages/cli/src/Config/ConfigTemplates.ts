@@ -69,7 +69,6 @@ config:
     # Token reference format: TOKEN, TOKEN_NAME, TOKEN_FIGMA_EXTENSIONS, FIGMA_NAME, CUSTOM,
     # FIGMA_SYNTAX_WEB, FIGMA_SYNTAX_IOS, or FIGMA_SYNTAX_ANDROID
     # See: https://www.specsplugin.com/settings/tokens/
-    # Requires a license key to resolve token references in output.
     tokens: TOKEN
 
     # Color value format: HEX, HEXA, RGB, RGBA, HSLA, HSB, OKLCH, OKLAB, or OBJECT
@@ -170,13 +169,12 @@ config:
     # invalidVariants: false
 
     # Calculate and include invalid property combinations (default: true)
-    # Requires a license key to compute combinations in output.
     # invalidCombinations: true
 
     # Include layered variants that contain no elements (default: false)
     # emptyVariants: false
 
-    # Emit the component's default slot content as examples (Pro; default: false)
+    # Emit the component's default slot content as examples (default: false)
     # See: https://www.specsplugin.com/guides/default-slot-content/
     # defaultSlotContent: false
 

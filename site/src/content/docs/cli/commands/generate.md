@@ -73,24 +73,6 @@ specs generate data/library.file.json -c "DS Button"
 specs generate data/library.file.json -c "1234:5678"
 ```
 
-### `-l, --license <key>`
-License key for premium features.
-
-When a valid Pro license is provided, generated specs include additional detail such as design token references, variable bindings, and visibility bindings. Without a license (or with an invalid key), specs are generated at the free tier — full structure and variants, but with raw values instead of token references.
-
-**Resolution priority**: `--license` flag > `SPECS_LICENSE_KEY` env > `ANOVA_LICENSE_KEY` env
-
-```bash
-# Via flag
-specs generate components.md -o specs/all.yaml -l "your-license-key"
-
-# Via environment variable (recommended)
-export SPECS_LICENSE_KEY="your-license-key"
-specs generate components.md -o specs/all.yaml
-```
-
-See [Getting Started — License](/cli/getting-started.md/#step-3-set-your-license-key-optional) for setup details.
-
 ### `-o, --output <path>`
 Output file or directory path. Accepts both file paths and directory paths.
 
@@ -175,7 +157,7 @@ Separate API specification, variant configuration, and examples.
 - **Default**: `false` (complete component data in each file)
 - **Output**: Up to three files: `api.yaml` (anatomy, props), `variants.yaml` (default, variants), and `examples.yaml` (slotContentExamples, instanceExamples)
 - `examples.yaml` is written only when at least one component has example data; components without examples are omitted from it.
-- Example output (`slotContentExamples`, `instanceExamples`) is a [Pro feature](/settings/default-slot-content/) — on the free tier it is omitted, so `examples.yaml` is not produced.
+- Example output (`slotContentExamples`, `instanceExamples`) is written when those features are enabled in config.
 
 ```bash
 specs generate components.md -o specs/ --split-concerns
@@ -318,16 +300,9 @@ specs generate data/library.file.json -c "DS Button" -o specs/button.yaml
 specs generate components.md -o specs/ --split-components
 ```
 
-### With license key
-
-```bash
-export SPECS_LICENSE_KEY="your-license-key"
-specs generate
-```
-
 ---
 
 **See Also:**
 - [Scan Command](/cli/commands/scan/) - Create component manifest
 - [Configuration Reference](/settings/) - Format and config options
-- [Getting Started](/cli/getting-started/) - Installation and license setup
+- [Getting Started](/cli/getting-started/) - Installation

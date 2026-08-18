@@ -1,6 +1,6 @@
 /**
  * License types for the clean-room engine.
- * This recreation does not call Polar or the rudironsoni license worker.
+ * Local license types. No remote checkout or paid-tier gate.
  */
 
 export type LicenseState =

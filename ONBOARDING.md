@@ -86,7 +86,7 @@ Ask now, before we configure anything that depends on the answer. This decision 
 
 > "Pick how deep you want to go.
 >
-> 1. **Essentials** (recommended) — the minimum to get working specs. I'll ask about your Figma sources, your PAT (plus optional Pro license), output format (YAML/JSON), key naming style, and how to split output files on disk. That's it — production-ready defaults everywhere else.
+> 1. **Essentials** (recommended) — the minimum to get working specs. I'll ask about your Figma sources, your PAT, output format (YAML/JSON), key naming style, and how to split output files on disk. That's it — production-ready defaults everywhere else.
 > 2. **Complete** — everything in Essentials, plus three more format knobs: token representation, layout representation, and invalid-variant handling. Choose this if your pipeline has strict schema needs or you want to see every knob.
 >
 > Which path?"
@@ -350,7 +350,7 @@ After this section, show the user the full `config:` block you wrote and ask the
 
 1. **Create `.gitignore` BEFORE creating `.env`.** Ensure `.gitignore` contains a line with `.env`. If `.gitignore` exists without that line, append it. If it doesn't exist, create it with `.env` as its first entry.
 2. **Never echo the token back to the conversation.** If the user pastes their PAT inline, acknowledge receipt ("got it, writing now") without repeating the value, and write it directly to `.env`.
-3. **Prefer letting the user paste the token into the file themselves.** Create `.env` with the key stubs (`FIGMA_TOKEN=` and optionally `SPECS_LICENSE_KEY=`), then instruct them to open `.env` and paste their values. This is the safer default.
+3. **Prefer letting the user paste the token into the file themselves.** Create `.env` with the key stub (`FIGMA_TOKEN=`), then instruct them to open `.env` and paste their value. This is the safer default.
 4. **Never commit or stage `.env`.** If the user asks you to commit setup files, stage `specs.config.yaml` and `.gitignore` only; skip `.env`.
 5. **Never log, cat, or grep `.env` contents back to the chat.** If you need to verify the file is populated, check the file exists and is non-empty, not its contents.
 
@@ -372,15 +372,6 @@ Walk the user through:
 > Copy the token. I've created `.env` for you — open it and paste the token after `FIGMA_TOKEN=`. Let me know when it's saved."
 
 Wait for explicit confirmation before proceeding.
-
-### 6b. License key (optional)
-
-Ask:
-
-> "Do you have a Specs **Pro license key**? It unlocks design token references, variable bindings, and invalid-combination analysis. The **free tier** works fine without one — you'll still get full anatomy, props, variants, and raw style values.
->
-> - **Yes, I have a key** → paste into `.env` after `SPECS_LICENSE_KEY=`.
-> - **Not yet** → skip; you can add it later. We'll run in free-tier mode."
 
 ---
 
@@ -467,7 +458,6 @@ Suggest immediate next steps:
 
 - Re-run `specs fetch && specs generate` anytime the Figma file updates.
 - See the [Workflows](https://www.specsplugin.com/cli/workflows/) guide for CI/CD automation.
-- Enable Pro features later by adding `SPECS_LICENSE_KEY` to `.env`.
 
 Do **not** offer to `git init`, `git add`, or `git commit` unless the user asks.
 
@@ -477,12 +467,12 @@ Do **not** offer to `git init`, `git add`, or `git commit` unless the user asks.
 
 During this flow, never:
 
-- Paste, repeat, or log the Figma PAT or license key back to the conversation.
+- Paste, repeat, or log the Figma PAT back to the conversation.
 - Run `git commit`, `git push`, `git add .`, or stage `.env`.
 - Call `npm install ../specs/packages/schema` or any similar path — Specs CLI is installed from the npm registry only.
 - Guess a Figma file key — always derive from a URL the user provides.
 - Proceed past Step 9 without explicit user confirmation.
-- Write `FIGMA_TOKEN` or `SPECS_LICENSE_KEY` values into any file other than `.env`.
+- Write `FIGMA_TOKEN` values into any file other than `.env`.
 - Install Specs CLI into an existing `package.json` project's dependencies without asking whether they want that vs. a global install.
 
 ---

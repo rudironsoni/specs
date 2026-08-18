@@ -52,7 +52,7 @@ config:
 **Default**: `false`. Existing output is unchanged until you opt in.
 
 :::note[Pro feature]
-`defaultSlotContent` requires a [Pro license](/overview/licensing/). On the free tier the flag is ignored — no slot content is emitted. In the Figma plugin the control is hidden until a Pro license is active.
+`defaultSlotContent` is off by default. Set `include.defaultSlotContent: true` to emit slot fills.
 :::
 
 ## Default Slot Content vs. Instance Examples

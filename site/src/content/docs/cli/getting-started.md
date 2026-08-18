@@ -72,7 +72,7 @@ FIGMA_TOKEN=your_figma_token_here
 
 To create a token, go to [Figma Settings → Tokens](https://www.figma.com/settings/tokens), click **Create a new token**, and select these scopes: `file_metadata:read`, `file_content:read`, `library_assets:read`, `library_content:read`, and `file_variables:read`.
 
-A **license key** is optional — Specs CLI works at a free tier without one. To unlock Pro features, add `SPECS_LICENSE_KEY` to your `.env` file. See [Licensing](/overview/licensing/) for details.
+No Specs license key is required. All generate output is available.
 
 ### Other configuration (optional)
 
@@ -171,8 +171,6 @@ jobs:
           FIGMA_TOKEN: ${{ secrets.FIGMA_TOKEN }}
 
       - run: specs generate
-        env:
-          SPECS_LICENSE_KEY: ${{ secrets.SPECS_LICENSE_KEY }}
 
       - run: |
           git config user.name "GitHub Actions"

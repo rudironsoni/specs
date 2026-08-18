@@ -107,10 +107,6 @@ The relevance test is **identity**: a candidate qualifies when it's an instance 
 
 `config.processing.instanceExamples`
 
-## Licensing
-
-Instance example detection and output requires a [Pro license](/overview/licensing/). On the free tier `processing.instanceExamples` is silently ignored — no detection runs and nothing is emitted. The Figma plugin hides these controls until a Pro license is active.
-
 ## See Also
 
 - [Guide: Instance (Ready-Made) Examples](/guides/instance-examples/) — authoring example frames end to end

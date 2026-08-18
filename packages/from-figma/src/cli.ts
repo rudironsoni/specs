@@ -132,7 +132,7 @@ function printHelp(): void {
       Resolve figma:<hash> image registry entries via GET /v1/files/:key/images.
 
   --license-proxy [--port 8787] [--keys key1,key2]
-      Run a local license proxy. This is not the rudironsoni Polar worker.
+      Run a local license proxy for optional key checks.
 
   --help
 `);

@@ -76,10 +76,6 @@ With `defaultSlotContent: false` (the default), the slot binding carries no `$sl
 
 `config.include.defaultSlotContent`
 
-## Licensing
-
-`defaultSlotContent` output requires a [Pro license](/overview/licensing/). On the free tier the flag is silently ignored — slot content is neither stamped nor emitted, regardless of config. This applies to the CLI, the REST API, and the Figma plugin (where the control is hidden until a Pro license is active).
-
 ## See Also
 
 - [Guide: Default Slot Content](/guides/default-slot-content/) — what it captures and how to author it

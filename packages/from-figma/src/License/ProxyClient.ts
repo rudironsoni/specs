@@ -22,7 +22,7 @@ export function getLicenseProxy(): LicenseProxy | undefined {
 
 /**
  * Local in-process proxy. Known keys become PRO. Unknown keys stay FREE.
- * This is not the rudironsoni Polar worker.
+ * This is a local allow-list, not a remote store.
  */
 export function createLocalLicenseProxy(knownKeys: Iterable<string> = []): LicenseProxy {
   const allowed = new Set(knownKeys);
@@ -41,7 +41,7 @@ export function createLocalLicenseProxy(knownKeys: Iterable<string> = []): Licen
 
 /**
  * Optional HTTP proxy. POST `{ key, runtime }` to `SPECS_LICENSE_PROXY_URL`
- * or the supplied URL. This is a generic HTTP client, not a Polar clone.
+ * or the supplied URL. This is a generic HTTP client.
  */
 export function createHttpLicenseProxy(url: string, fetchImpl: typeof fetch = fetch): LicenseProxy {
   return {

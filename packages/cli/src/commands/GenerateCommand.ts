@@ -13,12 +13,11 @@ import fs from 'fs-extra';
 import path from 'path';
 import yaml from 'yaml';
 import { Components } from '@rudironsoni/specs-from-figma';
-import type { ProgressEvent, RestLicenseInput } from '@rudironsoni/specs-from-figma';
+import type { ProgressEvent } from '@rudironsoni/specs-from-figma';
 import { ConfigLoader } from '../Config/ConfigLoader.js';
 import { loadFoundations } from '../utilities/loadFoundations.js';
 import { ManifestParser } from '../utilities/ManifestParser.js';
 import { ManifestParserV2 } from '../utilities/ManifestParserV2.js';
-import { LicenseStatus } from '../utilities/LicenseStatus.js';
 import { FileManifest } from '../Writers/FileManifest.js';
 import { SingleFileWriter } from '../Writers/SingleFileWriter.js';
 import { ComponentFileWriter } from '../Writers/ComponentFileWriter.js';
@@ -39,7 +38,6 @@ const CLI_GENERATOR = {
 // Re-export for backward compatibility
 export { ManifestParser } from '../utilities/ManifestParser.js';
 export type { ManifestComponent, ManifestMetadata } from '../utilities/ManifestParser.js';
-export { LicenseStatus } from '../utilities/LicenseStatus.js';
 
 // Error codes from contracts/error-codes.md
 const ERROR_CODES = {
@@ -55,7 +53,6 @@ const ERROR_CODES = {
 
 interface GenerateOptions {
   component?: string;
-  license?: string;
   format?: string;
   output?: string;
   dataDir?: string;
@@ -86,7 +83,6 @@ export const Generate = new Command('generate')
   .description('Generate component specifications from Figma data or manifest')
   .argument('[source]', 'Path to Figma JSON file or markdown manifest (default: {dataDirectory}/{alias}.manifest.md from config)')
   .option('-c, --component <name|id>', 'Component name or ID (required for file mode)')
-  .option('-l, --license <key>', 'License key for premium features (or set SPECS_LICENSE_KEY)')
   .option('-f, --format <format>', 'Output format (yaml or json) - overrides config')
   .option('-o, --output <path>', 'Output file or directory path')
   .option('-v, --variables <path>', 'External variables JSON file')
@@ -303,12 +299,6 @@ export const Generate = new Command('generate')
       }
 
       // ---------------------------------------------------------------
-      // Resolve license
-      // ---------------------------------------------------------------
-      const licenseKey = options.license || process.env.SPECS_LICENSE_KEY || process.env.ANOVA_LICENSE_KEY;
-      const licenseInput: RestLicenseInput | undefined = licenseKey ? { key: licenseKey } : undefined;
-
-      // ---------------------------------------------------------------
       // Process components via batch API
       // ---------------------------------------------------------------
       if (isManifest) {
@@ -332,41 +322,7 @@ export const Generate = new Command('generate')
             if (event.status !== 'processing') process.stdout.write('\n');
           }
         },
-        licenseInput,
       );
-
-      // ---------------------------------------------------------------
-      // Hard-fail: wrong-runtime license key → AUTH_ERROR
-      // ---------------------------------------------------------------
-      if (results.length > 0 && results.every(r => 'error' in r)) {
-        const firstError = (results[0] as { name: string; error: string }).error;
-        if (firstError.includes('not valid for this runtime')) {
-          console.error(`Error: ${firstError}`);
-          process.exit(ERROR_CODES.AUTH_ERROR);
-        }
-      }
-
-      // ---------------------------------------------------------------
-      // Hard-fail: a *provided* key whose validation could not be completed
-      // (transient proxy/network failure or rate-limit) must NOT silently fall
-      // back to FREE output for a paid run. The transformer maps these states to
-      // FREE and proceeds, so without this guard the run would succeed and write
-      // free-tier specs under a valid key. Fail loud + retryable instead.
-      // (DirectedEdges/specs#119, C1)
-      // ---------------------------------------------------------------
-      if (licenseKey) {
-        const license = LicenseStatus.resolve(results);
-        // 'invalid'/'removed'/'expired' are definitive key rejections where FREE
-        // fallback is reasonable; these are the transient "check didn't complete"
-        // states where the key may well be valid.
-        const TRANSIENT_FAILURES = new Set(['error', 'network-error', 'rate-limited']);
-        if (license?.status && TRANSIENT_FAILURES.has(license.status)) {
-          console.error(`Error: License check could not be completed (status: ${license.status}).`);
-          console.error(`Your key was not validated, so no licensed output was produced.`);
-          console.error(`This is usually temporary — retry in a few seconds, or remove the key for free-tier output.`);
-          process.exit(license.status === 'rate-limited' ? ERROR_CODES.RATE_LIMIT : ERROR_CODES.NETWORK_ERROR);
-        }
-      }
 
       // ---------------------------------------------------------------
       // Separate successes and errors
@@ -396,9 +352,6 @@ export const Generate = new Command('generate')
           });
         }
       }
-
-      // Display license status
-      LicenseStatus.display(results, !!licenseKey);
 
       // Handle file mode errors
       if (!isManifest && errors.length > 0) {

@@ -22,7 +22,7 @@ Controls how specs are generated. See the [settings reference](/settings/) for d
 | [`invalidVariants`](/settings/invalid-variants/) | `boolean` | `false` | Include variants marked invalid |
 | [`invalidCombinations`](/guides/invalid-variant-combinations/) | `boolean` | `true` | Include `invalidVariantCombinations` list |
 | [`emptyVariants`](/settings/empty-variants/) | `boolean` | `false` | Include variants with no element overrides |
-| [`defaultSlotContent`](/guides/default-slot-content/) | `boolean` | `false` | **Pro.** Emit the component's default slot content into `Component.slotContentExamples` (structurally detected slot fills). Ignored on the free tier |
+| [`defaultSlotContent`](/guides/default-slot-content/) | `boolean` | `false` | Emit the component's default slot content into `Component.slotContentExamples` (structurally detected slot fills) |
 
 `instanceExamples` has no `include` flag — emitting it is driven by the presence of [`processing.instanceExamples`](#processinginstanceexamples) (Pro only), like `subcomponents`.
 
@@ -38,7 +38,7 @@ Controls how specs are generated. See the [settings reference](/settings/) for d
 | [`details`](/guides/variant-layering/) | `'FULL' \| 'LAYERED'` | `'LAYERED'` | Output detail level |
 | [`inferNumberProps`](/guides/number-inference/) | `boolean` | `false` | Infer number-typed props from Figma variant values |
 | [`collapsePrimitiveWrapper`](/settings/collapse-primitive-wrapper/) | `boolean` | `false` | Strip plain container wrappers around a single text/glyph child and promote the leaf to spec root |
-| [`instanceExamples`](/guides/instance-examples/) | `object` | — | **Pro.** Instance example detection. Absent = no detection; ignored on the free tier. See [`processing.instanceExamples`](#processinginstanceexamples) |
+| [`instanceExamples`](/guides/instance-examples/) | `object` | — | Instance example detection. Absent = no detection. See [`processing.instanceExamples`](#processinginstanceexamples) |
 | [`states`](/settings/states/) | `object` | — | Concept-keyed map classifying Figma variant props as semantic states. Absent = all variant props emit as `data-*` attribute selectors. See [`processing.states`](#processingstates) |
 | [`images`](/guides/images/) | `object` | — | Image processing (ADR-063). Presence is the on-switch; each member is an independent representation trigger. Absent = images are not processed. See [`processing.images`](#processingimages) |
 

@@ -52,7 +52,7 @@ npm install -g @directededges/specs-cli
 # 2. Initialize a specs.config.yaml file
 specs init
 # 3. Edit the config for your Figma file key and preferred settings 
-# 4. Set up an .env file with a Figma PAT and – if subscribed - license key
+# 4. Set up an .env file with a Figma PAT
 # 5. Fetch raw Figma data (file, variables, styles)
 specs fetch
 # 6. Scan the file to discover components and build a manifest

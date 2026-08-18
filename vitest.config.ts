@@ -8,6 +8,7 @@ export default defineConfig({
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),
+      '@directededges/specs-schema': path.resolve(__dirname, './packages/schema/types/index.ts'),
       '@rudironsoni/specs-schema': path.resolve(__dirname, './packages/schema/types/index.ts'),
       '@rudironsoni/specs-from-figma': path.resolve(__dirname, './packages/from-figma/src/index.ts'),
     },

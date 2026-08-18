@@ -53,10 +53,6 @@ config:
 - `parentNames` — restrict to frames whose **immediate** parent is one of these names.
 - `scope` — `PAGE` (component's page) or `FILE` (all pages, e.g. a dedicated Examples page).
 
-:::note[Pro feature]
-Instance examples require a [Pro license](/overview/licensing/). On the free tier `processing.instanceExamples` is ignored — no detection, no output. In the Figma plugin the control is hidden until a Pro license is active.
-:::
-
 ## Naming Tips
 
 `match: ["{C}"]` only matches a frame named *exactly* the component name (patterns are anchored). To catch suffixed names like `DS Alert - All Content Horizontal`, use a wildcard: `"{C} - *"` or `"{C}*"`. The `{C}` placeholder resolves to the component's exact Figma name, so keep your example instance names prefixed consistently.
