@@ -27,7 +27,7 @@
 ## Dependencies
 
 - `@directededges/specs-schema` — types and `DEFAULT_CONFIG` (linked via workspace symlink)
-- `@directededges/specs-from-figma` — processing engine (`Component.fromRestApi`)
+- `@rudironsoni/specs-from-figma` — processing engine (`Component.fromRestApi`, local `packages/from-figma`)
 
 ## Build
 

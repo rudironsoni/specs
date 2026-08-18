@@ -8,7 +8,7 @@
  */
 
 import fs from 'fs-extra';
-import type { StylesMap, VariablesMap, CollectionsMap } from '@directededges/specs-from-figma';
+import type { StylesMap, VariablesMap, CollectionsMap } from '@rudironsoni/specs-from-figma';
 
 /**
  * Container for all foundations data (styles, variables, collections)

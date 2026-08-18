@@ -1,0 +1,58 @@
+{
+  "name": "@rudironsoni/specs-from-figma",
+  "version": "0.28.0",
+  "description": "Clean-room recreation of the specs-from-figma REST engine",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "bin": {
+    "specs-from-figma": "./dist/cli.js"
+  },
+  "exports": {
+    ".": {
+      "types": "./src/index.ts",
+      "import": "./src/index.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE",
+    "ATTRIBUTION.md"
+  ],
+  "scripts": {
+    "build": "npm run build:js && npm run build:types",
+    "build:types": "tsc -p tsconfig.json --emitDeclarationOnly --outDir dist",
+    "build:js": "esbuild src/index.ts --bundle --platform=neutral --target=es2020 --outfile=dist/index.js --format=esm --external:yaml --external:@rudironsoni/specs-schema && esbuild src/cli.ts --bundle --platform=node --target=es2020 --outfile=dist/cli.js --format=esm --external:yaml --external:@rudironsoni/specs-schema",
+    "watch": "esbuild src/index.ts --bundle --platform=neutral --target=es2020 --outfile=dist/index.js --format=esm --external:yaml --external:@rudironsoni/specs-schema --watch",
+    "test": "cd ../.. && vitest run packages/from-figma/tests",
+    "typecheck": "tsc -p tsconfig.json --noEmit"
+  },
+  "dependencies": {
+    "@rudironsoni/specs-schema": "file:../schema",
+    "yaml": "^2.3.4"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.5",
+    "esbuild": "^0.20.0",
+    "typescript": "^5.3.3",
+    "vitest": "^3.1.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rudironsoni/specs.git",
+    "directory": "packages/from-figma"
+  },
+  "keywords": [
+    "figma",
+    "design-system",
+    "specification",
+    "transformer"
+  ],
+  "author": "rudironsoni",
+  "license": "PolyForm-Internal-Use-1.0.0",
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
+  }
+}

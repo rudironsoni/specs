@@ -1,0 +1,16 @@
+import type { ResolvedConfig } from '@rudironsoni/specs-schema';
+import type { FigmaElementNode } from '../../Nodes/types.js';
+import type { ProcessingContext } from '../../../Runtime/Context/interfaces.js';
+import { BaseElement } from '../BaseElement.js';
+
+export class SlotElement extends BaseElement {
+  constructor(node: FigmaElementNode, name: string, config: ResolvedConfig) {
+    super(node, name, config);
+  }
+
+  protected override async extendedEvaluate(): Promise<void> {
+    this.children.set({ $binding: `#/props/${this.name}` });
+  }
+
+  protected override async extendedPostProcess(_context?: ProcessingContext): Promise<void> {}
+}
