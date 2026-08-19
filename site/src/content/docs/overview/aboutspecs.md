@@ -35,7 +35,7 @@ This matters practically because structured specs become the primary input for d
 
 ## How It Works
 
-Specs runs in two environments, both powered by the same processing engine ([`@directededges/specs-from-figma`](/)):
+Specs runs in two environments, both powered by the same processing engine ([`@rudironsoni/specs-from-figma`](/)):
 
 - **CLI** — The [`specs` command line tool](/cli/) fetches component data via Figma's REST API, then generates specs locally. Best for batch processing entire libraries, CI integration, and version-controlled output.
 - **Figma Plugin** — Runs inside Figma using the Plugin API for real-time, single-component generation during design work.

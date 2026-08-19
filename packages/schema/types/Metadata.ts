@@ -28,13 +28,13 @@ export type Metadata = {
     version: string;
     name: string;
     /**
-     * Resolved license state at the time this component spec was generated.
-     * Absent when no license was supplied to the generator.
+     * Historical license stamp. Current specs-from-figma omits this field.
+     * Older specs may still include it.
      */
     license?: {
-      /** License validation status (e.g. "VALID", "EXPIRED", "NONE"). */
+      /** Historical validation status (e.g. "VALID", "EXPIRED", "NONE"). */
       status: string;
-      /** Output entitlement level (e.g. "FREE", "PRO", "EXTENDED"). */
+      /** Historical entitlement level (e.g. "FREE", "PRO", "EXTENDED"). */
       level: string;
     };
   };

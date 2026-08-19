@@ -1,5 +1,5 @@
 {
-  "name": "@directededges/specs-cli",
+  "name": "@rudironsoni/specs-cli",
   "version": "0.26.0",
   "description": "Command-line interface for Specs design system operations",
   "type": "module",
@@ -20,8 +20,8 @@
     "test": "cd ../.. && vitest -c vitest.config.ts packages/cli/tests"
   },
   "dependencies": {
-    "@directededges/specs-schema": "^0.29.0",
-    "@directededges/specs-from-figma": "^0.28.0",
+    "@rudironsoni/specs-schema": "^0.29.0",
+    "@rudironsoni/specs-from-figma": "*",
     "commander": "^11.1.0",
     "fs-extra": "^11.2.0",
     "yaml": "^2.3.4",
@@ -36,7 +36,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/directededges/specs.git",
+    "url": "https://github.com/rudironsoni/specs.git",
     "directory": "packages/cli"
   },
   "keywords": [
@@ -45,7 +45,7 @@
     "cli",
     "figma"
   ],
-  "author": "DirectedEdges",
+  "author": "rudironsoni",
   "license": "MIT",
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"

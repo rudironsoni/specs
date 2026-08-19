@@ -3,7 +3,6 @@ title: "Default Slot Content"
 description: "Capture the default content authored inside a component's slots as reusable examples"
 ---
 
-<script>document.querySelector('#_top').insertAdjacentHTML('beforeend',' <span class="sl-badge pro-badge">Pro</span>')</script>
 
 A slot is a placeable content area — a region where consumers drop child components. But most slots in a real library ship with **default content** already inside them: an alert's body slot holds a heading and description, a card's media slot holds an image. That authored content is a meaningful example of how the slot is meant to be filled. The `slotContentExamples` feature captures it.
 
@@ -51,8 +50,8 @@ config:
 
 **Default**: `false`. Existing output is unchanged until you opt in.
 
-:::note[Pro feature]
-`defaultSlotContent` requires a [Pro license](/overview/licensing/). On the free tier the flag is ignored — no slot content is emitted. In the Figma plugin the control is hidden until a Pro license is active.
+:::note
+`defaultSlotContent` is off by default. Set `include.defaultSlotContent: true` to emit slot fills.
 :::
 
 ## Default Slot Content vs. Instance Examples

@@ -1,9 +1,7 @@
-import { describe, it, expect, vi, beforeEach, afterEach, type MockInstance } from 'vitest';
+import { describe, it, expect } from 'vitest';
 import { Generate } from '../../../src/commands/GenerateCommand.js';
 import { ManifestParser } from '../../../src/utilities/ManifestParser.js';
 import { ManifestParserV2 } from '../../../src/utilities/ManifestParserV2.js';
-import { LicenseStatus } from '../../../src/utilities/LicenseStatus.js';
-import type { ComponentsData } from '@directededges/specs-from-figma';
 
 // ============================================================================
 // COMMAND REGISTRATION
@@ -31,11 +29,18 @@ describe('GenerateCommand', () => {
       expect(componentOption!.mandatory).toBeFalsy();
     });
 
+    it('does not register a license flag', () => {
+      const options = Generate.options.map(option => option.long).filter(Boolean);
+      const shorts = Generate.options.map(option => option.short).filter(Boolean);
+      expect(options).not.toContain('--license');
+      expect(shorts).not.toContain('-l');
+      expect(Generate.helpInformation()).not.toMatch(/--license/);
+    });
+
     it('registers all expected options', () => {
       const options = Generate.options.map(option => option.long).filter(Boolean);
 
       expect(options).toContain('--component');
-      expect(options).toContain('--license');
       expect(options).toContain('--format');
       expect(options).toContain('--output');
       expect(options).toContain('--variables');
@@ -52,7 +57,6 @@ describe('GenerateCommand', () => {
       const shorts = Generate.options.map(o => o.short).filter(Boolean);
 
       expect(shorts).toContain('-c');
-      expect(shorts).toContain('-l');
       expect(shorts).toContain('-f');
       expect(shorts).toContain('-o');
       expect(shorts).toContain('-v');
@@ -357,181 +361,6 @@ describe('manifest format detection (v1 + v2)', () => {
     expect(metadata.file).toBe('data/specs-testing.file.json');
     expect(components).toHaveLength(1);
     expect(components[0]).toMatchObject({ id: '639:11013', name: 'DS Button', included: true });
-  });
-});
-
-// ============================================================================
-// LICENSE KEY RESOLUTION (T04)
-// ============================================================================
-
-describe('license key resolution', () => {
-  // The resolution logic in GenerateCommand:
-  //   const licenseKey = options.license || process.env.ANOVA_LICENSE_KEY;
-  //   const licenseInput = licenseKey ? { key: licenseKey } : undefined;
-
-  it('--license flag produces license input', () => {
-    const optionsLicense = 'lic_abc';
-    const envKey = undefined;
-    const licenseKey = optionsLicense || envKey;
-    expect(licenseKey).toBe('lic_abc');
-    expect(licenseKey ? { key: licenseKey } : undefined).toEqual({ key: 'lic_abc' });
-  });
-
-  it('env var produces license input when no flag', () => {
-    const optionsLicense = undefined;
-    const envKey = 'lic_env';
-    const licenseKey = optionsLicense || envKey;
-    expect(licenseKey).toBe('lic_env');
-    expect(licenseKey ? { key: licenseKey } : undefined).toEqual({ key: 'lic_env' });
-  });
-
-  it('--license flag wins over env var', () => {
-    const optionsLicense = 'lic_flag';
-    const envKey = 'lic_env';
-    const licenseKey = optionsLicense || envKey;
-    expect(licenseKey).toBe('lic_flag');
-  });
-
-  it('neither flag nor env var produces undefined', () => {
-    const optionsLicense = undefined;
-    const envKey = undefined;
-    const licenseKey = optionsLicense || envKey;
-    expect(licenseKey).toBeUndefined();
-    expect(licenseKey ? { key: licenseKey } : undefined).toBeUndefined();
-  });
-});
-
-// ============================================================================
-// LICENSE STATUS DISPLAY (T05)
-// ============================================================================
-
-describe('displayLicenseStatus', () => {
-  let logSpy: MockInstance;
-
-  beforeEach(() => {
-    logSpy = vi.spyOn(console, 'log').mockImplementation(() => {});
-  });
-
-  afterEach(() => {
-    logSpy.mockRestore();
-  });
-
-  function makeResult(licenseLevel: string, licenseStatus: string): ComponentsData[] {
-    return [{
-      name: 'Button',
-      component: {
-        title: 'Button',
-        metadata: {
-          generator: {
-            license: { level: licenseLevel, status: licenseStatus }
-          }
-        }
-      }
-    }] as any;
-  }
-
-  it('displays PRO (active) for active PRO license', () => {
-    LicenseStatus.display(makeResult('PRO', 'active'), true);
-
-    expect(logSpy).toHaveBeenCalledWith('License: PRO (active)');
-  });
-
-  it('displays FREE (invalid) for invalid key', () => {
-    LicenseStatus.display(makeResult('FREE', 'invalid'), true);
-
-    expect(logSpy).toHaveBeenCalledWith('License: FREE (invalid — key not recognized)');
-  });
-
-  it('displays FREE (expired) for expired key', () => {
-    LicenseStatus.display(makeResult('FREE', 'expired'), true);
-
-    expect(logSpy).toHaveBeenCalledWith('License: FREE (expired — key expired)');
-  });
-
-  it('displays FREE (activation-limit-reached) for exhausted seats', () => {
-    LicenseStatus.display(makeResult('FREE', 'activation-limit-reached'), true);
-
-    expect(logSpy).toHaveBeenCalledWith(
-      'License: FREE (activation-limit-reached — all seats consumed for this key)'
-    );
-  });
-
-  it('displays FREE (network-error) for license server failure', () => {
-    LicenseStatus.display(makeResult('FREE', 'network-error'), true);
-
-    expect(logSpy).toHaveBeenCalledWith(
-      'License: FREE (network-error — could not reach license server)'
-    );
-  });
-
-  it('displays nothing when no license key was provided', () => {
-    LicenseStatus.display(makeResult('FREE', 'active'), false);
-
-    expect(logSpy).not.toHaveBeenCalled();
-  });
-
-  it('displays nothing when results have no successful components', () => {
-    const errorResults: ComponentsData[] = [
-      { name: 'Button', error: 'Component not found' } as any
-    ];
-
-    LicenseStatus.display(errorResults, true);
-
-    expect(logSpy).not.toHaveBeenCalled();
-  });
-
-  it('displays nothing when component has no generator metadata', () => {
-    const results: ComponentsData[] = [{
-      name: 'Button',
-      component: { title: 'Button', metadata: {} }
-    }] as any;
-
-    LicenseStatus.display(results, true);
-
-    expect(logSpy).not.toHaveBeenCalled();
-  });
-
-  it('displays nothing when component has no license in generator', () => {
-    const results: ComponentsData[] = [{
-      name: 'Button',
-      component: { title: 'Button', metadata: { generator: {} } }
-    }] as any;
-
-    LicenseStatus.display(results, true);
-
-    expect(logSpy).not.toHaveBeenCalled();
-  });
-
-  it('uses first successful result for license info (multiple results)', () => {
-    const results: ComponentsData[] = [
-      { name: 'Button', error: 'failed' } as any,
-      {
-        name: 'Alert',
-        component: {
-          title: 'Alert',
-          metadata: { generator: { license: { level: 'PRO', status: 'active' } } }
-        }
-      } as any,
-      {
-        name: 'Modal',
-        component: {
-          title: 'Modal',
-          metadata: { generator: { license: { level: 'PRO', status: 'active' } } }
-        }
-      } as any
-    ];
-
-    LicenseStatus.display(results, true);
-
-    expect(logSpy).toHaveBeenCalledTimes(1);
-    expect(logSpy).toHaveBeenCalledWith('License: PRO (active)');
-  });
-
-  it('handles unknown status gracefully', () => {
-    LicenseStatus.display(makeResult('FREE', 'some-future-status'), true);
-
-    // Falls through to default: uses status as its own description
-    expect(logSpy).toHaveBeenCalledWith('License: FREE (some-future-status — some-future-status)');
   });
 });
 

@@ -1,12 +1,12 @@
 {
-  "name": "@directededges/specs-schema",
+  "name": "@rudironsoni/specs-schema",
   "version": "0.29.0",
   "description": "Specs UI Component Schema - TypeScript types and JSON schema definitions for component specifications",
-  "license": "CC-BY-4.0",
-  "author": "Nathan Curtis <nathan@directededges.com>",
+  "license": "MIT",
+  "author": "Nathan Curtis",
   "repository": {
     "type": "git",
-    "url": "https://github.com/DirectedEdges/specs.git",
+    "url": "https://github.com/rudironsoni/specs.git",
     "directory": "packages/schema"
   },
   "type": "module",

@@ -3,7 +3,6 @@ title: "defaultSlotContent"
 description: "Emit the component's structurally-detected default slot content as examples"
 ---
 
-<script>document.querySelector('#_top').insertAdjacentHTML('beforeend',' <span class="sl-badge pro-badge">Pro</span>')</script>
 <script>document.querySelector('#_top').insertAdjacentHTML('beforeend',' <span class="sl-badge experimental-badge">Experimental</span>')</script>
 
 When `true`, the generator emits `Component.slotContentExamples` — the **default content placed inside a component's slot layers**, captured structurally and referenced from each slot binding via `$slotContent`. Defaults to `false`, so output for unannotated components is unchanged until you opt in.
@@ -75,10 +74,6 @@ With `defaultSlotContent: false` (the default), the slot binding carries no `$sl
 ## Path
 
 `config.include.defaultSlotContent`
-
-## Licensing
-
-`defaultSlotContent` output requires a [Pro license](/overview/licensing/). On the free tier the flag is silently ignored — slot content is neither stamped nor emitted, regardless of config. This applies to the CLI, the REST API, and the Figma plugin (where the control is hidden until a Pro license is active).
 
 ## See Also
 

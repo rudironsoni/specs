@@ -87,7 +87,7 @@ components:
 or `instanceExamples`; components without examples are omitted from it. Without this
 file the `$slotContent` references in `default`/`variants` would have no target.
 
-Example output is a [Pro feature](/settings/default-slot-content/) — on the free tier no example data is produced, so `examples.yaml` is never written.
+Example output is written when `include.defaultSlotContent` or `processing.instanceExamples` is enabled.
 
 ## `useSubfolders`
 

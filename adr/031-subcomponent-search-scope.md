@@ -12,7 +12,7 @@
 
 Today, the transformer discovers subcomponents exclusively from elements nested within a component's own `COMPONENT`/`COMPONENT_SET` anatomy tree. This means any subcomponent that matches the `subcomponentNamePattern` but lives **outside** the parent component's layer hierarchy — for example, a composable subcomponent that only appears via a `SLOT` layer or exists as a standalone asset on the same Figma page — is never detected.
 
-[anova-transformer#12](https://github.com/DirectedEdges/anova-transformer/issues/12) proposes that the transformer also search the surrounding Figma page for matching assets. This requires two new `Config` options in the shared contract:
+[anova-transformer#12](https://github.com/rudironsoni/anova-transformer/issues/12) proposes that the transformer also search the surrounding Figma page for matching assets. This requires two new `Config` options in the shared contract:
 
 1. **Whether** to search beyond the component's nested anatomy (opt-in toggle)
 2. **Which matches to include or exclude** — on a typical Figma page, a component `X` may have many sibling assets that share its prefix but serve different purposes:
@@ -416,7 +416,7 @@ subcomponents:
 
 ## Consequences
 
-- Consumers can configure the transformer to discover subcomponents that live outside a component's nested anatomy, addressing the gap described in [anova-transformer#12](https://github.com/DirectedEdges/anova-transformer/issues/12)
+- Consumers can configure the transformer to discover subcomponents that live outside a component's nested anatomy, addressing the gap described in [anova-transformer#12](https://github.com/rudironsoni/anova-transformer/issues/12)
 - `match` arrays give maintainers explicit control over which naming patterns constitute valid subcomponents
 - `exclude` arrays let maintainers filter false positives (e.g., example or test-case assets) without modifying Figma layer names
 - Subcomponent discovery config is grouped cohesively in `processing.subcomponents` instead of scattered as flat `subcomponent*`-prefixed fields

@@ -10,7 +10,7 @@
 
 ## Context
 
-`@directededges/anova` currently exposes typography-related style properties as individual flat keys within the `Styles` type: `fontSize`, `fontFamily`, `fontStyle`, `lineHeight`, `letterSpacing`, `textCase`, `textDecoration`, `paragraphIndent`, `paragraphSpacing`, `leadingTrim`, `listSpacing`, `hangingPunctuation`, and `hangingList`. These coexist with `textStyleId`, which references a named Figma text style.
+`@rudironsoni/anova` currently exposes typography-related style properties as individual flat keys within the `Styles` type: `fontSize`, `fontFamily`, `fontStyle`, `lineHeight`, `letterSpacing`, `textCase`, `textDecoration`, `paragraphIndent`, `paragraphSpacing`, `leadingTrim`, `listSpacing`, `hangingPunctuation`, and `hangingList`. These coexist with `textStyleId`, which references a named Figma text style.
 
 Current `Styles` shape (typography subset):
 

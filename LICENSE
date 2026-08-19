@@ -1,6 +1,5 @@
-This repository contains multiple packages with different licenses:
+This repository contains packages with these licenses:
 
-- packages/schema/ is licensed under CC BY 4.0 (see packages/schema/LICENSE)
+- packages/schema/ is licensed under MIT (see packages/schema/LICENSE)
 - packages/cli/ is licensed under MIT (see packages/cli/LICENSE)
-
-Full licensing details: https://directededges.github.io/specs/overview/licensing/
+- packages/from-figma/ is licensed under PolyForm Internal Use 1.0.0 (see packages/from-figma/LICENSE)

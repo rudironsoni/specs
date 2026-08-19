@@ -3,7 +3,6 @@ title: "Subcomponents"
 description: "Embedded child component definitions and $ref linking"
 ---
 
-<script>document.querySelector('#_top').insertAdjacentHTML('beforeend',' <span class="sl-badge pro-badge">Pro</span>')</script>
 
 Subcomponents are smaller components embedded within a parent component's spec. They follow the same structure as a top-level `Component` but without `metadata` or nested subcomponents. An optional `source` field carries the Figma node identity needed for reverse-direction tooling.
 
@@ -80,5 +79,5 @@ Subcomponent detection is controlled by [`config.processing.subcomponents`](/sch
 
 ## Further Reading
 
-- [ADR 030 — Subcomponent $ref for instanceOf](https://github.com/DirectedEdges/specs/blob/main/adr/030-subcomponent-refs.md) — adds `SubcomponentRef` for linking anatomy elements to subcomponents
-- [ADR 031 — Subcomponent Search Scope Config](https://github.com/DirectedEdges/specs/blob/main/adr/031-subcomponent-search-scope.md) — replaces `subcomponentNamePattern` with structured `scope`, `match[]`, `exclude[]`
+- [ADR 030 — Subcomponent $ref for instanceOf](https://github.com/rudironsoni/specs/blob/main/adr/030-subcomponent-refs.md) — adds `SubcomponentRef` for linking anatomy elements to subcomponents
+- [ADR 031 — Subcomponent Search Scope Config](https://github.com/rudironsoni/specs/blob/main/adr/031-subcomponent-search-scope.md) — replaces `subcomponentNamePattern` with structured `scope`, `match[]`, `exclude[]`

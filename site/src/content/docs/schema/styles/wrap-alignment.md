@@ -22,11 +22,11 @@ Not token-bindable — structural property, not a design value.
 
 #### Figma key
 
-Reads from `counterAxisAlignContent`. See [ADR 039 — Wrap Alignment](https://github.com/DirectedEdges/specs/blob/main/adr/039-wrap-alignment.md).
+Reads from `counterAxisAlignContent`. See [ADR 039 — Wrap Alignment](https://github.com/rudironsoni/specs/blob/main/adr/039-wrap-alignment.md).
 
 #### Source
 
 | Format | File |
 |---|---|
-| TypeScript | [`packages/schema/types/Styles.ts`](https://github.com/DirectedEdges/specs/blob/main/packages/schema/types/Styles.ts) |
-| JSON Schema | [`packages/schema/schema/styles.schema.json`](https://github.com/DirectedEdges/specs/blob/main/packages/schema/schema/styles.schema.json) |
+| TypeScript | [`packages/schema/types/Styles.ts`](https://github.com/rudironsoni/specs/blob/main/packages/schema/types/Styles.ts) |
+| JSON Schema | [`packages/schema/schema/styles.schema.json`](https://github.com/rudironsoni/specs/blob/main/packages/schema/schema/styles.schema.json) |

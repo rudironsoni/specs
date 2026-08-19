@@ -10,9 +10,9 @@
 
 ## Context
 
-`@directededges/anova` currently exposes `effectStyleId?: Style` in the `Styles` type and the `StyleKey` union. In serialised output this key carries either a raw Figma style ID string or a `FigmaStyle` reference object. It provides no structure for the shadow values themselves — downstream consumers who need shadow geometry must look up the referenced style out-of-band.
+`@rudironsoni/anova` currently exposes `effectStyleId?: Style` in the `Styles` type and the `StyleKey` union. In serialised output this key carries either a raw Figma style ID string or a `FigmaStyle` reference object. It provides no structure for the shadow values themselves — downstream consumers who need shadow geometry must look up the referenced style out-of-band.
 
-`@directededges/anova-transformer` intends to enrich effect output. When a node's effects come from a *named Figma style*, emit the existing `FigmaStyle` reference under the key `effects`. When effects are inline, emit resolved geometry under `effects`.
+`@rudironsoni/anova-transformer` intends to enrich effect output. When a node's effects come from a *named Figma style*, emit the existing `FigmaStyle` reference under the key `effects`. When effects are inline, emit resolved geometry under `effects`.
 
 `effectStyleId` is removed entirely — no deprecation shim. This is a breaking change that requires a MAJOR bump.
 
@@ -427,4 +427,4 @@ effects:
 - When `styles.effects` is an `Effects`, each present key carries the resolved geometry for that effect role.
 - New effect roles can be added to `Effects` as optional keys in future releases without a breaking change.
 - Any JSON schema validation that previously passed `{ "effectStyleId": { "id": "..." } }` will fail after this change — consumers must revalidate against the new schema version.
-- `Shadow`, `Blur`, and `Effects` are now first-class exported types: `import type { Shadow, Blur, Effects } from '@directededges/anova'`.
+- `Shadow`, `Blur`, and `Effects` are now first-class exported types: `import type { Shadow, Blur, Effects } from '@rudironsoni/anova'`.

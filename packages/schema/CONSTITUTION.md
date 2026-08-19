@@ -3,7 +3,7 @@
 ## Core Principles
 
 ### I. Types and Schema Are the Same Contract (NON-NEGOTIABLE)
-`@directededges/specs-schema` publishes two interlinked artifacts: TypeScript types in `types/` and JSON schemas in `schema/`. They MUST describe the same structure at all times.
+`@rudironsoni/specs-schema` publishes two interlinked artifacts: TypeScript types in `types/` and JSON schemas in `schema/`. They MUST describe the same structure at all times.
 
 - Every type in `types/` has a corresponding definition (direct or via reference) in `schema/component.schema.json` or its siblings. Changes to one MUST be reflected in the other before publishing.
 - The JSON schemas are the authoritative validation contract for serialized output. The TypeScript types are the authoritative compile-time contract for code consuming that output.
@@ -17,7 +17,7 @@ This package MUST NOT contain transformation logic, processing algorithms, or ru
 
 All other exports MUST be pure type declarations (`type`, `interface`) or static schema files. No classes, no functions, no async operations.
 
-Rationale: `@directededges/specs-schema` is the shared language definition for the Specs ecosystem. Embedding logic couples all consumers to implementation decisions that belong in `specs-from-figma` or `specs-cli`. If logic is needed, it belongs in a downstream package.
+Rationale: `@rudironsoni/specs-schema` is the shared language definition for the Specs ecosystem. Embedding logic couples all consumers to implementation decisions that belong in `specs-from-figma` or `specs-cli`. If logic is needed, it belongs in a downstream package.
 
 ### III. Minimal, Stable, Intentional Public API
 The exports from `types/index.ts` are the full public API. Every exported type is a contract with every consumer.
@@ -94,7 +94,7 @@ Rationale: Figma is the data source for the schema, not the naming authority. Th
 
 ## Governance
 
-- **Authority**: This constitution governs development of `@directededges/specs-schema` and supersedes conflicting ad-hoc practices.
+- **Authority**: This constitution governs development of `@rudironsoni/specs-schema` and supersedes conflicting ad-hoc practices.
 - **Amendments**: Propose changes via PR with: rationale, impact analysis (which downstream packages are affected and how), and migration plan.
 - **Versioning Policy (for this constitution)**:
   - MAJOR: Backward-incompatible governance/principle changes or removals.

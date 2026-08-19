@@ -42,17 +42,17 @@ The result is a spec that's compact yet complete — not noisy like Figma's REST
 
 ## Packages
 
-### `@directededges/specs-cli`
+### `@rudironsoni/specs-cli`
 
 Command-line interface (CLI) for generating component specifications from Figma design files.
 
 ```sh
 # 1. Install cli globally to run with the command `specs`
-npm install -g @directededges/specs-cli
+npm install -g @rudironsoni/specs-cli
 # 2. Initialize a specs.config.yaml file
 specs init
 # 3. Edit the config for your Figma file key and preferred settings 
-# 4. Set up an .env file with a Figma PAT and – if subscribed - license key
+# 4. Set up an .env file with a Figma PAT
 # 5. Fetch raw Figma data (file, variables, styles)
 specs fetch
 # 6. Scan the file to discover components and build a manifest
@@ -69,12 +69,12 @@ Helpful documentation includes:
 - Per [command](https://www.specsplugin.com/cli/commands/) instructions and flags
 
 
-### `@directededges/specs-schema`
+### `@rudironsoni/specs-schema`
 
 The shared type system and JSON schema that defines the structure of UI component specifications is a dependency of `specs-cli` and installed when you install the command line interface as above. However, it is also available as a standalone package.
 
 ```sh
-npm install @directededges/specs-schema
+npm install @rudironsoni/specs-schema
 ```
 
 Exports include:
@@ -85,9 +85,9 @@ Exports include:
 
 Learn more in the [Schema docs](https://www.specsplugin.com/schema/), including details on each property including component, variants, styles, props and more.
 
-### `@directededges/specs-from-figma`
+### `@rudironsoni/specs-from-figma`
 
-The `specs-from-figma` package is the engine that converts Figma assets into specs and is used for both the command line interface and the associated Figma plugin. It is developed in a private repository and its published package is installed as a dependency of the command line interface.
+The `specs-from-figma` package is the engine that converts Figma assets into specs. It lives in `packages/from-figma` and the CLI depends on it as a workspace package.
 
 ## Architectural Decision Records
 
@@ -122,27 +122,13 @@ Found a bug or have a feature request? Please check if it already exists in our 
 - Use case and benefits
 - Any relevant mockups or examples
 
-**Questions?** Visit our [Slack community](https://join.slack.com/t/directededges-plugins/shared_invite/zt-3e3nhx1zp-4uUjRCA7y2QAEPZdVNJi6A).
+**Questions?** Open an issue on [GitHub](https://github.com/rudironsoni/specs).
 
 ## Licensing
 
-This repository contains packages with different licenses:
-
-- **`packages/schema/`** — [Creative Commons Attribution 4.0 International (CC BY 4.0)](https://creativecommons.org/licenses/by/4.0/)
+- **`packages/schema/`** — [MIT](packages/schema/LICENSE)
 - **`packages/cli/`** — [MIT](packages/cli/LICENSE)
-
-### Attribution (Schema)
-
-When extending or reusing the specs schema, you must:
-
-- Credit **Nathan Curtis** as the author
-- Provide a link to this repository: https://github.com/DirectedEdges/specs
-- Provide a link to the license: https://creativecommons.org/licenses/by/4.0/
-- Indicate if you made any modifications to the schema
-
-Example attribution:
-
-> "This project uses the [Specs UI Component Schema](https://github.com/DirectedEdges/specs) by Nathan Curtis of Directed Edges, licensed under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)."
+- **`packages/from-figma/`** — [PolyForm Internal Use 1.0.0](packages/from-figma/LICENSE)
 
 ---
 

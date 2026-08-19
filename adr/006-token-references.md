@@ -10,7 +10,7 @@
 
 ## Context
 
-`@directededges/anova` currently represents references to Figma variables and Figma named styles as two separate types within the `Style` union:
+`@rudironsoni/anova` currently represents references to Figma variables and Figma named styles as two separate types within the `Style` union:
 
 - `VariableStyle` — a Figma variable reference carrying `id`, `rawValue`, `name`, `variableName`, `collectionName`, `collectionId`
 - `FigmaStyle` — a Figma named style reference carrying `id` and `name`

@@ -13,4 +13,4 @@ Whether hanging list markers are enabled. Part of [`Typography`](/schema/typogra
 
 #### Source
 
-[`packages/schema/types/Styles.ts`](https://github.com/DirectedEdges/specs/blob/main/packages/schema/types/Styles.ts) (`Typography` interface)
+[`packages/schema/types/Styles.ts`](https://github.com/rudironsoni/specs/blob/main/packages/schema/types/Styles.ts) (`Typography` interface)

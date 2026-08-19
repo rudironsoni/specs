@@ -10,7 +10,7 @@ Skip the manual walkthrough. Paste this into Claude Code:
 Onboard me to Specs CLI following the ONBOARDING.md instructions in this repo.
 ```
 
-Claude will handle install, config, token setup, fetch, and your first generate — asking only the decisions that actually need you. See [`ONBOARDING.md`](https://github.com/DirectedEdges/specs/blob/main/ONBOARDING.md) in the repo root.
+Claude will handle install, config, token setup, fetch, and your first generate — asking only the decisions that actually need you. See [`ONBOARDING.md`](https://github.com/rudironsoni/specs/blob/main/ONBOARDING.md) in the repo root.
 :::
 
 **Quick nav:**
@@ -27,7 +27,7 @@ Claude will handle install, config, token setup, fetch, and your first generate 
 Specs CLI requires **[Node.js 18+](https://nodejs.org/)** (LTS recommended). Install it if you haven't already, then install Specs CLI globally:
 
 ```bash
-npm install -g @directededges/specs-cli
+npm install -g @rudironsoni/specs-cli
 specs --version
 ```
 
@@ -72,7 +72,7 @@ FIGMA_TOKEN=your_figma_token_here
 
 To create a token, go to [Figma Settings → Tokens](https://www.figma.com/settings/tokens), click **Create a new token**, and select these scopes: `file_metadata:read`, `file_content:read`, `library_assets:read`, `library_content:read`, and `file_variables:read`.
 
-A **license key** is optional — Specs CLI works at a free tier without one. To unlock Pro features, add `SPECS_LICENSE_KEY` to your `.env` file. See [Licensing](/overview/licensing/) for details.
+No Specs license key is required. All generate output is available.
 
 ### Other configuration (optional)
 
@@ -164,15 +164,13 @@ jobs:
         with:
           node-version: '18'
 
-      - run: npm install -g @directededges/specs-cli
+      - run: npm install -g @rudironsoni/specs-cli
 
       - run: specs fetch
         env:
           FIGMA_TOKEN: ${{ secrets.FIGMA_TOKEN }}
 
       - run: specs generate
-        env:
-          SPECS_LICENSE_KEY: ${{ secrets.SPECS_LICENSE_KEY }}
 
       - run: |
           git config user.name "GitHub Actions"

@@ -4,6 +4,7 @@
 **Created**: 2026-05-19
 **Status**: DRAFT
 **Deciders**: Nathan Curtis (author)
+**Note**: Historical. Pro-license emission notes in this ADR are not current. Generate output is ungated.
 **Depends on**: [ADR-047 — Component Slot Examples](047-component-slot-examples), [ADR-048 — Component Instance Examples](048-component-instance-examples)
 
 ---

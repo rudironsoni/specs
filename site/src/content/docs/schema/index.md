@@ -3,7 +3,7 @@ title: "Overview"
 description: "Overview of the Specs component schema"
 ---
 
-The `@directededges/specs-schema` package defines the TypeScript types and JSON Schema for a **component spec** — a structured, platform-agnostic description of a design-system component.
+The `@rudironsoni/specs-schema` package defines the TypeScript types and JSON Schema for a **component spec** — a structured, platform-agnostic description of a design-system component.
 
 ## Spec Architecture
 
@@ -43,9 +43,9 @@ components:
   │ └─ {name}: { …same shape as above }
   ├─ <a href="/schema/metadata/">metadata</a>:
   │ └─ <a href="/schema/config/">config</a>:
-  ├─ <a href="/schema/instance-examples/">instanceExamples</a>:                   → <a href="/schema/instance-examples/">InstanceExample</a>  <span class="sl-badge pro-badge">Pro</span>
+  ├─ <a href="/schema/instance-examples/">instanceExamples</a>:                   → <a href="/schema/instance-examples/">InstanceExample</a>
   │ └─ {name}: { title, propConfigurations }
-  └─ <a href="/schema/slot-content/">slotContentExamples</a>:                → <a href="/schema/slot-content/">SlotContent</a>  <span class="sl-badge pro-badge">Pro</span>
+  └─ <a href="/schema/slot-content/">slotContentExamples</a>:                → <a href="/schema/slot-content/">SlotContent</a>
     └─ {name}: { <a href="/schema/anatomy/">anatomy</a>, <a href="/schema/elements/">elements</a>, <a href="/schema/layout/">layout</a> }
 </pre>
 
@@ -67,8 +67,8 @@ components:
 The package exports TypeScript types for every node in the schema, plus one runtime value:
 
 ```ts
-import type { Component } from '@directededges/specs-schema';
-import { DEFAULT_CONFIG } from '@directededges/specs-schema';
+import type { Component } from '@rudironsoni/specs-schema';
+import { DEFAULT_CONFIG } from '@rudironsoni/specs-schema';
 ```
 
 `DEFAULT_CONFIG` is the only runtime export. All other exports are type-only.

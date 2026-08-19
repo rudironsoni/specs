@@ -57,4 +57,4 @@ if:
 
 ## Further Reading
 
-- [ADR 018 — Conditional Visible Binding](https://github.com/DirectedEdges/specs/blob/main/adr/018-conditional-visible-binding.md) — introduces the `Conditional` type for declarative visibility derived from nullable props
+- [ADR 018 — Conditional Visible Binding](https://github.com/rudironsoni/specs/blob/main/adr/018-conditional-visible-binding.md) — introduces the `Conditional` type for declarative visibility derived from nullable props

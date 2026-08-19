@@ -3,7 +3,6 @@ title: "Tokens"
 description: "Control how design token references are serialized in the spec output"
 ---
 
-<script>document.querySelector('#_top').insertAdjacentHTML('beforeend',' <span class="sl-badge pro-badge">Pro</span>')</script>
 
 Style properties in a spec frequently reference design tokens — the colors, spacing, and typography defined as Figma variables or published styles. The `tokens` option controls **how those references are serialized**, ranging from a minimal name string to a rich object carrying full Figma provenance.
 
@@ -133,4 +132,4 @@ When a token has no code syntax defined for the chosen platform, the profile **f
 ## See Also
 
 - [`applyCustomTokens` command](/cli/commands/apply-custom-tokens/) — mapping file format and pipeline for the `CUSTOM` profile
-- [ADR 007 — Token Reference Config](https://github.com/DirectedEdges/specs/blob/main/adr/007-token-reference-config.md) — the decision consolidating token formatting into a single enum
+- [ADR 007 — Token Reference Config](https://github.com/rudironsoni/specs/blob/main/adr/007-token-reference-config.md) — the decision consolidating token formatting into a single enum

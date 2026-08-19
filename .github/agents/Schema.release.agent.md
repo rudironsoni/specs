@@ -1,5 +1,5 @@
 ---
-description: Release @directededges/specs-schema to npm. Verifies version, CHANGELOG, builds, and publishes with confirmation gates.
+description: Release @rudironsoni/specs-schema to npm. Verifies version, CHANGELOG, builds, and publishes with confirmation gates.
 ---
 
 ## User Input
@@ -20,7 +20,7 @@ All commands in this agent run from the **schema package directory**: `packages/
    1. Confirm the current branch matches `release/*`. If not, STOP and report — this agent only runs from a release branch.
    2. Check for an existing PR:
       ```bash
-      gh pr list --repo DirectedEdges/specs --head "$(git branch --show-current)" --state all --json number,state,isDraft --jq '.[0]'
+      gh pr list --repo rudironsoni/specs --head "$(git branch --show-current)" --state all --json number,state,isDraft --jq '.[0]'
       ```
    3. If no PR exists, push the branch (if not already pushed) and create a **draft** PR immediately, even if the version/CHANGELOG isn't finalized yet:
       ```bash
@@ -77,7 +77,7 @@ All commands in this agent run from the **schema package directory**: `packages/
 
 7. **Present setup summary**:
    ```
-   @directededges/specs-schema v[version] — Setup Summary
+   @rudironsoni/specs-schema v[version] — Setup Summary
      ✓ Version: [version]
      ✓ CHANGELOG: [version] — [date]
      ✓ Working tree: clean
@@ -86,15 +86,15 @@ All commands in this agent run from the **schema package directory**: `packages/
      ✓ Type tests: passed (or ⚠ with note)
    ```
 
-8. **Ship gate**: Use `AskUserQuestion` with Yes/No options: **"Ready to commit, tag, and publish @directededges/specs-schema v[version]?"**
+8. **Ship gate**: Use `AskUserQuestion` with Yes/No options: **"Ready to commit, tag, and publish @rudironsoni/specs-schema v[version]?"**
    On Yes:
    1. Commit (if there are uncommitted changes):
       ```bash
-      git add -A && git commit -m "release: @directededges/specs-schema v[version]"
+      git add -A && git commit -m "release: @rudironsoni/specs-schema v[version]"
       ```
    2. Tag (scoped for monorepo):
       ```bash
-      git tag -a "specs-schema@[version]" -m "release: @directededges/specs-schema v[version]"
+      git tag -a "specs-schema@[version]" -m "release: @rudironsoni/specs-schema v[version]"
       ```
    3. Publish from the package directory (uses workspace `.npmrc.public` token to target npmjs.org):
       ```bash
@@ -102,19 +102,19 @@ All commands in this agent run from the **schema package directory**: `packages/
       ```
       where `$WORKSPACE_ROOT` is the specs-local-workspace directory (typically `../specs-local-workspace` relative to this repo).
       If publish fails with "previously published version", report and ask the user whether to bump the patch version or skip.
-      If publish fails **403 "Two-factor authentication is required ... automation token was specified"**, this package has been locked to 2FA like `specs-cli`. Switch to the go-forward local-2FA flow: the user runs it themselves (`npm whoami || npm login`, then `cd packages/schema && npm publish --access public` — **no** `--userconfig`, npm prompts for the OTP); you then verify with `npm view @directededges/specs-schema version`. See `CLI.release.agent.md` step 9.3.
+      If publish fails **403 "Two-factor authentication is required ... automation token was specified"**, this package has been locked to 2FA like `specs-cli`. Switch to the go-forward local-2FA flow: the user runs it themselves (`npm whoami || npm login`, then `cd packages/schema && npm publish --access public` — **no** `--userconfig`, npm prompts for the OTP); you then verify with `npm view @rudironsoni/specs-schema version`. See `CLI.release.agent.md` step 9.3.
 
-9. **Finalize gate**: Use `AskUserQuestion` with Yes/No options: **"Ready to push, create PR, and GitHub Release for @directededges/specs-schema v[version]?"**
+9. **Finalize gate**: Use `AskUserQuestion` with Yes/No options: **"Ready to push, create PR, and GitHub Release for @rudironsoni/specs-schema v[version]?"**
    On Yes:
    1. Push to remote (including the tag):
       ```bash
       git push --follow-tags
       ```
-   2. **Collect issue references** from both PR bodies and commit messages on this release branch since it diverged from main. Capture cross-repo refs (e.g. `DirectedEdges/specs-plugin-2#42`) as well as bare `#N` refs — required because closing trailers can live on commits that touch upstream issues in sibling repos, not just on PRs in this repo:
+   2. **Collect issue references** from both PR bodies and commit messages on this release branch since it diverged from main. Capture cross-repo refs (e.g. `rudironsoni/specs-plugin-2#42`) as well as bare `#N` refs — required because closing trailers can live on commits that touch upstream issues in sibling repos, not just on PRs in this repo:
       ```bash
       BRANCH=$(git branch --show-current)
       {
-        gh pr list --repo DirectedEdges/specs --base "$BRANCH" --state merged --json body --jq '.[].body'
+        gh pr list --repo rudironsoni/specs --base "$BRANCH" --state merged --json body --jq '.[].body'
         git log main.."$BRANCH" --pretty=%B
       } | grep -oiE '(closes|fixes|resolves)[[:space:]]+([A-Za-z0-9._-]+/[A-Za-z0-9._-]+)?#[0-9]+' | sort -fu
       ```
@@ -122,22 +122,22 @@ All commands in this agent run from the **schema package directory**: `packages/
 
    3. Finalize the tracking PR. Step 0 opened a draft PR at the start; now mark it ready and update title/body:
       ```bash
-      PR_NUM=$(gh pr list --repo DirectedEdges/specs --head "$(git branch --show-current)" --state open --json number --jq '.[0].number')
+      PR_NUM=$(gh pr list --repo rudironsoni/specs --head "$(git branch --show-current)" --state open --json number --jq '.[0].number')
       gh pr ready "$PR_NUM"
-      gh pr edit "$PR_NUM" --title "release: @directededges/specs-schema v[version]" --body "$(cat <<'EOF'
+      gh pr edit "$PR_NUM" --title "release: @rudironsoni/specs-schema v[version]" --body "$(cat <<'EOF'
       ## Summary
-      - Release @directededges/specs-schema v[version]
+      - Release @rudironsoni/specs-schema v[version]
       - See packages/schema/CHANGELOG.md for details
 
       [collected Closes #N lines, one per line]
       EOF
       )"
       ```
-      If no PR exists at this point (step 0 was skipped), create one with `gh pr create --base main --head <branch> --title "release: @directededges/specs-schema v[version]" --body "..."`.
+      If no PR exists at this point (step 0 was skipped), create one with `gh pr create --base main --head <branch> --title "release: @rudironsoni/specs-schema v[version]" --body "..."`.
    4. Create the GitHub Release (scoped tag):
       - Extract the release notes from `packages/schema/CHANGELOG.md` for this version: the **Summary** paragraph and all content under the `## [version]` heading, up to (but not including) the next `##` heading.
       ```bash
-      gh release create "specs-schema@[version]" --title "@directededges/specs-schema v[version]" --notes "$(cat <<'EOF'
+      gh release create "specs-schema@[version]" --title "@rudironsoni/specs-schema v[version]" --notes "$(cat <<'EOF'
       [extracted CHANGELOG content for this version]
       EOF
       )"
@@ -155,5 +155,5 @@ All commands in this agent run from the **schema package directory**: `packages/
 - **Tag format**: `specs-schema@[version]` — scoped to distinguish from CLI releases in the same repo.
 - Two gates only: **ship** (commit + tag + publish) and **finalize** (push + PR + GitHub release).
 - If any verification step fails, halt immediately — do not skip to later steps. For test failures, ask the user whether to proceed.
-- This package has no @directededges dependencies, so no reference swapping is needed.
+- This package has no @rudironsoni dependencies, so no reference swapping is needed.
 - Cleanup (branch deletion after PR merge) is handled by the release orchestrator, not this agent.

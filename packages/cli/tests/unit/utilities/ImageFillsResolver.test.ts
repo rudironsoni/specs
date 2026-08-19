@@ -8,6 +8,8 @@
 import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
 import fs from 'fs-extra';
 import path from 'path';
+import { DEFAULT_CONFIG, type ResolvedConfig } from '@rudironsoni/specs-schema';
+import { Components } from '@rudironsoni/specs-from-figma';
 import { ImageFillsResolver, IMAGES_DIR_NAME } from '../../../src/utilities/ImageFillsResolver.js';
 
 type Entry = { src?: string; $extensions?: { 'com.figma'?: { imageHash: string } } };
@@ -30,6 +32,15 @@ describe('ImageFillsResolver.collectUnresolvedHashes', () => {
     expect(hashes).toEqual(new Set(['hash-1', 'hash-2']));
   });
 
+  it('treats figma: placeholder src as unresolved', () => {
+    const hashes = ImageFillsResolver.collectUnresolvedHashes([
+      component({
+        a: { src: 'figma:abcd1234', $extensions: { 'com.figma': { imageHash: 'abcd1234' } } },
+      }),
+    ]);
+    expect(hashes).toEqual(new Set(['abcd1234']));
+  });
+
   it('ignores entries that already carry src', () => {
     const hashes = ImageFillsResolver.collectUnresolvedHashes([
       component({ a: { src: '_images/hash-1.png', ...unresolved('hash-1') }, b: unresolved('hash-2') }),
@@ -46,6 +57,43 @@ describe('ImageFillsResolver.collectUnresolvedHashes', () => {
       },
     } as Record<string, unknown>;
     expect(ImageFillsResolver.collectUnresolvedHashes([{ spec }])).toEqual(new Set(['hash-main', 'hash-sub']));
+  });
+
+  it('collects hashes from fromRestApi image fills', async () => {
+    const file = {
+      document: {
+        id: '0:0',
+        name: 'Document',
+        type: 'DOCUMENT',
+        children: [{
+          id: '0:1',
+          name: 'Page 1',
+          type: 'CANVAS',
+          children: [{
+            id: '3:1',
+            name: 'Hero',
+            type: 'COMPONENT',
+            fills: [{ type: 'IMAGE', imageRef: 'abcd1234', scaleMode: 'FIT' }],
+          }],
+        }],
+      },
+      components: { '3:1': { id: '3:1', name: 'Hero', type: 'COMPONENT', key: 'hero' } },
+    };
+    const config: ResolvedConfig = {
+      ...DEFAULT_CONFIG,
+      processing: { ...DEFAULT_CONFIG.processing, images: { backgroundImage: true, sourceProps: [] } },
+    };
+    const [result] = await Components.fromRestApi(
+      ['Hero'],
+      file,
+      config,
+      { styles: new Map(), variables: new Map(), collections: new Map() },
+      () => {},
+    );
+    expect('component' in result).toBe(true);
+    if (!('component' in result)) throw new Error('expected success');
+    expect(ImageFillsResolver.collectUnresolvedHashes([{ spec: result.component as Record<string, unknown> }]))
+      .toEqual(new Set(['abcd1234']));
   });
 });
 

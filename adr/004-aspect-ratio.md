@@ -171,7 +171,7 @@ aspectRatio:
 
 | Consumer | Impact | Action required |
 |----------|--------|-----------------|
-| `anova-kit` | Recompile | Update to `@directededges/anova@0.12.0`; no usage change required — field is new optional |
+| `anova-kit` | Recompile | Update to `@rudironsoni/anova@0.12.0`; no usage change required — field is new optional |
 
 ---
 

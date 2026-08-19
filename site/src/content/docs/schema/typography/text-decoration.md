@@ -13,4 +13,4 @@ Text decoration. Part of [`Typography`](/schema/typography/).
 
 #### Source
 
-[`packages/schema/types/Styles.ts`](https://github.com/DirectedEdges/specs/blob/main/packages/schema/types/Styles.ts) (`Typography` interface)
+[`packages/schema/types/Styles.ts`](https://github.com/rudironsoni/specs/blob/main/packages/schema/types/Styles.ts) (`Typography` interface)

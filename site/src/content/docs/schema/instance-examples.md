@@ -3,10 +3,9 @@ title: "Instance Examples"
 description: "Pre-configured whole-component usages for documentation"
 ---
 
-<script>document.querySelector('#_top').insertAdjacentHTML('beforeend',' <span class="sl-badge pro-badge">Pro</span>')</script>
 <script>document.querySelector('#_top').insertAdjacentHTML('beforeend',' <span class="sl-badge experimental-badge">Experimental</span>')</script>
 
-An `InstanceExample` is a pre-configured usage of a *whole* component — a documented configuration for human readers and tooling, not a live data flow. Scalar props are set directly; slot props are filled with a [`SlotContentRef`](/schema/slot-content-ref/). They live on [`Component.instanceExamples`](/schema/component/) and are emitted only with a Pro license.
+An `InstanceExample` is a pre-configured usage of a *whole* component — a documented configuration for human readers and tooling, not a live data flow. Scalar props are set directly; slot props are filled with a [`SlotContentRef`](/schema/slot-content-ref/). They live on [`Component.instanceExamples`](/schema/component/).
 
 ```ts
 type InstanceExample = {
@@ -39,6 +38,6 @@ How example instances are harvested from a Figma file is controlled by [`process
 ## Further Reading
 
 - [Component Examples as Data](https://nathanacurtis.substack.com/p/component-examples-as-data) — the thinking behind examples in the spec
-- [ADR 048 — Component Instance Examples](https://github.com/DirectedEdges/specs/blob/main/adr/048-component-instance-examples.md)
+- [ADR 048 — Component Instance Examples](https://github.com/rudironsoni/specs/blob/main/adr/048-component-instance-examples.md)
 - [Instance Examples (config)](/settings/instance-examples/) — detection setup
 - [Instance Examples (guide)](/guides/instance-examples/)

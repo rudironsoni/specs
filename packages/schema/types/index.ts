@@ -3,7 +3,7 @@
  *
  * TypeScript type definitions matching the Specs JSON schema.
  * These types represent the serialized output format produced by
- * @directededges/specs-from-figma and other Specs-compatible tools.
+ * @rudironsoni/specs-from-figma and other Specs-compatible tools.
  */
 
 // Core component types
