@@ -3,7 +3,6 @@ title: "Subcomponent Scoping"
 description: "Configure how subcomponents are discovered, matched, and excluded"
 ---
 
-<script>document.querySelector('#_top').insertAdjacentHTML('beforeend',' <span class="sl-badge pro-badge">Pro</span>')</script>
 
 Complex components are often composed of smaller parts — a `Card` contains a `CardHeader`, a `Table` contains `TableRow` and `TableCell`. In Figma, these subcomponents are separate component assets that follow a naming convention linking them to their parent. The `subcomponents` configuration controls **where to search** for subcomponents, **which assets match**, and **which to exclude**.
 
@@ -135,5 +134,5 @@ subcomponents:
 
 ## Further Reading
 
-- [ADR 031 — Subcomponent Search Scope](https://github.com/DirectedEdges/specs/blob/main/adr/031-subcomponent-search-scope.md) — architecture decision record covering the `scope`, `match`, and `exclude` design
+- [ADR 031 — Subcomponent Search Scope](https://github.com/rudironsoni/specs/blob/main/adr/031-subcomponent-search-scope.md) — architecture decision record covering the `scope`, `match`, and `exclude` design
 - [CLI Configuration](/settings/) — full config reference

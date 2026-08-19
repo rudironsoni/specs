@@ -24,7 +24,7 @@ Controls how specs are generated. See the [settings reference](/settings/) for d
 | [`emptyVariants`](/settings/empty-variants/) | `boolean` | `false` | Include variants with no element overrides |
 | [`defaultSlotContent`](/guides/default-slot-content/) | `boolean` | `false` | Emit the component's default slot content into `Component.slotContentExamples` (structurally detected slot fills) |
 
-`instanceExamples` has no `include` flag — emitting it is driven by the presence of [`processing.instanceExamples`](#processinginstanceexamples) (Pro only), like `subcomponents`.
+`instanceExamples` has no `include` flag — emitting it is driven by the presence of [`processing.instanceExamples`](#processinginstanceexamples), like `subcomponents`.
 
 ## `processing`
 
@@ -54,7 +54,7 @@ Presence of this block is the on-switch for [subcomponent detection](/guides/sub
 
 ### `processing.instanceExamples`
 
-**Pro.** Presence of this block is the on-switch for [instance example detection](/guides/instance-examples/).
+Presence of this block is the on-switch for [instance example detection](/guides/instance-examples/).
 
 | Property | Type | Default | Description |
 |----------|------|---------|-------------|
@@ -85,7 +85,7 @@ Presence of this block is the on-switch for [image processing](/guides/images/);
 
 ## DEFAULT_CONFIG
 
-The only runtime export from `@directededges/specs-schema`. Provides defaults for all config properties that have a default value. Typed as `ResolvedConfig` — all defaulted properties are required:
+The only runtime export from `@rudironsoni/specs-schema`. Provides defaults for all config properties that have a default value. Typed as `ResolvedConfig` — all defaulted properties are required:
 
 ```ts
 const DEFAULT_CONFIG: ResolvedConfig = {

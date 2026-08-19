@@ -30,9 +30,9 @@ import { ImageFillsResolver, IMAGES_DIR_NAME } from '../utilities/ImageFillsReso
 declare const __SPECS_CLI_VERSION__: string;
 
 const CLI_GENERATOR = {
-  name: '@directededges/specs-cli',
+  name: '@rudironsoni/specs-cli',
   version: typeof __SPECS_CLI_VERSION__ !== 'undefined' ? __SPECS_CLI_VERSION__ : 'unknown',
-  url: 'https://www.npmjs.com/package/@directededges/specs-cli',
+  url: 'https://www.npmjs.com/package/@rudironsoni/specs-cli',
 };
 
 // Re-export for backward compatibility
@@ -46,8 +46,6 @@ const ERROR_CODES = {
   INVALID_ARGS: 2,
   FILE_ERROR: 3,
   NETWORK_ERROR: 4,
-  AUTH_ERROR: 5,
-  RATE_LIMIT: 6,
   COMPONENT_NOT_FOUND: 7
 };
 

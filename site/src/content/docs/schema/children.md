@@ -47,5 +47,5 @@ children:
 
 ## Further Reading
 
-- [ADR 046 — Slots and Slot References](https://github.com/DirectedEdges/specs/blob/main/adr/046-slots-and-slot-references.md)
+- [ADR 046 — Slots and Slot References](https://github.com/rudironsoni/specs/blob/main/adr/046-slots-and-slot-references.md)
 - [defaultSlotContent (config)](/settings/default-slot-content/) — emit captured default fills into `examples`

@@ -6,7 +6,7 @@ import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
 import fs from 'fs-extra';
 import path from 'path';
 import { ConfigLoader } from '../../../src/Config/ConfigLoader.js';
-import { DEFAULT_CONFIG as DEFAULT_CONFIG } from '@directededges/specs-schema';
+import { DEFAULT_CONFIG as DEFAULT_CONFIG } from '@rudironsoni/specs-schema';
 
 describe('ConfigLoader', () => {
   let configLoader: ConfigLoader;

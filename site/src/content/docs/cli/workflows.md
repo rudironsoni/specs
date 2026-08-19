@@ -130,7 +130,7 @@ jobs:
           node-version: '18'
 
       - name: Install Specs CLI
-        run: npm install -g @directededges/specs-cli
+        run: npm install -g @rudironsoni/specs-cli
 
       - name: Fetch Figma data
         run: specs fetch
@@ -242,5 +242,5 @@ git commit -m "manifest: keep DS Tooltip NEW unchecked — pending API redesign"
 
 ## See Also
 
-- [CLI Overview](/cli/) - Commands, Free vs Pro, output format
+- [CLI Overview](/cli/) - Commands and output format
 - [Settings](/settings/) - Config file reference

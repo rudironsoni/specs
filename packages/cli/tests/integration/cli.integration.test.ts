@@ -1,6 +1,8 @@
 import { describe, it, expect, vi } from 'vitest';
+import { spawnSync } from 'node:child_process';
 import fs from 'fs-extra';
 import path from 'path';
+import yaml from 'yaml';
 import { createProgram } from '../../src/index.js';
 
 type RunResult = {
@@ -94,6 +96,57 @@ describe('CLI integration', () => {
     expect(await fs.pathExists(outputPath)).toBe(true);
 
     await fs.remove(testDir);
+  });
+
+  it('generate writes a spec without a license key', async () => {
+    const testDir = path.join(process.cwd(), 'tests', 'tmp', `cli-generate-${Date.now()}`);
+    await fs.ensureDir(testDir);
+    const filePath = path.join(testDir, 'library.json');
+    const outputPath = path.join(testDir, 'button.yaml');
+    await fs.writeJSON(filePath, {
+      name: 'Library',
+      document: {
+        id: '0:0',
+        name: 'Document',
+        type: 'DOCUMENT',
+        children: [{
+          id: '0:1',
+          name: 'Page 1',
+          type: 'CANVAS',
+          children: [{
+            id: '1:1',
+            name: 'Button',
+            type: 'COMPONENT',
+            children: [{ id: '1:2', name: 'label', type: 'TEXT', characters: 'Save' }],
+          }],
+        }],
+      },
+      components: { '1:1': { id: '1:1', name: 'Button', type: 'COMPONENT', key: 'btn' } },
+    });
+
+    const result = await runCli(
+      ['generate', filePath, '-c', 'Button', '-o', outputPath],
+      { SPECS_LICENSE_KEY: undefined, ANOVA_LICENSE_KEY: undefined },
+    );
+
+    expect(result.exitCode).toBe(0);
+    expect(await fs.pathExists(outputPath)).toBe(true);
+    const spec = yaml.parse(await fs.readFile(outputPath, 'utf8')) as {
+      components?: Record<string, { title?: string; metadata?: { generator?: { license?: unknown } } }>;
+    };
+    const button = spec.components?.button;
+    expect(button?.title).toBe('Button');
+    expect(button?.metadata?.generator?.license).toBeUndefined();
+    await fs.remove(testDir);
+  });
+
+  it('built generate --help has no --license', () => {
+    const bin = path.resolve(process.cwd(), 'packages/cli/dist/specs.js');
+    expect(fs.existsSync(bin), 'run npm run build so packages/cli/dist/specs.js exists').toBe(true);
+    const result = spawnSync(process.execPath, [bin, 'generate', '--help'], { encoding: 'utf8' });
+    expect(result.status).toBe(0);
+    expect(result.stdout).not.toMatch(/--license/);
+    expect(result.stdout).not.toMatch(/-l,/);
   });
 
   it('exits with FILE_ERROR for missing generate input', async () => {

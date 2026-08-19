@@ -4,9 +4,9 @@ This folder holds a clean-room Figma-to-spec engine by rudironsoni.
 
 `src/` is a new engine written from public artifacts:
 
-- `@rudironsoni/specs-schema` (CC BY 4.0)
+- `@rudironsoni/specs-schema` (MIT)
 - public ADRs and the MIT CLI contract
-- the `0.22.0` type tree kept in `reference/0.22.0-types/`
+- the leaked `0.22.0` npm type tree (method names and comments only)
 
 See [ATTRIBUTION.md](ATTRIBUTION.md).
 
@@ -120,12 +120,7 @@ npm run build:js
 
 ```bash
 npm test
-npm run test:watch
 ```
-
-## Architecture
-
-See [ARCHITECTURE.md](ARCHITECTURE.md) for a system diagram, component hierarchy, runtime model, and design principles.
 
 ## Version & Compatibility
 
@@ -140,4 +135,4 @@ See [ARCHITECTURE.md](ARCHITECTURE.md) for a system diagram, component hierarchy
 
 ## Repository
 
-https://github.com/rudironsoni/specs-from-figma
+https://github.com/rudironsoni/specs

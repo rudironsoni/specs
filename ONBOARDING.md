@@ -59,8 +59,8 @@ Ask:
 
 > "Install Specs CLI globally (recommended for first-time users), or run it ad-hoc via `npx`?"
 
-- **Global**: `npm install -g @directededges/specs-cli`, then verify with `specs --version`.
-- **Ad-hoc**: Skip install. Use `npx @directededges/specs-cli <command>` everywhere below.
+- **Global**: `npm install -g @rudironsoni/specs-cli`, then verify with `specs --version`.
+- **Ad-hoc**: Skip install. Use `npx @rudironsoni/specs-cli <command>` everywhere below.
 
 Record which choice was made and use it consistently for the rest of the session.
 
@@ -70,7 +70,7 @@ Record which choice was made and use it consistently for the rest of the session
 
 ## Step 2. Scaffold the config
 
-Run `specs init` (or `npx @directededges/specs-cli init`). Verify `specs.config.yaml` appears in the current directory.
+Run `specs init` (or `npx @rudironsoni/specs-cli init`). Verify `specs.config.yaml` appears in the current directory.
 
 Tell the user:
 

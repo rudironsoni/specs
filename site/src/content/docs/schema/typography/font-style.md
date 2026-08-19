@@ -14,4 +14,4 @@ Font style name as defined in the font (e.g. weight and italic). Part of [`Typog
 
 #### Source
 
-[`packages/schema/types/Styles.ts`](https://github.com/DirectedEdges/specs/blob/main/packages/schema/types/Styles.ts) (`Typography` interface)
+[`packages/schema/types/Styles.ts`](https://github.com/rudironsoni/specs/blob/main/packages/schema/types/Styles.ts) (`Typography` interface)

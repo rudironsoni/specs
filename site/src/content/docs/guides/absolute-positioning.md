@@ -29,7 +29,7 @@ When a designer pins an element 12 px from the right edge, every platform wants 
 
 Specs reads both the raw geometry and the `constraints` object, computes the correct edge-relative value, and emits a named property that matches what platforms expect. The constraint types map to `start`, `end`, `centerHorizontalOffset`, `width`, and their vertical equivalents. The vertical axis works identically to horizontal — `top` and `bottom` follow the same formulas as `start` and `end`. The five sections below cover the horizontal axis.
 
-For the full design rationale, see [ADR-041](https://github.com/DirectedEdges/specs/blob/main/adr/041-layout-positioning.md).
+For the full design rationale, see [ADR-041](https://github.com/rudironsoni/specs/blob/main/adr/041-layout-positioning.md).
 
 ### MIN to `start`
 

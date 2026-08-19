@@ -123,7 +123,7 @@ config:
     # leaf becomes the spec root. All-or-nothing across variants. (default: false)
     # collapsePrimitiveWrapper: false
 
-    # Instance example detection (Pro). Presence of this block is the on-switch.
+    # Instance example detection. Presence of this block is the on-switch.
     # See: https://www.specsplugin.com/guides/instance-examples/
     # instanceExamples:
     #   # Where to search for candidate instances: PAGE or FILE (default: PAGE)

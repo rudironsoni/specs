@@ -3,7 +3,7 @@ title: "backgroundColor"
 description: "Background fill color for a container or vector element"
 ---
 
-Background fill color, read from Figma's `fills` ([ADR 009](https://github.com/DirectedEdges/specs/blob/main/adr/009-color-values.md) explains why the name diverges).
+Background fill color, read from Figma's `fills` ([ADR 009](https://github.com/rudironsoni/specs/blob/main/adr/009-color-values.md) explains why the name diverges).
 
 #### Type(s)
 
@@ -30,5 +30,5 @@ Text elements use [`textColor`](/schema/styles/text-color/) instead.
 
 | Format | File |
 |---|---|
-| TypeScript | [`packages/schema/types/Styles.ts`](https://github.com/DirectedEdges/specs/blob/main/packages/schema/types/Styles.ts) |
-| JSON Schema | [`packages/schema/schema/styles.schema.json`](https://github.com/DirectedEdges/specs/blob/main/packages/schema/schema/styles.schema.json) |
+| TypeScript | [`packages/schema/types/Styles.ts`](https://github.com/rudironsoni/specs/blob/main/packages/schema/types/Styles.ts) |
+| JSON Schema | [`packages/schema/schema/styles.schema.json`](https://github.com/rudironsoni/specs/blob/main/packages/schema/schema/styles.schema.json) |

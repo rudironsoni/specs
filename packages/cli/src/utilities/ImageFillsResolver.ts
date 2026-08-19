@@ -24,7 +24,7 @@
 
 import fs from 'fs-extra';
 import path from 'path';
-import type { ImageData } from '@directededges/specs-schema';
+import type { ImageData } from '@rudironsoni/specs-schema';
 
 /** Figma Get Image Fills response shape. */
 interface GetImageFillsResponse {
@@ -40,9 +40,10 @@ function imageHashOf(entry: unknown): string | undefined {
 
 /** Named guard: a registry entry that is still awaiting resolution. */
 function isUnresolved(entry: unknown): entry is ImageData {
-  return typeof entry === 'object' && entry !== null
-    && (entry as ImageData).src === undefined
-    && imageHashOf(entry) !== undefined;
+  if (typeof entry !== 'object' || entry === null) return false;
+  const image = entry as ImageData;
+  if (imageHashOf(image) === undefined) return false;
+  return image.src === undefined || (typeof image.src === 'string' && image.src.startsWith('figma:'));
 }
 
 /** Directory (inside the output directory) that resolved image files are written to. */

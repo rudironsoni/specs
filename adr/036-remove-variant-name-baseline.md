@@ -18,7 +18,7 @@ The `Variant` type in `types/Variant.ts` defines two optional string fields — 
 
 Both fields are vestigial: they exist in the type and schema contract but carry no data. Retaining them inflates the API surface and misleads consumers into thinking they convey meaningful information.
 
-GitHub issue: [#5 — Variant name, baseline should be retired](https://github.com/DirectedEdges/specs/issues/5)
+GitHub issue: [#5 — Variant name, baseline should be retired](https://github.com/rudironsoni/specs/issues/5)
 
 ---
 
@@ -161,7 +161,7 @@ Impact analysis:
 
 - `Variant` type accurately reflects its actual output shape — four meaningful fields with no dead weight
 - API surface reduced — consumers are not misled by fields that carry no data
-- Closes [#5](https://github.com/DirectedEdges/specs/issues/5)
+- Closes [#5](https://github.com/rudironsoni/specs/issues/5)
 
 ### Breaking changes
 

@@ -18,7 +18,7 @@ Schema compliance testing (`anova-dev-testing` test 0008) validated the `library
 
 3. **`ColorStyleValue` rejects bare hex strings** — The schema's `ColorStyleValue` oneOf accepts `ColorValue` (structured DTCG object), `TokenReference`, `GradientValue`, or `null`. The TypeScript `ColorStyle` type already includes `string` in its union (`string | TokenReference | GradientValue | null`), but the schema does not. This is an existing type–schema drift (Constitution I). The transformer correctly emits bare hex strings (e.g., `"#666E74"`) and hex-with-opacity (e.g., `"#0E1114, 50%"`) for untokenized colors. The schema must be widened to match the type.
 
-4. **`Metadata.schema` lacks a versioned URL and discovery link** — A user report (test 0009) revealed that the `schema.url` field in generated output points to a 404 (`https://github.com/DirectedEdges/anova/blob/main/anova.schema.json`). The actual schemas live in `schema/*.schema.json`. Furthermore, the URL is unversioned (`main` branch) while the output carries a `schema.version` field — users validating old output against the latest `main` schema get false failures because the schema has evolved. The `Metadata` type and schema need a `latest` field for schema discovery alongside the existing versioned `url`.
+4. **`Metadata.schema` lacks a versioned URL and discovery link** — A user report (test 0009) revealed that the `schema.url` field in generated output points to a 404 (`https://github.com/rudironsoni/anova/blob/main/anova.schema.json`). The actual schemas live in `schema/*.schema.json`. Furthermore, the URL is unversioned (`main` branch) while the output carries a `schema.version` field — users validating old output against the latest `main` schema get false failures because the schema has evolved. The `Metadata` type and schema need a `latest` field for schema discovery alongside the existing versioned `url`.
 
 ---
 
@@ -245,10 +245,10 @@ additionalProperties: false
 
 ### Notes
 
-- `url` semantics change from "arbitrary link" to "versioned raw URL that resolves to the exact schema this output was generated against." This is a documentation/convention change — the type stays `string`, so it is non-breaking. The downstream transformer (`METADATA.SCHEMA_URL`) must update its value to use a versioned git tag URL (e.g., `https://raw.githubusercontent.com/DirectedEdges/anova/v0.13.0/schema/component.schema.json`).
+- `url` semantics change from "arbitrary link" to "versioned raw URL that resolves to the exact schema this output was generated against." This is a documentation/convention change — the type stays `string`, so it is non-breaking. The downstream transformer (`METADATA.SCHEMA_URL`) must update its value to use a versioned git tag URL (e.g., `https://raw.githubusercontent.com/rudironsoni/anova/v0.13.0/schema/component.schema.json`).
 - `latest` is optional — older output without it remains valid. Producers should emit it for discoverability.
 - `raw.githubusercontent.com` URLs are directly fetchable (returns JSON), unlike `github.com/blob/` URLs (returns HTML). This matters for programmatic validation and LLM tool use.
-- The transformer must also derive `SCHEMA_VERSION` from the `@directededges/anova` package version rather than hardcoding it — but that is a transformer-side implementation detail, not a type/schema change.
+- The transformer must also derive `SCHEMA_VERSION` from the `@rudironsoni/anova` package version rather than hardcoding it — but that is a transformer-side implementation detail, not a type/schema change.
 
 ---
 

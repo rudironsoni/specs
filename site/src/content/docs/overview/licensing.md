@@ -10,6 +10,6 @@ Figma's own REST API still limits some endpoints. `file_variables:read` is an En
 
 Open-source licenses for the packages themselves:
 
-- **specs-schema**: CC BY 4.0
+- **specs-schema**: MIT
 - **specs-cli**: MIT
 - **specs-from-figma**: PolyForm Internal Use 1.0.0

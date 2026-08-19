@@ -1,11 +1,15 @@
 # Changelog
 
-All notable changes to `@directededges/specs-cli` are documented here.
+All notable changes to `@rudironsoni/specs-cli` are documented here.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## Unreleased
+
+### Removed
+
+- **License keys and paid-tier gating** — `generate` no longer accepts `-l` / `--license`, `SPECS_LICENSE_KEY`, or `ANOVA_LICENSE_KEY`. Generate output is ungated.
 
 ### Added
 
@@ -24,8 +28,8 @@ Two new `specs analyze` reports help you understand a design system at scale. `s
 
 ### Dependency updates
 
-- **`@directededges/specs-schema` ^0.29.0** — Numeric properties can now be marked nullable (`NumberProp.nullable`), matching strings, slots, and images. Horizontal text alignment now uses logical inline-axis direction (`START`/`END`/`CENTER`/`JUSTIFY`) instead of physical `LEFT`/`RIGHT`/`JUSTIFIED`, so generated specs read correctly regardless of writing direction.
-- **`@directededges/specs-from-figma` ^0.28.0** — Horizontal text alignment extraction now emits the new logical directions. Code-only text props whose default is only whitespace are recognized as empty placeholders instead of literal example content. Several extraction bugs are fixed: slot resolution for unpublished local components, gradient center coordinates, number-named layers, and anatomy/element ordering.
+- **`@rudironsoni/specs-schema` ^0.29.0** — Numeric properties can now be marked nullable (`NumberProp.nullable`), matching strings, slots, and images. Horizontal text alignment now uses logical inline-axis direction (`START`/`END`/`CENTER`/`JUSTIFY`) instead of physical `LEFT`/`RIGHT`/`JUSTIFIED`, so generated specs read correctly regardless of writing direction.
+- **`@rudironsoni/specs-from-figma` ^0.28.0** — Horizontal text alignment extraction now emits the new logical directions. Code-only text props whose default is only whitespace are recognized as empty placeholders instead of literal example content. Several extraction bugs are fixed: slot resolution for unpublished local components, gradient center coordinates, number-named layers, and anatomy/element ordering.
 
 ## [0.25.0] - 2026-07-16
 
@@ -42,8 +46,8 @@ Generated specs can now include the images your components actually use. Enable 
 
 ### Dependency updates
 
-- **`@directededges/specs-schema` ^0.28.0** — Adds the image vocabulary generated specs now use: the `backgroundImage` style, the per-component `images` registry, image-typed props, image bindings for forwarding into nested instances, and the `Config.processing.images` block. Also adds `textOverflow`/`maxLines` for text elements, and fixes several false validation failures — color token references with resolved color values, subcomponent `source` identity, and collapsed-root `originalName` provenance now validate cleanly, while `$nested` configurations with an empty path are correctly rejected.
-- **`@directededges/specs-from-figma` ^0.27.0** — Implements image detection: image fills on containers emit `backgroundImage` entries into the `images` registry instead of being silently dropped, image-source props re-type to image props, and a designated image component forwards images into the instances that render them. Text elements now carry `textOverflow` and `maxLines`, and rotated elements no longer lose sub-degree precision in CLI output (restoring parity with the plugin).
+- **`@rudironsoni/specs-schema` ^0.28.0** — Adds the image vocabulary generated specs now use: the `backgroundImage` style, the per-component `images` registry, image-typed props, image bindings for forwarding into nested instances, and the `Config.processing.images` block. Also adds `textOverflow`/`maxLines` for text elements, and fixes several false validation failures — color token references with resolved color values, subcomponent `source` identity, and collapsed-root `originalName` provenance now validate cleanly, while `$nested` configurations with an empty path are correctly rejected.
+- **`@rudironsoni/specs-from-figma` ^0.27.0** — Implements image detection: image fills on containers emit `backgroundImage` entries into the `images` registry instead of being silently dropped, image-source props re-type to image props, and a designated image component forwards images into the instances that render them. Text elements now carry `textOverflow` and `maxLines`, and rotated elements no longer lose sub-degree precision in CLI output (restoring parity with the plugin).
 
 ## [0.24.0] - 2026-07-04
 
@@ -64,7 +68,7 @@ Generated specs can now include the images your components actually use. Enable 
 
 ### Dependency updates
 
-- **`@directededges/specs-from-figma` ^0.26.0** — Fixes a casing bug where variant `configuration` values, instance `propConfigurations`, and `invalidVariantCombinations` were being reformatted (e.g. `Error` → `error`) while enum values and defaults were not, causing per-variant style overrides and invalid-combination checks to silently fail to match. Also fixes default slot content being pruned away when the slot itself is hidden by a conditional visibility prop — generated specs no longer lose default content for these slots.
+- **`@rudironsoni/specs-from-figma` ^0.26.0** — Fixes a casing bug where variant `configuration` values, instance `propConfigurations`, and `invalidVariantCombinations` were being reformatted (e.g. `Error` → `error`) while enum values and defaults were not, causing per-variant style overrides and invalid-combination checks to silently fail to match. Also fixes default slot content being pruned away when the slot itself is hidden by a conditional visibility prop — generated specs no longer lose default content for these slots.
 
 
 ## [0.23.0] - 2026-07-01
@@ -78,8 +82,8 @@ Specs generated by the CLI now capture dashed stroke styling and record where ea
 
 ### Dependency updates
 
-- **`@directededges/specs-schema` bumped to `^0.27.0`** — Adds the `StrokeDashPattern` type backing dashed stroke output and `SubcomponentSource` backing the new subcomponent `source` field.
-- **`@directededges/specs-from-figma` bumped to `^0.25.0`** — Implements dashed stroke extraction (ADR-059) and subcomponent source population (ADR-060). Also stops reformatting VARIANT enum values and defaults, so generated specs now match Figma's raw variant option strings exactly.
+- **`@rudironsoni/specs-schema` bumped to `^0.27.0`** — Adds the `StrokeDashPattern` type backing dashed stroke output and `SubcomponentSource` backing the new subcomponent `source` field.
+- **`@rudironsoni/specs-from-figma` bumped to `^0.25.0`** — Implements dashed stroke extraction (ADR-059) and subcomponent source population (ADR-060). Also stops reformatting VARIANT enum values and defaults, so generated specs now match Figma's raw variant option strings exactly.
 
 
 ## [0.22.0] - 2026-06-22
@@ -98,8 +102,8 @@ Label and icon components can now produce cleaner specs when `collapsePrimitiveW
 
 ### Dependency updates
 
-- **`@directededges/specs-schema` bumped to `^0.26.0`** — Adds `Config.processing.collapsePrimitiveWrapper` (boolean, default `false`), enabling the new primitive wrapper collapse feature for label and icon components.
-- **`@directededges/specs-from-figma` bumped to `^0.24.0`** — Implements wrapper collapse: strips plain container frames around a single text or glyph child and promotes the leaf to spec root. All-or-nothing per component — every variant must qualify.
+- **`@rudironsoni/specs-schema` bumped to `^0.26.0`** — Adds `Config.processing.collapsePrimitiveWrapper` (boolean, default `false`), enabling the new primitive wrapper collapse feature for label and icon components.
+- **`@rudironsoni/specs-from-figma` bumped to `^0.24.0`** — Implements wrapper collapse: strips plain container frames around a single text or glyph child and promotes the leaf to spec root. All-or-nothing per component — every variant must qualify.
 
 
 ## [0.21.0] - 2026-06-15
@@ -114,8 +118,8 @@ Two bugs in the `css` transformer and `analyze` command are fixed. The `css` tra
 
 ### Dependency updates
 
-- **`@directededges/specs-schema` bumped to `^0.25.0`** — `SlotProp.minItems`/`maxItems` renamed to `minChildren`/`maxChildren` (aligns with Figma's native `slotSettings` API). `Metadata.generator.version` corrected from `number` to `string`.
-- **`@directededges/specs-from-figma` bumped to `^0.23.0`** — Slot constraints (`minChildren`, `maxChildren`, `anyOf`) now read from Figma's native `slotSettings` when present; libraries using Figma's built-in slot configuration no longer need code-only props for constraints. Legacy `{slot} minItems`/`maxItems` prop names still accepted.
+- **`@rudironsoni/specs-schema` bumped to `^0.25.0`** — `SlotProp.minItems`/`maxItems` renamed to `minChildren`/`maxChildren` (aligns with Figma's native `slotSettings` API). `Metadata.generator.version` corrected from `number` to `string`.
+- **`@rudironsoni/specs-from-figma` bumped to `^0.23.0`** — Slot constraints (`minChildren`, `maxChildren`, `anyOf`) now read from Figma's native `slotSettings` when present; libraries using Figma's built-in slot configuration no longer need code-only props for constraints. Legacy `{slot} minItems`/`maxItems` prop names still accepted.
 
 ## [0.20.0] - 2026-06-07
 
@@ -153,7 +157,7 @@ Introduces the `specs analyze` command with two analyzers: `props` (cross-librar
 
 ### Dependency updates
 
-- No upstream dependency changes since 0.19.0. Continues to reference `@directededges/specs-schema ^0.24.0` and `@directededges/specs-from-figma ^0.22.0`.
+- No upstream dependency changes since 0.19.0. Continues to reference `@rudironsoni/specs-schema ^0.24.0` and `@rudironsoni/specs-from-figma ^0.22.0`.
 
 ## [0.19.0] - 2026-06-05
 
@@ -161,13 +165,13 @@ Introduces the `specs transform` command and three transformers: `contract` (typ
 
 ### Added
 
-- **`specs transform` command** — Discovers component subfolders under the output directory (each must contain `api.yaml`) and runs one or more named transformers against every component. Transformer names resolve in priority order: positional arguments → `config.transformers` → CLI default (`contract`). Accepts `-o/--output`, `--config`, and `--verbose` options. Closes DirectedEdges/specs#137
+- **`specs transform` command** — Discovers component subfolders under the output directory (each must contain `api.yaml`) and runs one or more named transformers against every component. Transformer names resolve in priority order: positional arguments → `config.transformers` → CLI default (`contract`). Accepts `-o/--output`, `--config`, and `--verbose` options. Closes rudironsoni/specs#137
 
-- **`contract` transformer** — Emits `contract.ts` per component: a typed `Props` interface (enum union types, nullable types, slot props excluded) and a `Defaults` const (`satisfies Props`) for every prop with a declared default. Default transformer when none are specified. Closes DirectedEdges/specs#137
+- **`contract` transformer** — Emits `contract.ts` per component: a typed `Props` interface (enum union types, nullable types, slot props excluded) and a `Defaults` const (`satisfies Props`) for every prop with a declared default. Default transformer when none are specified. Closes rudironsoni/specs#137
 
-- **`css` transformer** — Emits `styles.css` per component from `variants.yaml`. Default element styles become root/BEM-child selectors; variant configurations become `[data-propName="value"]` attribute selectors (camelCase prop names kebabized); multi-prop configurations produce compound selectors. Token references resolve to `var(--)` based on `config.format.tokens`: path-derived kebab for `TOKEN`/`TOKEN_NAME`/`FIGMA_NAME`; verbatim for `FIGMA_SYNTAX_WEB` vars that already start with `--`; `$cssVar` field or path derivation for `CUSTOM`. Closes DirectedEdges/specs#139
+- **`css` transformer** — Emits `styles.css` per component from `variants.yaml`. Default element styles become root/BEM-child selectors; variant configurations become `[data-propName="value"]` attribute selectors (camelCase prop names kebabized); multi-prop configurations produce compound selectors. Token references resolve to `var(--)` based on `config.format.tokens`: path-derived kebab for `TOKEN`/`TOKEN_NAME`/`FIGMA_NAME`; verbatim for `FIGMA_SYNTAX_WEB` vars that already start with `--`; `$cssVar` field or path derivation for `CUSTOM`. Closes rudironsoni/specs#139
 
-- **`styling` transformer** — Emits `styling.json` per component: token/style usage grouped by category (`variables`, `colorStyles`, `textStyles`, `effectStyles`), each row recording `name`, `appliedAs`, and `appliedTo` (anatomy element → occurrence count). After all components run, `finalize()` writes two aggregate files to `_dictionary/`: `styling.byComponent.json` (all components combined) and `styling.byToken.json` (token-first index: token name → components/elements using it). Subcomponents appear as dot-separated keys. Closes DirectedEdges/specs#138
+- **`styling` transformer** — Emits `styling.json` per component: token/style usage grouped by category (`variables`, `colorStyles`, `textStyles`, `effectStyles`), each row recording `name`, `appliedAs`, and `appliedTo` (anatomy element → occurrence count). After all components run, `finalize()` writes two aggregate files to `_dictionary/`: `styling.byComponent.json` (all components combined) and `styling.byToken.json` (token-first index: token name → components/elements using it). Subcomponents appear as dot-separated keys. Closes rudironsoni/specs#138
 
 - **`config.transformers` block in `init` config template** — `specs init` now generates a commented-out `transformers:` block showing all three transformers, ready to uncomment.
 
@@ -175,7 +179,7 @@ Introduces the `specs transform` command and three transformers: `contract` (typ
 
 ### Fixed
 
-- **`metadata.generator` now correctly identifies the CLI** — Previously, specs generated by the CLI reported the Figma plugin name, version, and URL in `metadata.generator`. The CLI now passes `{ name: '@directededges/specs-cli', version, url }` via `RestFoundations.generator`, and the version is stamped from `__SPECS_CLI_VERSION__` injected at build time. Closes DirectedEdges/specs#133
+- **`metadata.generator` now correctly identifies the CLI** — Previously, specs generated by the CLI reported the Figma plugin name, version, and URL in `metadata.generator`. The CLI now passes `{ name: '@rudironsoni/specs-cli', version, url }` via `RestFoundations.generator`, and the version is stamped from `__SPECS_CLI_VERSION__` injected at build time. Closes rudironsoni/specs#133
 
 ### Changed
 
@@ -183,8 +187,8 @@ Introduces the `specs transform` command and three transformers: `contract` (typ
 
 ### Dependency updates
 
-- **`@directededges/specs-schema` → `^0.24.0`** — adds `Config.transformers` (flat array, replaces `config.transform.transformers`), `workspace.schema.json` for IDE validation of `specs.config.yaml`, and `Config.processing.states` (`Record<string, VariantStateEntry>`) for concept-keyed variant state classification.
-- **`@directededges/specs-from-figma` → `^0.22.0`** — `RestFoundations.generator` lets the CLI supply its own identity to `metadata.generator`; fixes `INSTANCE` width/height variable bindings; color `components` values rounded to 4dp.
+- **`@rudironsoni/specs-schema` → `^0.24.0`** — adds `Config.transformers` (flat array, replaces `config.transform.transformers`), `workspace.schema.json` for IDE validation of `specs.config.yaml`, and `Config.processing.states` (`Record<string, VariantStateEntry>`) for concept-keyed variant state classification.
+- **`@rudironsoni/specs-from-figma` → `^0.22.0`** — `RestFoundations.generator` lets the CLI supply its own identity to `metadata.generator`; fixes `INSTANCE` width/height variable bindings; color `components` values rounded to 4dp.
 
 
 ## [0.18.0] - 2026-05-29
@@ -198,8 +202,8 @@ Hardens license-key validation to hard-fail on transient errors and improves act
 
 ### Dependency updates
 
-- **`@directededges/specs-from-figma` ^0.20.0 → ^0.21.0** — SLOT elements now evaluate the same container-surface styles as frames: auto-layout config, strokes, padding, and corner-smoothing. Slot styling in generated specs is more complete.
-- **`@directededges/specs-schema` ^0.22.0** — no version change.
+- **`@rudironsoni/specs-from-figma` ^0.20.0 → ^0.21.0** — SLOT elements now evaluate the same container-surface styles as frames: auto-layout config, strokes, padding, and corner-smoothing. Slot styling in generated specs is more complete.
+- **`@rudironsoni/specs-schema` ^0.22.0** — no version change.
 
 
 ## [0.17.0] - 2026-05-23
@@ -222,8 +226,8 @@ Surfaces the new composition/examples model to CLI users: config loading now acc
 
 ### Dependency updates
 
-- **`@directededges/specs-schema` ^0.21.0 → ^0.22.0** — adds the composition and slot-content model (ADR-042, 046–052): `Composition`, `SlotContent`, and the universal `SlotContentRef` (`{ $slotContent }`) pointer, plus `Component.slotContentExamples` and `Component.instanceExamples`. Specs can now carry named slot-content examples and documented instance examples, and `Config` gains `processing.instanceExamples` (example detection) and `include.defaultSlotContent` (output gate).
-- **`@directededges/specs-from-figma` ^0.19.0 → ^0.20.0** — detects and emits slot-content examples (de-duplicated across variants and slots) and instance examples (pre-configured usages of a component), both Pro-gated. REST page/file-scoped discovery now correctly finds candidates under `CANVAS` nodes, and a plugin-only hashing bug that collapsed all slot fills into a single example is fixed.
+- **`@rudironsoni/specs-schema` ^0.21.0 → ^0.22.0** — adds the composition and slot-content model (ADR-042, 046–052): `Composition`, `SlotContent`, and the universal `SlotContentRef` (`{ $slotContent }`) pointer, plus `Component.slotContentExamples` and `Component.instanceExamples`. Specs can now carry named slot-content examples and documented instance examples, and `Config` gains `processing.instanceExamples` (example detection) and `include.defaultSlotContent` (output gate).
+- **`@rudironsoni/specs-from-figma` ^0.19.0 → ^0.20.0** — detects and emits slot-content examples (de-duplicated across variants and slots) and instance examples (pre-configured usages of a component), both Pro-gated. REST page/file-scoped discovery now correctly finds candidates under `CANVAS` nodes, and a plugin-only hashing bug that collapsed all slot fills into a single example is fixed.
 
 
 ## [0.16.0] - 2026-05-22
@@ -232,12 +236,12 @@ Adds the platform code-syntax token profiles (`FIGMA_SYNTAX_WEB/IOS/ANDROID`) to
 
 ### Added
 
-- **Platform code-syntax token profiles (ADR-051, DirectedEdges/specs#103)** — `format.tokens` now accepts `FIGMA_SYNTAX_WEB`, `FIGMA_SYNTAX_IOS`, and `FIGMA_SYNTAX_ANDROID` in config loading and templates, surfacing the platform code-syntax profiles to CLI users. The transformer (specs-from-figma) emits each variable's Figma `codeSyntax` for the selected platform, falling back to the standard token output when a platform has no code syntax defined.
+- **Platform code-syntax token profiles (ADR-051, rudironsoni/specs#103)** — `format.tokens` now accepts `FIGMA_SYNTAX_WEB`, `FIGMA_SYNTAX_IOS`, and `FIGMA_SYNTAX_ANDROID` in config loading and templates, surfacing the platform code-syntax profiles to CLI users. The transformer (specs-from-figma) emits each variable's Figma `codeSyntax` for the selected platform, falling back to the standard token output when a platform has no code syntax defined.
 
 ### Dependency updates
 
-- **`@directededges/specs-schema` ^0.20.0 → ^0.21.0** — adds the `FIGMA_SYNTAX_WEB/IOS/ANDROID` `format.tokens` profiles.
-- **`@directededges/specs-from-figma` ^0.18.0 → ^0.19.0** — serializes the new platform code-syntax profiles from Figma `codeSyntax`; specs now expose a boolean-prop reference for conditional visibility bindings; subcomponents nested inside sections/frames are now detected under `subcomponents.scope: PAGE`; SLOT properties no longer emit raw GUID objects into output.
+- **`@rudironsoni/specs-schema` ^0.20.0 → ^0.21.0** — adds the `FIGMA_SYNTAX_WEB/IOS/ANDROID` `format.tokens` profiles.
+- **`@rudironsoni/specs-from-figma` ^0.18.0 → ^0.19.0** — serializes the new platform code-syntax profiles from Figma `codeSyntax`; specs now expose a boolean-prop reference for conditional visibility bindings; subcomponents nested inside sections/frames are now detected under `subcomponents.scope: PAGE`; SLOT properties no longer emit raw GUID objects into output.
 
 
 ## [0.15.1] - 2026-05-20
@@ -246,12 +250,12 @@ Patch release fixing the `scan` → `generate` round-trip. `generate` now accept
 
 ### Fixed
 
-- **`generate` now accepts v2 (table) manifests** — `generate`'s source auto-detection only recognized the legacy v1 checkbox-list format (`- [`), so any manifest produced by `specs scan` in 0.15.0 failed with `Error: Unrecognized source format`, breaking the documented `scan && generate` round-trip. `generate` now detects v2 manifests via the `**Scan format version:**` header and dispatches to `ManifestParserV2`, while continuing to support v1 manifests and raw JSON files. ([#101](https://github.com/DirectedEdges/specs/issues/101))
+- **`generate` now accepts v2 (table) manifests** — `generate`'s source auto-detection only recognized the legacy v1 checkbox-list format (`- [`), so any manifest produced by `specs scan` in 0.15.0 failed with `Error: Unrecognized source format`, breaking the documented `scan && generate` round-trip. `generate` now detects v2 manifests via the `**Scan format version:**` header and dispatches to `ManifestParserV2`, while continuing to support v1 manifests and raw JSON files. ([#101](https://github.com/rudironsoni/specs/issues/101))
 - **Escaped pipes in component names round-trip** — `scan` escapes `|` as `\|` in manifest table cells; `ManifestParserV2` now unescapes them so names like `Toggle | On/Off` parse back to their literal form.
 
 ### Dependency updates
 
-- No upstream dependency changes since 0.15.0. Continues to reference `@directededges/specs-schema ^0.20.0` and `@directededges/specs-from-figma ^0.18.0`.
+- No upstream dependency changes since 0.15.0. Continues to reference `@rudironsoni/specs-schema ^0.20.0` and `@rudironsoni/specs-from-figma ^0.18.0`.
 
 ## [0.15.0] - 2026-05-15
 
@@ -270,7 +274,7 @@ Patch release fixing the `scan` → `generate` round-trip. `generate` now accept
 
 ### Dependency updates
 
-- No upstream dependency changes since 0.14.0. Continues to reference `@directededges/specs-schema ^0.20.0` and `@directededges/specs-from-figma ^0.18.0`.
+- No upstream dependency changes since 0.14.0. Continues to reference `@rudironsoni/specs-schema ^0.20.0` and `@rudironsoni/specs-from-figma ^0.18.0`.
 
 
 ## [0.14.0] - 2026-05-15
@@ -279,7 +283,7 @@ Dependency-only release that picks up specs-from-figma 0.18.0. No CLI source cha
 
 ### Dependency updates
 
-- **@directededges/specs-from-figma 0.18.0** — Restores ~170 invalid variants previously dropped by the empty-variant filter, accounting for the bulk of test-round 0009 parity diffs. Fixes a `figma.mixed` Symbol crash on text nodes with mixed text styles. `TEXT` elements now emit explicit size styles (`width`, `height`, `minWidth`, `minHeight`, `maxWidth`, `maxHeight`); `GLYPH` elements now emit shadow/blur effects and aspect-ratio constraints alongside their fill color.
+- **@rudironsoni/specs-from-figma 0.18.0** — Restores ~170 invalid variants previously dropped by the empty-variant filter, accounting for the bulk of test-round 0009 parity diffs. Fixes a `figma.mixed` Symbol crash on text nodes with mixed text styles. `TEXT` elements now emit explicit size styles (`width`, `height`, `minWidth`, `minHeight`, `maxWidth`, `maxHeight`); `GLYPH` elements now emit shadow/blur effects and aspect-ratio constraints alongside their fill color.
 
 ## [0.13.1] - 2026-05-08
 
@@ -301,12 +305,12 @@ Adds configurable color output format (`config.format.color`) with nine options 
 ### Fixed
 
 - **EISDIR when outputDirectory is a directory in single-file mode (#34)** — When `outputDirectory` pointed to an existing directory (e.g. from a prior `--split-components` run), `specs generate` without split flags crashed with EISDIR. Now appends `library.{format}` as the default filename.
-- Config template URLs now point to the doc site (`directededges.github.io/specs/config/...`) instead of 404ing GitHub raw paths (#43)
+- Config template URLs now point to the doc site (`rudironsoni.github.io/specs/config/...`) instead of 404ing GitHub raw paths (#43)
 
 ### Dependency updates
 
-- **@directededges/specs-schema 0.20.0** — New `Config.format.color` option typed as `ColorFormat`. `ColorValue` renamed to `ColorObject`. `ColorStyle`, `Shadow.color`, and `GradientStop.color` widened to accept formatted color strings alongside structured objects and token references.
-- **@directededges/specs-from-figma 0.17.0** — Ten bug fixes: INSTANCE_SWAP prop resolution now correctly resolves names, strips glyph patterns, and formats keys; `visible: true` no longer leaks into default variant output; auto-layout fallback elements emit correct width/height; glyph fill colors on nested instances now resolve to token references instead of raw hex. RAW colors emit structured `ColorValue` objects per ADR-009.
+- **@rudironsoni/specs-schema 0.20.0** — New `Config.format.color` option typed as `ColorFormat`. `ColorValue` renamed to `ColorObject`. `ColorStyle`, `Shadow.color`, and `GradientStop.color` widened to accept formatted color strings alongside structured objects and token references.
+- **@rudironsoni/specs-from-figma 0.17.0** — Ten bug fixes: INSTANCE_SWAP prop resolution now correctly resolves names, strips glyph patterns, and formats keys; `visible: true` no longer leaks into default variant output; auto-layout fallback elements emit correct width/height; glyph fill colors on nested instances now resolve to token references instead of raw hex. RAW colors emit structured `ColorValue` objects per ADR-009.
 
 
 ## [0.12.2] - 2026-04-28
@@ -315,8 +319,8 @@ Dependency update: picks up constraint-based layout positioning from specs-schem
 
 ### Dependency updates
 
-- **@directededges/specs-schema 0.19.0** — Positioning properties `x`, `y`, and `layoutPositioning` are replaced by constraint-based equivalents: `position` (`'AUTO' | 'ABSOLUTE'`), `top`, `bottom`, `start`, `end`, `centerHorizontalOffset`, and `centerVerticalOffset`. Offset values are pixel numbers for MIN/MAX/CENTER/STRETCH constraints and percentage strings (e.g. `"25%"`) for SCALE constraints.
-- **@directededges/specs-from-figma 0.16.0** — Specs now emit constraint-based positioning instead of raw pixel coordinates. A new `postEvaluate` pipeline step ensures positioning values are computed before variant differencing, so variant diffs correctly capture position changes. Fixes glyph elements incorrectly emitting `instanceOf` in variant output, and SCALE constraints now emit both start and end percentages.
+- **@rudironsoni/specs-schema 0.19.0** — Positioning properties `x`, `y`, and `layoutPositioning` are replaced by constraint-based equivalents: `position` (`'AUTO' | 'ABSOLUTE'`), `top`, `bottom`, `start`, `end`, `centerHorizontalOffset`, and `centerVerticalOffset`. Offset values are pixel numbers for MIN/MAX/CENTER/STRETCH constraints and percentage strings (e.g. `"25%"`) for SCALE constraints.
+- **@rudironsoni/specs-from-figma 0.16.0** — Specs now emit constraint-based positioning instead of raw pixel coordinates. A new `postEvaluate` pipeline step ensures positioning values are computed before variant differencing, so variant diffs correctly capture position changes. Fixes glyph elements incorrectly emitting `instanceOf` in variant output, and SCALE constraints now emit both start and end percentages.
 
 ---
 
@@ -326,7 +330,7 @@ Dependency patch: picks up specs-from-figma 0.15.1 subcomponent indexer propagat
 
 ### Dependency updates
 
-- **@directededges/specs-from-figma 0.15.1** — Fixed subcomponent indexer propagation: `getMainComponentAsync()` now correctly sets the indexer on parent COMPONENT_SET nodes, eliminating "[RestInstanceNode] No indexer set" warnings during subcomponent discovery.
+- **@rudironsoni/specs-from-figma 0.15.1** — Fixed subcomponent indexer propagation: `getMainComponentAsync()` now correctly sets the indexer on parent COMPONENT_SET nodes, eliminating "[RestInstanceNode] No indexer set" warnings during subcomponent discovery.
 
 ---
 
@@ -336,8 +340,8 @@ Dependency update: picks up specs-schema 0.18.0 layout property renames and spec
 
 ### Dependency updates
 
-- **@directededges/specs-schema 0.18.0** — Layout alignment properties renamed from Figma axis terminology to platform-neutral names: `primaryAxisAlignItems` → `mainAxisAlignment`, `counterAxisAlignItems` → `crossAxisAlignment`, `counterAxisAlignContent` → `wrapAlignment`, `layoutWrap` → `wrap`. `counterAxisSpacing` consolidated into a bi-axial `itemSpacing` model. `layoutMode` narrowed from generic style to strict `'NONE' | 'HORIZONTAL' | 'VERTICAL'` enum.
-- **@directededges/specs-from-figma 0.15.0** — Wrap-enabled auto-layout frames now emit bi-axial `itemSpacing` with `horizontal`/`vertical` fields instead of separate `itemSpacing`/`counterAxisSpacing` keys. Alignment values remapped from Figma terminology (`MIN` → `START`, `MAX` → `END`). `wrapAlignment` is only emitted when `wrap: true`, stripped as dead otherwise.
+- **@rudironsoni/specs-schema 0.18.0** — Layout alignment properties renamed from Figma axis terminology to platform-neutral names: `primaryAxisAlignItems` → `mainAxisAlignment`, `counterAxisAlignItems` → `crossAxisAlignment`, `counterAxisAlignContent` → `wrapAlignment`, `layoutWrap` → `wrap`. `counterAxisSpacing` consolidated into a bi-axial `itemSpacing` model. `layoutMode` narrowed from generic style to strict `'NONE' | 'HORIZONTAL' | 'VERTICAL'` enum.
+- **@rudironsoni/specs-from-figma 0.15.0** — Wrap-enabled auto-layout frames now emit bi-axial `itemSpacing` with `horizontal`/`vertical` fields instead of separate `itemSpacing`/`counterAxisSpacing` keys. Alignment values remapped from Figma terminology (`MIN` → `START`, `MAX` → `END`). `wrapAlignment` is only emitted when `wrap: true`, stripped as dead otherwise.
 
 ## [0.11.0] - 2026-04-16
 
@@ -359,7 +363,7 @@ Fix: config file split options (`splitComponents`, `splitConcerns`, `useSubfolde
 
 ### Dependency updates
 
-- No upstream package changes. Continues to target `@directededges/specs-schema ^0.17.0` and `@directededges/specs-from-figma ^0.14.2`.
+- No upstream package changes. Continues to target `@rudironsoni/specs-schema ^0.17.0` and `@rudironsoni/specs-from-figma ^0.14.2`.
 
 ## [0.10.2] - 2026-04-14
 
@@ -367,11 +371,11 @@ Dependency patch: picks up the DTCG-compliant token path separator fix from spec
 
 ### Changed
 
-- **Bump `@directededges/specs-from-figma` to ^0.14.2** — Picks up the fix for `$token` path separators violating DTCG character restrictions.
+- **Bump `@rudironsoni/specs-from-figma` to ^0.14.2** — Picks up the fix for `$token` path separators violating DTCG character restrictions.
 
 ### Dependency updates
 
-- **@directededges/specs-from-figma 0.14.2** — Token references (`$token` values) in TOKEN, TOKEN_NAME, TOKEN_FIGMA_EXTENSIONS, and CUSTOM profiles now use `/` as the path separator instead of `.` (period). The DTCG spec (§5.1.1) prohibits `.` in token and group names, and this aligns all profiles with the existing FIGMA_NAME behavior.
+- **@rudironsoni/specs-from-figma 0.14.2** — Token references (`$token` values) in TOKEN, TOKEN_NAME, TOKEN_FIGMA_EXTENSIONS, and CUSTOM profiles now use `/` as the path separator instead of `.` (period). The DTCG spec (§5.1.1) prohibits `.` in token and group names, and this aligns all profiles with the existing FIGMA_NAME behavior.
 
 ## [0.10.1] - 2026-04-14
 
@@ -379,11 +383,11 @@ Dependency patch: picks up a fix from specs-from-figma for empty variant filteri
 
 ### Changed
 
-- **Bump `@directededges/specs-from-figma` to ^0.14.1** — Picks up the fix for empty variant filtering in LAYERED mode, where variants with configuration but no element or layout differences were not being excluded when `emptyVariants: false`.
+- **Bump `@rudironsoni/specs-from-figma` to ^0.14.1** — Picks up the fix for empty variant filtering in LAYERED mode, where variants with configuration but no element or layout differences were not being excluded when `emptyVariants: false`.
 
 ### Dependency updates
 
-- **@directededges/specs-from-figma 0.14.1** — Fixes the `emptyVariants: false` filter in LAYERED mode. Previously, variants that had a configuration object but no `elements` array (e.g., variants with only layout differences removed) were incorrectly retained in output. The filter now correctly excludes variants that lack both element and layout differences from their layered baseline.
+- **@rudironsoni/specs-from-figma 0.14.1** — Fixes the `emptyVariants: false` filter in LAYERED mode. Previously, variants that had a configuration object but no `elements` array (e.g., variants with only layout differences removed) were incorrectly retained in output. The filter now correctly excludes variants that lack both element and layout differences from their layered baseline.
 
 ## [0.10.0] - 2026-04-13
 
@@ -417,8 +421,8 @@ Renames `audit` → `scan`, `sourceDirectory` → `dataDirectory`, and the confi
 
 ### Dependency updates
 
-- **@directededges/specs-schema v0.17.0** — Introduces `ResolvedConfig` (fully-resolved config with all defaults guaranteed) alongside the now-more-permissive `Config` (optional fields with defaults). Removes unused `Variant.name` and `Variant.baseline` fields from output.
-- **@directededges/specs-from-figma v0.14.0** — Fixes `format.keys` not applying when config values are lowercase and not formatting `invalidVariantCombinations` dimension names. Internal types updated to `ResolvedConfig`.
+- **@rudironsoni/specs-schema v0.17.0** — Introduces `ResolvedConfig` (fully-resolved config with all defaults guaranteed) alongside the now-more-permissive `Config` (optional fields with defaults). Removes unused `Variant.name` and `Variant.baseline` fields from output.
+- **@rudironsoni/specs-from-figma v0.14.0** — Fixes `format.keys` not applying when config values are lowercase and not formatting `invalidVariantCombinations` dimension names. Internal types updated to `ResolvedConfig`.
 
 ## [0.9.0] - 2026-04-09
 
@@ -426,19 +430,19 @@ Adds complete config template generation, better Figma rate-limit error messages
 
 ### Changed
 
-- **`init` config template includes all settings** — The YAML template generated by `specs init` now includes every `Config` field and `output` section option: `codeOnlyPropsPattern`, `slotConstraints`, `inferNumberProps`, `emptyVariants`, `splitComponents`, `splitConcerns`, and `useSubfolders`. All new entries are commented out with their defaults. ([#16](https://github.com/DirectedEdges/specs/issues/16))
+- **`init` config template includes all settings** — The YAML template generated by `specs init` now includes every `Config` field and `output` section option: `codeOnlyPropsPattern`, `slotConstraints`, `inferNumberProps`, `emptyVariants`, `splitComponents`, `splitConcerns`, and `useSubfolders`. All new entries are commented out with their defaults. ([#16](https://github.com/rudironsoni/specs/issues/16))
 - **`fetch` rate-limit errors surface Figma response headers** — When Figma returns HTTP 429, the error message now includes the `Retry-After` duration (formatted as seconds, minutes, hours, or days), seat tier (`Viewer/Collab` or `Dev/Full`), plan tier, and a link to Figma's [rate limit documentation](https://developers.figma.com/docs/rest-api/rate-limits/).
 
 ### Fixed
 
-- **Config validation crashes on YAML sections with only comments** — When `specs.config.yaml` contains sections like `include:` with only commented-out fields, the YAML parser produces `null` instead of an empty object. The config validator's `deepMerge` and `validateAndCorrectConfig` methods now guard against null values, preventing `TypeError: Cannot convert undefined or null to object` crashes. Null values from YAML parsing no longer overwrite defaults. ([spec-demo](https://github.com/DirectedEdges/spec-demo))
-- **File output ignores `config.format.output`** — The `generate` command always wrote YAML files regardless of the `format.output` config setting. The `OutputFormat` type, `FileManifest` extensions, and all writers now respect the configured format (JSON or YAML). The `DEFAULT_OUTPUT_CONFIG.defaultFormat` is aligned with specs-schema's `DEFAULT_CONFIG.format.output` (JSON). ([#14](https://github.com/DirectedEdges/specs/issues/14))
+- **Config validation crashes on YAML sections with only comments** — When `specs.config.yaml` contains sections like `include:` with only commented-out fields, the YAML parser produces `null` instead of an empty object. The config validator's `deepMerge` and `validateAndCorrectConfig` methods now guard against null values, preventing `TypeError: Cannot convert undefined or null to object` crashes. Null values from YAML parsing no longer overwrite defaults. ([spec-demo](https://github.com/rudironsoni/spec-demo))
+- **File output ignores `config.format.output`** — The `generate` command always wrote YAML files regardless of the `format.output` config setting. The `OutputFormat` type, `FileManifest` extensions, and all writers now respect the configured format (JSON or YAML). The `DEFAULT_OUTPUT_CONFIG.defaultFormat` is aligned with specs-schema's `DEFAULT_CONFIG.format.output` (JSON). ([#14](https://github.com/rudironsoni/specs/issues/14))
 - **`audit` and `init` terminal output references defunct `batch` command** — Post-run help text in `audit` and `init` told users to run `specs batch …`. The `batch` command was consolidated into `generate`; all references now point to `specs generate`.
-- **`audit --variables` flag not writing to manifest header** — The `-v`/`--variables` flag was parsed but never passed to the manifest generator. The `**Variables:**` metadata line is now written when the flag is provided, and `ManifestParser` extracts it back into metadata. ([#18](https://github.com/DirectedEdges/specs/issues/18))
+- **`audit --variables` flag not writing to manifest header** — The `-v`/`--variables` flag was parsed but never passed to the manifest generator. The `**Variables:**` metadata line is now written when the flag is provided, and `ManifestParser` extracts it back into metadata. ([#18](https://github.com/rudironsoni/specs/issues/18))
 
 ### Dependency updates
 
-- **@directededges/specs-from-figma v0.13.0** — Slot `anyOf` values now respect the configured key format instead of using raw Figma component names. Width/height fallback warnings for rotated nodes are more informative when geometry data is absent.
+- **@rudironsoni/specs-from-figma v0.13.0** — Slot `anyOf` values now respect the configured key format instead of using raw Figma component names. Width/height fallback warnings for rotated nodes are more informative when geometry data is absent.
 
 ## [0.8.0] - 2026-04-07
 
@@ -452,7 +456,7 @@ Adds fetch UX improvements (animated spinner, elapsed time, `--no-geometry`), re
 
 ### Changed
 
-- **Config key rename: `model` → `config`** — The YAML key `model:` and internal property `CLIConfig.model` are renamed to `config:` / `CLIConfig.config` to align with the upstream `Config` type from @directededges/specs-schema. Updates source, tests, and all documentation.
+- **Config key rename: `model` → `config`** — The YAML key `model:` and internal property `CLIConfig.model` are renamed to `config:` / `CLIConfig.config` to align with the upstream `Config` type from @rudironsoni/specs-schema. Updates source, tests, and all documentation.
 
 ### Refactored
 
@@ -467,7 +471,7 @@ Adds fetch UX improvements (animated spinner, elapsed time, `--no-geometry`), re
 
 ### Dependency updates
 
-- **@directededges/specs-from-figma v0.12.0** — When the REST API response lacks geometry data (e.g., when using `--no-geometry`), width and height fall back to `absoluteBoundingBox`. A console warning now surfaces when this fallback is used on a rotated node, where bounding box dimensions may be inflated.
+- **@rudironsoni/specs-from-figma v0.12.0** — When the REST API response lacks geometry data (e.g., when using `--no-geometry`), width and height fall back to `absoluteBoundingBox`. A console warning now surfaces when this fallback is used on a rotated node, where bounding box dimensions may be inflated.
 
 ## [0.7.0] - 2026-04-05
 
@@ -475,10 +479,10 @@ Rebrands from `anova-cli` to `specs-cli` and publishes to npmjs.org. Updates all
 
 ### Changed
 
-- **Package rename** — `@directededges/anova-cli` → `@directededges/specs-cli`
+- **Package rename** — `@rudironsoni/anova-cli` → `@rudironsoni/specs-cli`
 - **Config file names** — `.anova.config.yaml` → `specs.config.yaml` (and `.json` variant)
 - **Config search path** — `~/.anova/config.yaml` → `~/.specs/config.yaml`
-- **Dependencies** — switched from local `file:` references to published npm packages: `@directededges/specs-schema@^0.16.0`, `@directededges/specs-from-figma@^0.11.0`
+- **Dependencies** — switched from local `file:` references to published npm packages: `@rudironsoni/specs-schema@^0.16.0`, `@rudironsoni/specs-from-figma@^0.11.0`
 - **Publishing target** — npm registry (was GitHub Packages)
 
 ### Removed
@@ -487,8 +491,8 @@ Rebrands from `anova-cli` to `specs-cli` and publishes to npmjs.org. Updates all
 
 ### Dependency updates
 
-- **@directededges/specs-schema v0.16.0** — removes `variantNames`, adds optional `emptyVariants`, makes `invalidVariants` and `invalidCombinations` optional with defaults
-- **@directededges/specs-from-figma v0.11.0** — renames from `anova-transformer`, adds pageId resolution, empty variant filtering, stroke align fix, license metadata in output
+- **@rudironsoni/specs-schema v0.16.0** — removes `variantNames`, adds optional `emptyVariants`, makes `invalidVariants` and `invalidCombinations` optional with defaults
+- **@rudironsoni/specs-from-figma v0.11.0** — renames from `anova-transformer`, adds pageId resolution, empty variant filtering, stroke align fix, license metadata in output
 
 ## [0.6.0] - 2026-03-25
 
@@ -510,8 +514,8 @@ Adds a new `applyCustomTokens` CLI command for injecting custom token objects in
 
 ### Dependency updates
 
-- **@directededges/anova v0.15.0** — Subcomponent configuration moves from a flat `subcomponentNamePattern` string to a structured `subcomponents` object supporting multiple match patterns, an exclude list, and a page-level search scope. Subcomponent references in anatomy and element output now use `$ref` pointers. Typography fields `leadingTrim`, `fontFamily`, and `fontStyle` are corrected to match actual Figma API values.
-- **@directededges/anova-transformer v0.10.0** — Specs now support page-level subcomponent discovery (scanning beyond the component tree), multiple and excludable match patterns for subcomponent detection, and alphabetically ordered subcomponent output. Subcomponent references in `instanceOf` fields emit as `$ref` pointers. The new CUSTOM token profile uses `$custom` objects from variables and styles as style property values. Fixes detection of subcomponents nested as instances and inconsistent slash spacing in Figma component names.
+- **@rudironsoni/anova v0.15.0** — Subcomponent configuration moves from a flat `subcomponentNamePattern` string to a structured `subcomponents` object supporting multiple match patterns, an exclude list, and a page-level search scope. Subcomponent references in anatomy and element output now use `$ref` pointers. Typography fields `leadingTrim`, `fontFamily`, and `fontStyle` are corrected to match actual Figma API values.
+- **@rudironsoni/anova-transformer v0.10.0** — Specs now support page-level subcomponent discovery (scanning beyond the component tree), multiple and excludable match patterns for subcomponent detection, and alphabetically ordered subcomponent output. Subcomponent references in `instanceOf` fields emit as `$ref` pointers. The new CUSTOM token profile uses `$custom` objects from variables and styles as style property values. Fixes detection of subcomponents nested as instances and inconsistent slash spacing in Figma component names.
 
 ### Removed
 
@@ -527,7 +531,7 @@ Supports code-only props extraction: the transformer now detects a configurable 
 
 ### Changed
 
-- Compatible with `@directededges/anova` v0.14.0 and `@directededges/anova-transformer` v0.9.0
+- Compatible with `@rudironsoni/anova` v0.14.0 and `@rudironsoni/anova-transformer` v0.9.0
 
 ### Fixed
 
@@ -538,7 +542,7 @@ Supports code-only props extraction: the transformer now detects a configurable 
 
 ### Changed
 
-- Compatible with `@directededges/anova` v0.13.0 and `@directededges/anova-transformer` v0.8.0
+- Compatible with `@rudironsoni/anova` v0.13.0 and `@rudironsoni/anova-transformer` v0.8.0
 
 ## [0.3.0] - 2026-03-08
 
@@ -548,13 +552,13 @@ Supports code-only props extraction: the transformer now detects a configurable 
 
 ### Changed
 
-- Compatible with `@directededges/anova` v0.12.0 and `@directededges/anova-transformer` v0.7.1
+- Compatible with `@rudironsoni/anova` v0.12.0 and `@rudironsoni/anova-transformer` v0.7.1
 
 ## [0.2.0] - 2026-03-04
 
 ### Changed
 
-- Updated for `@directededges/anova` v0.11.0 compatibility
+- Updated for `@rudironsoni/anova` v0.11.0 compatibility
 - Config defect fix
 
 ## [0.1.0] - 2026-02-10

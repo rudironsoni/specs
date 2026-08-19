@@ -3,7 +3,6 @@ title: "TokenReference"
 description: "Design token reference following the DTCG format"
 ---
 
-<script>document.querySelector('#_top').insertAdjacentHTML('beforeend',' <span class="sl-badge pro-badge">Pro</span>')</script>
 
 A reference to a design token, following the [Design Tokens Community Group](https://design-tokens.github.io/community-group/format/) (DTCG) format. Token references appear wherever a style value can be a token instead of a literal.
 
@@ -121,5 +120,5 @@ visible:
 
 ## Further Reading
 
-- [ADR 006 — Unified Token Reference Type](https://github.com/DirectedEdges/specs/blob/main/adr/006-token-references.md) — introduces the DTCG-aligned `TokenReference` type
-- [ADR 007 — Consolidate Token Format Configuration](https://github.com/DirectedEdges/specs/blob/main/adr/007-token-reference-config.md) — introduces the `format.tokens` config option controlling token output shape
+- [ADR 006 — Unified Token Reference Type](https://github.com/rudironsoni/specs/blob/main/adr/006-token-references.md) — introduces the DTCG-aligned `TokenReference` type
+- [ADR 007 — Consolidate Token Format Configuration](https://github.com/rudironsoni/specs/blob/main/adr/007-token-reference-config.md) — introduces the `format.tokens` config option controlling token output shape

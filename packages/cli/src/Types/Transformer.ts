@@ -18,7 +18,7 @@ export interface TransformerContext {
 /**
  * Structural subset of the foundations maps produced by loadFoundations().
  * Gives analyzers the full token universe (variables, collections, styles)
- * without depending on @directededges/specs-from-figma types.
+ * without depending on @rudironsoni/specs-from-figma types.
  */
 export interface AnalyzerFoundations {
   variables: Map<string, { name: string; variableCollectionId: string; resolvedType?: string }>;

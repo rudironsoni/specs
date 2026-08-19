@@ -3,7 +3,6 @@ title: "Slot Content Reference"
 description: "A $slotContent JSON Pointer to a SlotContent or Composition entry"
 ---
 
-<script>document.querySelector('#_top').insertAdjacentHTML('beforeend',' <span class="sl-badge pro-badge">Pro</span>')</script>
 <script>document.querySelector('#_top').insertAdjacentHTML('beforeend',' <span class="sl-badge experimental-badge">Experimental</span>')</script>
 
 A `SlotContentRef` names the act of filling a slot. It is a single-key object whose `$slotContent` value is a JSON Pointer to the fill, so the same content can be authored once and referenced from many places.
@@ -40,5 +39,5 @@ The `$slotContent` key discriminates the reference — it names the *act of fill
 
 ## Further Reading
 
-- [ADR 046 — Slots and Slot References](https://github.com/DirectedEdges/specs/blob/main/adr/046-slots-and-slot-references.md)
-- [ADR 049 — Prop Configurations Bindings](https://github.com/DirectedEdges/specs/blob/main/adr/049-prop-configurations-bindings.md)
+- [ADR 046 — Slots and Slot References](https://github.com/rudironsoni/specs/blob/main/adr/046-slots-and-slot-references.md)
+- [ADR 049 — Prop Configurations Bindings](https://github.com/rudironsoni/specs/blob/main/adr/049-prop-configurations-bindings.md)

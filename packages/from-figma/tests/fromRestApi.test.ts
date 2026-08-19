@@ -76,4 +76,19 @@ describe('Components.fromRestApi', () => {
     expect(results[0]).toMatchObject({ name: 'Missing' });
     expect('error' in results[0]).toBe(true);
   });
+
+  it('keeps a mixed batch going after one missing id', async () => {
+    const statuses: string[] = [];
+    const results = await Components.fromRestApi(
+      ['Button', 'Missing'],
+      file,
+      DEFAULT_CONFIG,
+      { styles: new Map(), variables: new Map(), collections: new Map() },
+      (event) => statuses.push(event.status),
+    );
+    expect(results).toHaveLength(2);
+    expect('component' in results[0]).toBe(true);
+    expect('error' in results[1]).toBe(true);
+    expect(statuses).toEqual(['processing', 'success', 'processing', 'error']);
+  });
 });

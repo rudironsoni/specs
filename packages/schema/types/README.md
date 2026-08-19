@@ -4,19 +4,19 @@ TypeScript type definitions for the Specs component specification format.
 
 ## Overview
 
-This package provides TypeScript types that match the Specs JSON schema. These types represent the serialized output format produced by `@directededges/specs-from-figma` and consumed by tools like MCP servers, validators, and documentation generators.
+This package provides TypeScript types that match the Specs JSON schema. These types represent the serialized output format produced by `@rudironsoni/specs-from-figma` and consumed by tools like MCP servers, validators, and documentation generators.
 
 ## Installation
 
 ```bash
-npm install @directededges/specs-schema
+npm install @rudironsoni/specs-schema
 ```
 
 ## Usage
 
 ```typescript
-import type { Component, Variant, Anatomy, Config } from '@directededges/specs-schema';
-import { DEFAULT_CONFIG } from '@directededges/specs-schema';
+import type { Component, Variant, Anatomy, Config } from '@rudironsoni/specs-schema';
+import { DEFAULT_CONFIG } from '@rudironsoni/specs-schema';
 
 // Type-safe component data
 const component: Component = {
@@ -71,7 +71,7 @@ const config: Config = {
 
 ```
 ┌──────────────────────────────────────────────────┐
-│ @directededges/specs-schema (this package)       │
+│ @rudironsoni/specs-schema (this package)       │
 │ - JSON Schema definitions                        │
 │ - TypeScript type definitions                    │
 │ - Default configuration constants                │
@@ -92,7 +92,7 @@ const config: Config = {
 
 Types use simple names (`Component`, `Variant`) instead of suffixed names (`ComponentData`, `VariantData`) because:
 
-1. **Package namespacing**: `import { Component } from '@directededges/specs-schema'` provides clear context
+1. **Package namespacing**: `import { Component } from '@rudironsoni/specs-schema'` provides clear context
 2. **Industry standard**: Similar to `@types/*` packages
 3. **Schema alignment**: Types directly represent the schema structure
 
@@ -104,7 +104,7 @@ These types are hand-written to match the JSON schema definitions in `/schema`. 
 
 ```typescript
 import Ajv from 'ajv';
-import componentSchema from '@directededges/specs-schema/schema/component.schema.json';
+import componentSchema from '@rudironsoni/specs-schema/schema/component.schema.json';
 
 const ajv = new Ajv();
 const validate = ajv.compile(componentSchema);

@@ -8,17 +8,18 @@
 
 | Package | Path | Description |
 |---------|------|-------------|
-| `@directededges/specs-schema` | `packages/schema/` | TypeScript types and JSON schema definitions for component specifications. Exports are type-only except for `DEFAULT_CONFIG`. |
-| `@directededges/specs-cli` | `packages/cli/` | CLI for design system operations: generate, scan, and fetch component specs from the Figma REST API. |
+| `@rudironsoni/specs-schema` | `packages/schema/` | TypeScript types and JSON schema definitions for component specifications. Exports are type-only except for `DEFAULT_CONFIG`. |
+| `@rudironsoni/specs-from-figma` | `packages/from-figma/` | Local Figma-to-spec engine used by `specs generate`. |
+| `@rudironsoni/specs-cli` | `packages/cli/` | CLI for design system operations: generate, scan, and fetch component specs from the Figma REST API. |
 
 ## Dependency Flow
 
 ```
-@directededges/specs-schema (types/schema)
+@rudironsoni/specs-schema (types/schema)
   ↓
-@directededges/specs-from-figma (transformer — external)
+@rudironsoni/specs-from-figma (workspace engine)
   ↓
-@directededges/specs-cli (CLI)
+@rudironsoni/specs-cli (CLI)
 ```
 
 - The CLI depends on `specs-schema` for types and on `specs-from-figma` (the transformer engine) for processing Figma data into structured specs.
@@ -28,7 +29,7 @@
 
 ```
 packages/
-├── schema/                      # @directededges/specs-schema
+├── schema/                      # @rudironsoni/specs-schema
 │   ├── types/                   # TypeScript type definitions (source of truth)
 │   │   ├── index.ts             # Barrel export
 │   │   ├── Component.ts         # Top-level component spec shape
@@ -40,7 +41,8 @@ packages/
 │   │   ├── styles.schema.json
 │   │   └── root.schema.json
 │   └── tests/                   # Type-level tests (.test-d.ts)
-├── cli/                         # @directededges/specs-cli
+├── from-figma/                  # @rudironsoni/specs-from-figma
+├── cli/                         # @rudironsoni/specs-cli
 │   └── src/
 │       ├── index.ts             # Entry: command registry, createProgram(), runCli()
 │       ├── bin/                  # CLI binary entry point
@@ -56,10 +58,11 @@ adr/                             # Architecture Decision Records
 ## Build & Test
 
 ```bash
-npm run build          # Build all workspaces
+npm run build          # Build schema, from-figma, then CLI
 npm test               # Vitest run (all packages)
 npm run build --workspace=packages/schema   # Build schema only
-npm run build --workspace=packages/cli      # Build CLI only
+npm run build --workspace=@rudironsoni/specs-from-figma
+npm run build --workspace=packages/cli      # Build CLI only. Run after schema and from-figma so generate --help can start.
 ```
 
 ## Conventions
@@ -67,7 +70,7 @@ npm run build --workspace=packages/cli      # Build CLI only
 - **Test framework**: Vitest with globals enabled
 - **Path alias**: `@` → `./src` (used in CLI package)
 - **Deterministic output**: Same input produces identical output. No side effects in the processing pipeline.
-- **Config type** (from `@directededges/specs-schema`): Controls output shape — `DETAILS`, `FORMAT_KEYS`, `FORMAT_COLOR`, `DATA_LAYOUT`, `VARIANT_DEPTH`, etc.
+- **Config type** (from `@rudironsoni/specs-schema`): Controls output shape — `DETAILS`, `FORMAT_KEYS`, `FORMAT_COLOR`, `DATA_LAYOUT`, `VARIANT_DEPTH`, etc.
 
 ## Schema Governance
 

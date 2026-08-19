@@ -24,5 +24,5 @@ Corner radius. Scalar when uniform; [`Corners`](/schema/corners/) object when pe
 
 | Format | File |
 |---|---|
-| TypeScript | [`packages/schema/types/Styles.ts`](https://github.com/DirectedEdges/specs/blob/main/packages/schema/types/Styles.ts) |
-| JSON Schema | [`packages/schema/schema/styles.schema.json`](https://github.com/DirectedEdges/specs/blob/main/packages/schema/schema/styles.schema.json) |
+| TypeScript | [`packages/schema/types/Styles.ts`](https://github.com/rudironsoni/specs/blob/main/packages/schema/types/Styles.ts) |
+| JSON Schema | [`packages/schema/schema/styles.schema.json`](https://github.com/rudironsoni/specs/blob/main/packages/schema/schema/styles.schema.json) |

@@ -10,7 +10,7 @@ Skip the manual walkthrough. Paste this into Claude Code:
 Onboard me to Specs CLI following the ONBOARDING.md instructions in this repo.
 ```
 
-Claude will handle install, config, token setup, fetch, and your first generate — asking only the decisions that actually need you. See [`ONBOARDING.md`](https://github.com/DirectedEdges/specs/blob/main/ONBOARDING.md) in the repo root.
+Claude will handle install, config, token setup, fetch, and your first generate — asking only the decisions that actually need you. See [`ONBOARDING.md`](https://github.com/rudironsoni/specs/blob/main/ONBOARDING.md) in the repo root.
 :::
 
 **Quick nav:**
@@ -27,7 +27,7 @@ Claude will handle install, config, token setup, fetch, and your first generate 
 Specs CLI requires **[Node.js 18+](https://nodejs.org/)** (LTS recommended). Install it if you haven't already, then install Specs CLI globally:
 
 ```bash
-npm install -g @directededges/specs-cli
+npm install -g @rudironsoni/specs-cli
 specs --version
 ```
 
@@ -164,7 +164,7 @@ jobs:
         with:
           node-version: '18'
 
-      - run: npm install -g @directededges/specs-cli
+      - run: npm install -g @rudironsoni/specs-cli
 
       - run: specs fetch
         env:

@@ -81,7 +81,7 @@ mkdirSync(outDir, { recursive: true });
 
 const page = `---
 title: "Releases"
-description: "Changelog for @directededges/specs-schema and @directededges/specs-cli"
+description: "Changelog for @rudironsoni/specs-schema and @rudironsoni/specs-cli"
 tableOfContents: false
 ---
 

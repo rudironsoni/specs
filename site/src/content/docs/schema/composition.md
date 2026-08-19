@@ -3,7 +3,6 @@ title: "Composition"
 description: "A named, authored unit of composed content"
 ---
 
-<script>document.querySelector('#_top').insertAdjacentHTML('beforeend',' <span class="sl-badge pro-badge">Pro</span>')</script>
 <script>document.querySelector('#_top').insertAdjacentHTML('beforeend',' <span class="sl-badge experimental-badge">Experimental</span>')</script>
 
 A `Composition` is a named, authored unit of composed content. The top-level [`anatomy`](/schema/anatomy/) + [`elements`](/schema/elements/) + [`layout`](/schema/layout/) triplet **is** the primary content — there is no wrapper and no reserved `main` key. An optional `slotContent` map bundles named slot fills alongside that primary content for authoring convenience.
@@ -47,5 +46,5 @@ A [`SlotContentRef`](/schema/slot-content-ref/) pointing at a composition resolv
 
 ## Further Reading
 
-- [ADR 042 — Composition Type](https://github.com/DirectedEdges/specs/blob/main/adr/042-composition-type.md)
-- [ADR 046 — Slots and Slot References](https://github.com/DirectedEdges/specs/blob/main/adr/046-slots-and-slot-references.md)
+- [ADR 042 — Composition Type](https://github.com/rudironsoni/specs/blob/main/adr/042-composition-type.md)
+- [ADR 046 — Slots and Slot References](https://github.com/rudironsoni/specs/blob/main/adr/046-slots-and-slot-references.md)

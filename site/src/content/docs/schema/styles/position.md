@@ -28,11 +28,11 @@ Not token-bindable — structural property, not a design value.
 
 #### Figma key
 
-Reads from `layoutPositioning`. See [ADR 041 — Layout Positioning](https://github.com/DirectedEdges/specs/blob/main/adr/041-layout-positioning.md) for why `position` diverges from Figma's naming.
+Reads from `layoutPositioning`. See [ADR 041 — Layout Positioning](https://github.com/rudironsoni/specs/blob/main/adr/041-layout-positioning.md) for why `position` diverges from Figma's naming.
 
 #### Source
 
 | Format | File |
 |---|---|
-| TypeScript | [`packages/schema/types/Styles.ts`](https://github.com/DirectedEdges/specs/blob/main/packages/schema/types/Styles.ts) |
-| JSON Schema | [`packages/schema/schema/styles.schema.json`](https://github.com/DirectedEdges/specs/blob/main/packages/schema/schema/styles.schema.json) |
+| TypeScript | [`packages/schema/types/Styles.ts`](https://github.com/rudironsoni/specs/blob/main/packages/schema/types/Styles.ts) |
+| JSON Schema | [`packages/schema/schema/styles.schema.json`](https://github.com/rudironsoni/specs/blob/main/packages/schema/schema/styles.schema.json) |

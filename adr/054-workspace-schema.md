@@ -36,7 +36,7 @@ Owns all CLI and workspace-level configuration definitions.
 ```json
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://specs.directededges.com/workspace.schema.json",
+  "$id": "https://github.com/rudironsoni/specs/workspace.schema.json",
   "title": "Specs Workspace Configuration",
   "description": "Schema for workspace-level CLI configuration (specs.config.yaml and related settings).",
   "definitions": {

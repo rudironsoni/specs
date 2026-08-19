@@ -3,7 +3,7 @@ title: "fillColor"
 description: "Fill color for glyph, vector, and line elements"
 ---
 
-Glyph/vector fill color, read from Figma's `fills` ([ADR 013](https://github.com/DirectedEdges/specs/blob/main/adr/013-icon-fillColor.md) explains why the name diverges).
+Glyph/vector fill color, read from Figma's `fills` ([ADR 013](https://github.com/rudironsoni/specs/blob/main/adr/013-icon-fillColor.md) explains why the name diverges).
 
 #### Type(s)
 
@@ -29,5 +29,5 @@ Rectangles use [`backgroundColor`](/schema/styles/background-color/) instead. Te
 
 | Format | File |
 |---|---|
-| TypeScript | [`packages/schema/types/Styles.ts`](https://github.com/DirectedEdges/specs/blob/main/packages/schema/types/Styles.ts) |
-| JSON Schema | [`packages/schema/schema/styles.schema.json`](https://github.com/DirectedEdges/specs/blob/main/packages/schema/schema/styles.schema.json) |
+| TypeScript | [`packages/schema/types/Styles.ts`](https://github.com/rudironsoni/specs/blob/main/packages/schema/types/Styles.ts) |
+| JSON Schema | [`packages/schema/schema/styles.schema.json`](https://github.com/rudironsoni/specs/blob/main/packages/schema/schema/styles.schema.json) |

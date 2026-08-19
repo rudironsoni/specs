@@ -3,7 +3,6 @@ title: "Instance (Ready-Made) Examples"
 description: "Detect named frames that demonstrate a complete, pre-configured usage of a component"
 ---
 
-<script>document.querySelector('#_top').insertAdjacentHTML('beforeend',' <span class="sl-badge pro-badge">Pro</span>')</script>
 
 Instance examples are **ready-made usages** of a component — named frames in your Figma file that show the whole component configured for a real scenario: an alert with a title, body, and two actions; a card with an image, heading, and CTA. They turn "here are the props" into "here's what good looks like."
 
@@ -34,7 +33,7 @@ instanceExamples:
 
 ## Configuration
 
-Detection mirrors [`subcomponents`](/settings/subcomponents/): the **presence** of `processing.instanceExamples` is the on-switch. There is no separate `include` flag — when the block is present (and the license is Pro), examples are detected *and* emitted.
+Detection mirrors [`subcomponents`](/settings/subcomponents/): the **presence** of `processing.instanceExamples` is the on-switch. There is no separate `include` flag — when the block is present, examples are detected and emitted.
 
 ```yaml
 # specs.config.yaml

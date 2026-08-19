@@ -3,15 +3,15 @@ title: Terms of Service
 description: Terms of Service for Specs software, packages, and services.
 ---
 
-**Directed Edges**
+**rudironsoni**
 **Effective Date:** April 6, 2026
-**Last Updated:** August 18, 2026
+**Last Updated:** August 19, 2026
 
 ---
 
 ## 1. Acceptance of Terms
 
-By accessing, downloading, installing, or using any Specs software, packages, or services ("Services") provided by Directed Edges ("Company," "we," "us," or "our"), you ("User," "you," or "your") agree to be bound by these Terms of Service ("Terms"). If you do not agree to these Terms, do not use the Services.
+By accessing, downloading, installing, or using any Specs software, packages, or services ("Services") provided by rudironsoni ("Company," "we," "us," or "our"), you ("User," "you," or "your") agree to be bound by these Terms of Service ("Terms"). If you do not agree to these Terms, do not use the Services.
 
 If you are using the Services on behalf of an organization, you represent that you have the authority to bind that organization to these Terms.
 
@@ -19,7 +19,7 @@ If you are using the Services on behalf of an organization, you represent that y
 
 Specs is a design-system schema and tooling ecosystem. The Services include:
 
-- **specs-schema** — Shared TypeScript types and JSON schema definitions (licensed under CC BY 4.0)
+- **specs-schema** — Shared TypeScript types and JSON schema definitions (licensed under MIT)
 - **specs-cli** — A command-line interface and MCP server for design system operations (licensed under MIT)
 - **specs-from-figma** — A local Figma-to-spec engine
 - **Related documentation, updates, and support** provided through official channels
@@ -30,8 +30,9 @@ All features of the Services are available without a paid subscription or licens
 
 Portions of the Services are distributed under open-source licenses:
 
-- **specs-schema**: Creative Commons Attribution 4.0 International (CC BY 4.0)
+- **specs-schema**: MIT License
 - **specs-cli**: MIT License
+- **specs-from-figma**: PolyForm Internal Use 1.0.0
 
 These Terms govern your use of the Services as a whole, including hosted features and support. Where these Terms conflict with an applicable open-source license for a specific package, the open-source license governs for that package's source code.
 
@@ -48,7 +49,7 @@ You agree not to:
 
 ### 5.1 Ownership
 
-Except for open-source components governed by their respective licenses, all rights, title, and interest in the Services — including trademarks, trade dress, proprietary algorithms, and non-open-source code — remain with Directed Edges.
+Except for open-source components governed by their respective licenses, all rights, title, and interest in the Services — including trademarks, trade dress, proprietary algorithms, and non-open-source code — remain with rudironsoni.
 
 ### 5.2 User Content
 
@@ -62,7 +63,7 @@ Any feedback, suggestions, or ideas you voluntarily provide about the Services m
 
 ### 6.1 Local Processing
 
-All data processing performed by the Services occurs locally on your machine. Directed Edges does not collect, transmit, or store your design system data, files, or output on its servers.
+All data processing performed by the Services occurs locally on your machine. rudironsoni does not collect, transmit, or store your design system data, files, or output on its servers.
 
 ### 6.2 Privacy Policy
 
@@ -74,13 +75,13 @@ THE SERVICES ARE PROVIDED "AS IS" AND "AS AVAILABLE" WITHOUT WARRANTIES OF ANY K
 
 ## 8. Limitation of Liability
 
-TO THE MAXIMUM EXTENT PERMITTED BY LAW, DIRECTED EDGES SHALL NOT BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES, OR ANY LOSS OF PROFITS, DATA, OR GOODWILL, ARISING OUT OF OR RELATED TO YOUR USE OF THE SERVICES, REGARDLESS OF THE THEORY OF LIABILITY.
+TO THE MAXIMUM EXTENT PERMITTED BY LAW, RUDIRONSONI SHALL NOT BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES, OR ANY LOSS OF PROFITS, DATA, OR GOODWILL, ARISING OUT OF OR RELATED TO YOUR USE OF THE SERVICES, REGARDLESS OF THE THEORY OF LIABILITY.
 
 OUR TOTAL AGGREGATE LIABILITY FOR ALL CLAIMS RELATED TO THE SERVICES SHALL NOT EXCEED ONE HUNDRED U.S. DOLLARS (US $100).
 
 ## 9. Indemnification
 
-You agree to indemnify, defend, and hold harmless Directed Edges and its officers, employees, and agents from any claims, damages, losses, or expenses (including reasonable attorneys' fees) arising from your use of the Services or violation of these Terms.
+You agree to indemnify, defend, and hold harmless rudironsoni and its officers, employees, and agents from any claims, damages, losses, or expenses (including reasonable attorneys' fees) arising from your use of the Services or violation of these Terms.
 
 ## 10. Term and Termination
 
@@ -110,7 +111,7 @@ These Terms are governed by the laws of the State of Delaware, United States, wi
 
 ## 13. General
 
-- **Entire Agreement.** These Terms, together with the Privacy Policy, constitute the entire agreement between you and Directed Edges regarding the Services.
+- **Entire Agreement.** These Terms, together with the Privacy Policy, constitute the entire agreement between you and rudironsoni regarding the Services.
 - **Severability.** If any provision is found unenforceable, the remaining provisions remain in full effect.
 - **Waiver.** Our failure to enforce any right or provision does not constitute a waiver of that right.
 - **Assignment.** You may not assign these Terms without our consent. We may assign our rights and obligations without restriction.
@@ -119,6 +120,5 @@ These Terms are governed by the laws of the State of Delaware, United States, wi
 
 For questions about these Terms, contact us at:
 
-**Directed Edges**
-Email: nathan@directededges.com
-Website: https://www.directededges.com/
+**rudironsoni**
+GitHub: https://github.com/rudironsoni

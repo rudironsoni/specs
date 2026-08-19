@@ -3,7 +3,6 @@ title: "PropBinding"
 description: "Dynamic links between props and element or style properties"
 ---
 
-<script>document.querySelector('#_top').insertAdjacentHTML('beforeend',' <span class="sl-badge pro-badge">Pro</span>')</script>
 
 A `PropBinding` creates a dynamic link between a prop and an element or style property. When the bound prop changes value, the linked property updates accordingly.
 
@@ -28,4 +27,4 @@ PropBindings can also appear as style values anywhere a [`Style`](/schema/styles
 
 ## Further Reading
 
-- [ADR 008 — Introduce PropBinding to Replace ReferenceValue](https://github.com/DirectedEdges/specs/blob/main/adr/008-prop-bindings.md) — introduces `PropBinding` with `$binding` to avoid JSON Schema `$ref` key collision
+- [ADR 008 — Introduce PropBinding to Replace ReferenceValue](https://github.com/rudironsoni/specs/blob/main/adr/008-prop-bindings.md) — introduces `PropBinding` with `$binding` to avoid JSON Schema `$ref` key collision

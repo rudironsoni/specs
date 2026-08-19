@@ -22,4 +22,4 @@ Array of shadow definitions. Part of [`Effects`](/schema/effects/).
 
 #### Source
 
-[`packages/schema/types/Effects.ts`](https://github.com/DirectedEdges/specs/blob/main/packages/schema/types/Effects.ts)
+[`packages/schema/types/Effects.ts`](https://github.com/rudironsoni/specs/blob/main/packages/schema/types/Effects.ts)

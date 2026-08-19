@@ -24,11 +24,11 @@ Not token-bindable — structural property, not a design value.
 
 #### Figma key
 
-Reads from `strokeDashes`. See [ADR 059 — Border Style](https://github.com/DirectedEdges/specs/blob/main/adr/059-border-style.md).
+Reads from `strokeDashes`. See [ADR 059 — Border Style](https://github.com/rudironsoni/specs/blob/main/adr/059-border-style.md).
 
 #### Source
 
 | Format | File |
 |---|---|
-| TypeScript | [`packages/schema/types/Styles.ts`](https://github.com/DirectedEdges/specs/blob/main/packages/schema/types/Styles.ts) |
-| JSON Schema | [`packages/schema/schema/styles.schema.json`](https://github.com/DirectedEdges/specs/blob/main/packages/schema/schema/styles.schema.json) |
+| TypeScript | [`packages/schema/types/Styles.ts`](https://github.com/rudironsoni/specs/blob/main/packages/schema/types/Styles.ts) |
+| JSON Schema | [`packages/schema/schema/styles.schema.json`](https://github.com/rudironsoni/specs/blob/main/packages/schema/schema/styles.schema.json) |

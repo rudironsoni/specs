@@ -26,7 +26,7 @@ syntax** — the developer-facing token name a designer assigns for `WEB`,
 
 Specs Classic already offered platform code-syntax selection as its
 `CODE_SYNTAX` property. Specs 2 has no equivalent, so the plugin cannot reach
-parity (tracked in [issue #103](https://github.com/DirectedEdges/specs/issues/103)).
+parity (tracked in [issue #103](https://github.com/rudironsoni/specs/issues/103)).
 This ADR records the **contract** change needed to close that gap: new
 serialization profiles selecting a platform's code syntax, with a graceful
 fall back to the `TOKEN` default when a token has no code syntax defined for the

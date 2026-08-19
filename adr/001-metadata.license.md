@@ -5,12 +5,13 @@
 **Status**: ACCEPTED
 **Deciders**: Nathan Curtis (author)
 **Supersedes**: *(none)*
+**Note**: Historical. Current `specs-from-figma` does not write `generator.license`. Generate output is ungated.
 
 ---
 
 ## Context
 
-`@directededges/anova` currently exports a `Metadata` type with six fields (`author`, `lastUpdated`, `generator`, `schema`, `source`, `config`). There is no field to carry license state in the serialised component output.
+`@rudironsoni/anova` currently exports a `Metadata` type with six fields (`author`, `lastUpdated`, `generator`, `schema`, `source`, `config`). There is no field to carry license state in the serialised component output.
 
 Downstream tools need a standard place in the component spec to read whether a valid license was present at generation time and what level of output that license grants. This ADR evaluates where that field belongs and how license data flows into the transformer.
 

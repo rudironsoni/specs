@@ -22,11 +22,11 @@ Image fill. Fallback representation used when no image component is configured.
 
 #### Figma key
 
-Reads from `fills` (IMAGE paint). See [ADR 063 — Image Content](https://github.com/DirectedEdges/specs/blob/main/adr/063-image-content.md).
+Reads from `fills` (IMAGE paint). See [ADR 063 — Image Content](https://github.com/rudironsoni/specs/blob/main/adr/063-image-content.md).
 
 #### Source
 
 | Format | File |
 |---|---|
-| TypeScript | [`packages/schema/types/Styles.ts`](https://github.com/DirectedEdges/specs/blob/main/packages/schema/types/Styles.ts) |
-| JSON Schema | [`packages/schema/schema/styles.schema.json`](https://github.com/DirectedEdges/specs/blob/main/packages/schema/schema/styles.schema.json) |
+| TypeScript | [`packages/schema/types/Styles.ts`](https://github.com/rudironsoni/specs/blob/main/packages/schema/types/Styles.ts) |
+| JSON Schema | [`packages/schema/schema/styles.schema.json`](https://github.com/rudironsoni/specs/blob/main/packages/schema/schema/styles.schema.json) |

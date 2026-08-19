@@ -2,7 +2,7 @@
 
 ## What This Is
 
-`@directededges/specs-cli` is the CLI and MCP server for the Specs ecosystem. It orchestrates Figma data fetching, component scanning, and spec generation via the `specs-from-figma` engine.
+`@rudironsoni/specs-cli` is the CLI and MCP server for the Specs ecosystem. It orchestrates Figma data fetching, component scanning, and spec generation via the `specs-from-figma` engine.
 
 ## Commands
 
@@ -26,7 +26,7 @@
 
 ## Dependencies
 
-- `@directededges/specs-schema` — types and `DEFAULT_CONFIG` (linked via workspace symlink)
+- `@rudironsoni/specs-schema` — types and `DEFAULT_CONFIG` (linked via workspace symlink)
 - `@rudironsoni/specs-from-figma` — processing engine (`Component.fromRestApi`, local `packages/from-figma`)
 
 ## Build

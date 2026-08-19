@@ -3,7 +3,6 @@ title: "defaultSlotContent"
 description: "Emit the component's structurally-detected default slot content as examples"
 ---
 
-<script>document.querySelector('#_top').insertAdjacentHTML('beforeend',' <span class="sl-badge pro-badge">Pro</span>')</script>
 <script>document.querySelector('#_top').insertAdjacentHTML('beforeend',' <span class="sl-badge experimental-badge">Experimental</span>')</script>
 
 When `true`, the generator emits `Component.slotContentExamples` — the **default content placed inside a component's slot layers**, captured structurally and referenced from each slot binding via `$slotContent`. Defaults to `false`, so output for unannotated components is unchanged until you opt in.

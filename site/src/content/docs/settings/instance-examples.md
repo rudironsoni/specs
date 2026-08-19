@@ -3,14 +3,13 @@ title: "Instance Examples"
 description: "Detect named example frames that demonstrate a configured whole-component usage"
 ---
 
-<script>document.querySelector('#_top').insertAdjacentHTML('beforeend',' <span class="sl-badge pro-badge">Pro</span>')</script>
 <script>document.querySelector('#_top').insertAdjacentHTML('beforeend',' <span class="sl-badge experimental-badge">Experimental</span>')</script>
 
 Instance examples are real-world usages of a component placed in your Figma file — instances with their props and slots filled in (for example, an alert with a title, body, and two actions). When detection is configured, those instances are harvested into `Component.instanceExamples` and emitted.
 
 A candidate qualifies primarily by **identity**: it must be an *instance of the component being generated* (one of its variants). Naming is not the relevance test — that's what `match` is for, and `match` is optional. This means example instances can be named anything; they don't need to reference the component name.
 
-The **presence** of `processing.instanceExamples` is the on-switch — the same opt-in model as [`subcomponents`](/settings/subcomponents/). There is no separate `include` flag: when the block is present (and the license is Pro), examples are detected *and* emitted. When it is absent, no detection runs.
+The **presence** of `processing.instanceExamples` is the on-switch — the same opt-in model as [`subcomponents`](/settings/subcomponents/). There is no separate `include` flag: when the block is present, examples are detected and emitted. When it is absent, no detection runs.
 
 ## Configuration
 
@@ -84,7 +83,7 @@ components:
       alertWithOpenDrawer: …
 ```
 
-When `processing.instanceExamples` is absent (or the license is not Pro), the registry is omitted entirely.
+When `processing.instanceExamples` is absent, the registry is omitted entirely.
 
 ## Properties
 

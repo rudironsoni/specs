@@ -81,13 +81,13 @@ data/
 - **Figma access token** (for `fetch`) via `FIGMA_TOKEN`
 - **Figma REST API data** (JSON files from Figma API endpoints, produced by `fetch`):
   - `file` — any Figma plan with REST API access
-  - `variables` / `styles` — Figma restricts these REST endpoints to organizations on an **Enterprise** plan, regardless of your Specs license
+  - `variables` / `styles` — Figma restricts these REST endpoints to organizations on an **Enterprise** plan
 - **Figma token** via `FIGMA_TOKEN` for fetch
 
 See [Getting Started](/cli/getting-started/) for installation instructions.
 
 ## See Also
 
-- [Getting Started](/cli/getting-started/) - Installation, license, and quick start
+- [Getting Started](/cli/getting-started/) - Installation and quick start
 - [Workflows](/cli/workflows/) - Real-world usage patterns and CI/CD
 - [Configuration](/settings/) - Config file reference

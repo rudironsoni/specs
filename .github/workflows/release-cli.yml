@@ -1,4 +1,4 @@
-# Release @directededges/specs-cli to npm via OIDC Trusted Publishing.
+# Release @rudironsoni/specs-cli to npm via OIDC Trusted Publishing.
 #
 # This is an ALTERNATIVE to the local, token-based publish performed by
 # `.github/agents/CLI.release.agent.md`. It does not replace it. Trusted
@@ -12,8 +12,8 @@
 # (and skip the agent's local publish step that time).
 #
 # One-time setup before this can succeed:
-#   1. On npmjs.com → @directededges/specs-cli → Settings → Trusted Publisher,
-#      register: Organization/owner = DirectedEdges, Repository = specs,
+#   1. On npmjs.com → @rudironsoni/specs-cli → Settings → Trusted Publisher,
+#      register: Organization/owner = rudironsoni, Repository = specs,
 #      Workflow filename = release-cli.yml  (must match this file's name).
 #   2. (Recommended) Create a GitHub Environment named `npm-publish` with
 #      required reviewers, so the publish step waits for manual approval.
@@ -81,20 +81,15 @@ jobs:
 
       - name: Verify dependency refs are versioned (not file:)
         run: |
-          if grep -E '"@directededges/[^"]+":\s*"file:' packages/cli/package.json; then
+          if grep -E '"@rudironsoni/[^"]+":\s*"file:' packages/cli/package.json; then
             echo "::error::package.json has file: dependency refs; release commits must use versioned refs."
             exit 1
           fi
 
-      # specs-schema is a workspace member whose dist/ is gitignored, and the CLI
-      # imports runtime values from it (e.g. DEFAULT_CONFIG). Build it before the
-      # CLI build/test or module resolution fails in CI. specs-from-figma is an
-      # external (registry) dependency and ships its own built+obfuscated dist.
-      - name: Build schema (workspace dependency)
-        run: npm run build --workspace=packages/schema
-
-      - name: Build
-        run: npm run build --workspace=packages/cli
+      # schema and from-figma dist/ are gitignored. The CLI imports both at
+      # runtime. Build them before the CLI or generate --help cannot start.
+      - name: Build workspace packages
+        run: npm run build
 
       - name: Test
         run: npm run test --workspace=packages/cli

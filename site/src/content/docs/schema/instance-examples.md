@@ -38,6 +38,6 @@ How example instances are harvested from a Figma file is controlled by [`process
 ## Further Reading
 
 - [Component Examples as Data](https://nathanacurtis.substack.com/p/component-examples-as-data) — the thinking behind examples in the spec
-- [ADR 048 — Component Instance Examples](https://github.com/DirectedEdges/specs/blob/main/adr/048-component-instance-examples.md)
+- [ADR 048 — Component Instance Examples](https://github.com/rudironsoni/specs/blob/main/adr/048-component-instance-examples.md)
 - [Instance Examples (config)](/settings/instance-examples/) — detection setup
 - [Instance Examples (guide)](/guides/instance-examples/)

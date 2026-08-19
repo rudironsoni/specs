@@ -84,7 +84,7 @@ async function resolveEntry(
       src: `data:${downloaded.contentType};base64,${toBase64(downloaded.bytes)}`,
     };
   }
-  const fileName = `${hash}.${downloaded.ext}`;
+  const fileName = `${safeImageHash(hash)}.${downloaded.ext}`;
   if (options.outDir) {
     if (!deps.mkdir || !deps.writeFile) {
       throw new Error('outDir requires mkdir and writeFile deps');
@@ -112,6 +112,10 @@ function hashOf(entry: ImageData): string | null {
   if (fromExt) return fromExt;
   if (entry.src?.startsWith(FIGMA_PREFIX)) return entry.src.slice(FIGMA_PREFIX.length);
   return null;
+}
+
+function safeImageHash(hash: string): string {
+  return hash.replace(/[^A-Za-z0-9_-]/g, '_').slice(0, 128) || 'image';
 }
 
 function detectContentType(bytes: Uint8Array): string {

@@ -126,8 +126,8 @@ The `$extensions` object holds vendor-specific metadata. Currently only the `com
 
 ## Further Reading
 
-- [ADR 027 — Code-Only Props](https://github.com/DirectedEdges/specs/blob/main/adr/027-code-only-props.md) — surfaces Figma code-only props with `$extensions` source metadata
-- [ADR 028 — Slot Quantity and Content Constraints](https://github.com/DirectedEdges/specs/blob/main/adr/028-slot-constraints.md) — adds `anyOf` to SlotProp; originally added `minItems`/`maxItems` (renamed in ADR-056)
-- [ADR 056 — Rename SlotProp.minItems/maxItems → minChildren/maxChildren](https://github.com/DirectedEdges/specs/blob/main/adr/056-slot-children-constraints.md) — aligns field names with Figma native `slotSettings`; adds native `preferredValues` resolution
-- [ADR 029 — NumberProp](https://github.com/DirectedEdges/specs/blob/main/adr/029-number-prop.md) — adds the `NumberProp` type with opt-in inference
-- [ADR 063 — Image Content](https://github.com/DirectedEdges/specs/blob/main/adr/063-image-content.md) — adds the `ImageProp` type and image fills/registry
+- [ADR 027 — Code-Only Props](https://github.com/rudironsoni/specs/blob/main/adr/027-code-only-props.md) — surfaces Figma code-only props with `$extensions` source metadata
+- [ADR 028 — Slot Quantity and Content Constraints](https://github.com/rudironsoni/specs/blob/main/adr/028-slot-constraints.md) — adds `anyOf` to SlotProp; originally added `minItems`/`maxItems` (renamed in ADR-056)
+- [ADR 056 — Rename SlotProp.minItems/maxItems → minChildren/maxChildren](https://github.com/rudironsoni/specs/blob/main/adr/056-slot-children-constraints.md) — aligns field names with Figma native `slotSettings`; adds native `preferredValues` resolution
+- [ADR 029 — NumberProp](https://github.com/rudironsoni/specs/blob/main/adr/029-number-prop.md) — adds the `NumberProp` type with opt-in inference
+- [ADR 063 — Image Content](https://github.com/rudironsoni/specs/blob/main/adr/063-image-content.md) — adds the `ImageProp` type and image fills/registry
