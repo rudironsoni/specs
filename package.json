@@ -7,7 +7,7 @@
     "packages/from-figma"
   ],
   "scripts": {
-    "build": "npm run build --workspaces",
+    "build": "npm run build -w @directededges/specs-schema && npm run build -w @rudironsoni/specs-from-figma && npm run build -w @directededges/specs-cli",
     "test": "vitest run"
   },
   "devDependencies": {

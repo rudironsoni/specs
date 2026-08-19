@@ -29,6 +29,14 @@ describe('GenerateCommand', () => {
       expect(componentOption!.mandatory).toBeFalsy();
     });
 
+    it('does not register a license flag', () => {
+      const options = Generate.options.map(option => option.long).filter(Boolean);
+      const shorts = Generate.options.map(option => option.short).filter(Boolean);
+      expect(options).not.toContain('--license');
+      expect(shorts).not.toContain('-l');
+      expect(Generate.helpInformation()).not.toMatch(/--license/);
+    });
+
     it('registers all expected options', () => {
       const options = Generate.options.map(option => option.long).filter(Boolean);
 
