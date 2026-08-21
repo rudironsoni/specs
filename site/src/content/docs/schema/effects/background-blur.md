@@ -16,4 +16,4 @@ radius: 12
 
 #### Source
 
-[`packages/schema/types/Effects.ts`](https://github.com/rudironsoni/specs/blob/main/packages/schema/types/Effects.ts)
+[`src/schema/Effects.ts`](https://github.com/rudironsoni/specs/blob/main/src/schema/Effects.ts)

@@ -8,9 +8,9 @@
 
 | Package | Path | Description |
 |---------|------|-------------|
-| `@rudironsoni/specs-schema` | `packages/schema/` | TypeScript types and JSON schema definitions for component specifications. Exports are type-only except for `DEFAULT_CONFIG`. |
-| `@rudironsoni/specs-from-figma` | `packages/from-figma/` | Local Figma-to-spec engine used by `specs generate`. |
-| `@rudironsoni/specs-cli` | `packages/cli/` | CLI for design system operations: generate, scan, and fetch component specs from the Figma REST API. |
+| `@rudironsoni/specs-schema` | `src/schema/` | TypeScript types and JSON schema definitions for component specifications. Exports are type-only except for `DEFAULT_CONFIG`. |
+| `@rudironsoni/specs-from-figma` | `src/from-figma/` | Local Figma-to-spec engine used by `specs generate`. |
+| `@rudironsoni/specs-cli` | `src/cli/` | CLI for design system operations: generate, scan, and fetch component specs from the Figma REST API. |
 
 ## Dependency Flow
 
@@ -28,30 +28,23 @@
 ## Architecture
 
 ```
-packages/
+src/
 ├── schema/                      # @rudironsoni/specs-schema
-│   ├── types/                   # TypeScript type definitions (source of truth)
-│   │   ├── index.ts             # Barrel export
-│   │   ├── Component.ts         # Top-level component spec shape
-│   │   ├── Config.ts            # Config interface + DEFAULT_CONFIG
-│   │   └── ...                  # Anatomy, Props, Element, Styles, etc.
+│   ├── index.ts                 # Barrel export
+│   ├── Component.ts             # Top-level component spec shape
+│   ├── Config.ts                # Config interface + DEFAULT_CONFIG
 │   ├── schema/                  # JSON Schema definitions (for validation)
-│   │   ├── component.schema.json
-│   │   ├── components.schema.json
-│   │   ├── styles.schema.json
-│   │   └── root.schema.json
 │   └── tests/                   # Type-level tests (.test-d.ts)
 ├── from-figma/                  # @rudironsoni/specs-from-figma
 ├── cli/                         # @rudironsoni/specs-cli
-│   └── src/
-│       ├── index.ts             # Entry: command registry, createProgram(), runCli()
-│       ├── bin/                  # CLI binary entry point
-│       ├── commands/            # Command implementations (Generate, Audit, Batch, Fetch, Init)
-│       ├── Config/              # CLI configuration
-│       ├── Types/               # TypeScript types
-│       ├── Writers/             # Output writers
-│       ├── utilities/           # Shared helpers
-│       └── figma-shim.ts       # Figma API shim for Node.js context
+│   ├── index.ts                 # Entry: command registry, createProgram(), runCli()
+│   ├── bin/                     # CLI binary entry point
+│   ├── commands/                # Command implementations
+│   ├── Config/                  # CLI configuration
+│   ├── Types/                   # TypeScript types
+│   ├── Writers/                 # Output writers
+│   ├── utilities/               # Shared helpers
+│   └── figma-shim.ts            # Figma API shim for Node.js context
 adr/                             # Architecture Decision Records
 ```
 
@@ -60,9 +53,9 @@ adr/                             # Architecture Decision Records
 ```bash
 npm run build          # Build schema, from-figma, then CLI
 npm test               # Vitest run (all packages)
-npm run build --workspace=packages/schema   # Build schema only
+npm run build --workspace=@rudironsoni/specs-schema
 npm run build --workspace=@rudironsoni/specs-from-figma
-npm run build --workspace=packages/cli      # Build CLI only. Run after schema and from-figma so generate --help can start.
+npm run build --workspace=@rudironsoni/specs-cli      # Run after schema and from-figma so generate --help can start.
 ```
 
 ## Conventions
@@ -74,7 +67,7 @@ npm run build --workspace=packages/cli      # Build CLI only. Run after schema a
 
 ## Schema Governance
 
-All `specs-schema` type and schema changes must pass the 6-gate Constitution Check defined in `packages/schema/CONSTITUTION.md`. The constitution enforces type–schema parity, no-logic exports, minimal stable API, and strict naming conventions.
+All `specs-schema` type and schema changes must pass the 6-gate Constitution Check defined in `src/schema/CONSTITUTION.md`. The constitution enforces type–schema parity, no-logic exports, minimal stable API, and strict naming conventions.
 
 ## ADR Lifecycle
 

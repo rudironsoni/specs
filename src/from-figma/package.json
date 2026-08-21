@@ -1,0 +1,64 @@
+{
+  "name": "@rudironsoni/specs-from-figma",
+  "version": "0.29.0",
+  "description": "Clean-room recreation of the specs-from-figma REST engine",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./index.ts",
+  "exports": {
+    ".": {
+      "types": "./index.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE",
+    "ATTRIBUTION.md",
+    "*.ts",
+    "Adapters",
+    "Component",
+    "Components",
+    "Config",
+    "Constants",
+    "Images",
+    "Progress",
+    "Runtime",
+    "Utilities"
+  ],
+  "scripts": {
+    "build": "npm run build:js",
+    "build:js": "esbuild index.ts --bundle --platform=neutral --target=es2020 --outfile=dist/index.js --format=esm --external:yaml --external:@rudironsoni/specs-schema",
+    "watch": "esbuild index.ts --bundle --platform=neutral --target=es2020 --outfile=dist/index.js --format=esm --external:yaml --external:@rudironsoni/specs-schema --watch",
+    "test": "cd ../.. && vitest run src/from-figma/tests",
+    "typecheck": "tsc -p tsconfig.json --noEmit"
+  },
+  "dependencies": {
+    "@rudironsoni/specs-schema": "^0.29.0",
+    "yaml": "^2.3.4"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.5",
+    "esbuild": "^0.20.0",
+    "typescript": "^5.3.3",
+    "vitest": "^3.1.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rudironsoni/specs.git",
+    "directory": "src/from-figma"
+  },
+  "keywords": [
+    "figma",
+    "design-system",
+    "specification",
+    "transformer"
+  ],
+  "author": "rudironsoni",
+  "license": "PolyForm-Internal-Use-1.0.0",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  }
+}

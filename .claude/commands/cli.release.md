@@ -1,7 +1,7 @@
 ---
-description: Release @rudironsoni/specs-cli to npm. Args: <version> <schema-version> <specs-from-figma-version>.
+description: Specs release is CI. GitHub Packages npm registry. No npmjs.
 ---
 
-Read and follow the instructions in `.github/agents/CLI.release.agent.md`.
+Read `.github/agents/CLI.release.agent.md`. Do not tag or `npm publish` locally.
 
 $ARGUMENTS

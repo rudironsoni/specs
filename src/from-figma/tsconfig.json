@@ -1,0 +1,15 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    // Parent of this module so schema types pulled in via paths stay inside rootDir.
+    "rootDir": "..",
+    "outDir": "dist",
+    "module": "ES2020",
+    "isolatedModules": true,
+    "paths": {
+      "@rudironsoni/specs-schema": ["../schema/index.ts"]
+    }
+  },
+  "include": ["**/*.ts"],
+  "exclude": ["dist", "tests", "node_modules"]
+}

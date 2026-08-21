@@ -469,7 +469,7 @@ During this flow, never:
 
 - Paste, repeat, or log the Figma PAT back to the conversation.
 - Run `git commit`, `git push`, `git add .`, or stage `.env`.
-- Call `npm install ../specs/packages/schema` or any similar path — Specs CLI is installed from the npm registry only.
+- Call `npm install ../specs/src/schema` or any similar path — Specs CLI is installed from the npm registry only.
 - Guess a Figma file key — always derive from a URL the user provides.
 - Proceed past Step 9 without explicit user confirmation.
 - Write `FIGMA_TOKEN` values into any file other than `.env`.

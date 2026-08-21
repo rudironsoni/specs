@@ -1,0 +1,64 @@
+# One version for schema, from-figma, and CLI.
+# Conventional commits on main → release PR → tag vX.Y.Z + GitHub Release
+# (changelog notes) and npm publish to GitHub Packages.
+# https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-npm-registry
+#
+# workflow_dispatch publishes the current versions (use this once after the
+# workflow lands on main, so the Packages tab is not empty).
+
+name: Release
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+  packages: write
+
+jobs:
+  please:
+    if: ${{ github.event_name == 'push' }}
+    runs-on: ubuntu-latest
+    outputs:
+      release_created: ${{ steps.please.outputs.release_created }}
+      tag_name: ${{ steps.please.outputs.tag_name }}
+    steps:
+      - uses: googleapis/release-please-action@v4
+        id: please
+        with:
+          config-file: release-please-config.json
+          manifest-file: .release-please-manifest.json
+
+  publish:
+    needs: please
+    if: ${{ always() && (needs.please.outputs.release_created == 'true' || github.event_name == 'workflow_dispatch') }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ needs.please.outputs.tag_name || github.sha }}
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+
+      - name: Test
+        run: npm test
+
+      - name: Publish to GitHub Packages
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          echo '//npm.pkg.github.com/:_authToken=${NODE_AUTH_TOKEN}' >> .npmrc
+          npm publish --workspace=@rudironsoni/specs-schema
+          npm publish --workspace=@rudironsoni/specs-from-figma
+          npm publish --workspace=@rudironsoni/specs-cli

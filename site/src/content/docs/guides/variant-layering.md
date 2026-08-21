@@ -480,6 +480,6 @@ Controls how many prop dimensions are expanded. See the [Variant Depth](/guides/
 ## See Also
 
 - [Variant Depth](/guides/variant-depth/) — controlling variant expansion depth
-- [Variant type](/../packages/schema/types/Variant.ts/) — schema definition
-- [Config type](/../packages/schema/types/Config.ts/) — full configuration options
-- [component.schema.json](/../packages/schema/schema/component.schema.json/) — JSON Schema validation rules
+- [Variant type](/../src/schema/Variant.ts/) — schema definition
+- [Config type](/../src/schema/Config.ts/) — full configuration options
+- [component.schema.json](/../src/schema/schema/component.schema.json/) — JSON Schema validation rules

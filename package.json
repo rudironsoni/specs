@@ -1,14 +1,16 @@
 {
   "private": true,
   "name": "specs",
+  "version": "0.29.0",
   "workspaces": [
-    "packages/schema",
-    "packages/cli",
-    "packages/from-figma"
+    "src/schema",
+    "src/from-figma",
+    "src/cli"
   ],
   "scripts": {
     "build": "npm run build -w @rudironsoni/specs-schema && npm run build -w @rudironsoni/specs-from-figma && npm run build -w @rudironsoni/specs-cli",
-    "test": "vitest run"
+    "test": "vitest run",
+    "typecheck:from-figma": "tsc -p src/from-figma/tsconfig.json --noEmit"
   },
   "devDependencies": {
     "typescript": "^5.3.3",

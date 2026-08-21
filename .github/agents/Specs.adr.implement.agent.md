@@ -25,7 +25,7 @@ You **MUST** consider the user input before proceeding (if not empty).
 
 2. **Load context**:
    - **REQUIRED**: Read `$REPO_ROOT/adr/$ADR_NAME.md` — source of truth for what changes and why
-   - **REQUIRED**: Read `packages/schema/CONSTITUTION.md` — all six gates must pass
+   - **REQUIRED**: Read `src/schema/CONSTITUTION.md` — all six gates must pass
    - Read every `types/*.ts` file named in the ADR Decision section
    - Read every `schema/*.json` file named in the ADR Decision section
    - Read `package.json` for the current version

@@ -1,5 +1,5 @@
 ---
-description: Check consistency across adr/, packages/schema/, packages/cli/, and site/ for the current branch before merging.
+description: Check consistency across adr/, src/schema/, src/cli/, and site/ for the current branch before merging.
 ---
 
 ## User Input
@@ -17,8 +17,8 @@ This skill checks that the four artifact areas touched by schema/CLI work are mu
 The four areas and their relationships:
 
 - **ADR** (`adr/`) — declares intent: what is changing, why, and what the semver impact is. Source of truth for this check.
-- **Schema** (`packages/schema/`) — must reflect everything the ADR declares: new/changed types, fields, enums, JSON schema entries, and CHANGELOG entry.
-- **CLI** (`packages/cli/`) — must expose or handle every schema change the ADR says the CLI is affected by. Commands, flags, output shape, help text.
+- **Schema** (`src/schema/`) — must reflect everything the ADR declares: new/changed types, fields, enums, JSON schema entries, and CHANGELOG entry.
+- **CLI** (`src/cli/`) — must expose or handle every schema change the ADR says the CLI is affected by. Commands, flags, output shape, help text.
 - **Docs** (`site/`) — must document every user-facing change: new config values, command flags, behavioral changes, examples.
 
 ## Outline
@@ -36,11 +36,11 @@ git diff --name-only main...HEAD
 
 Collect all changed files. Categorize each into one or more areas:
 - `adr/` → **ADR**
-- `packages/schema/` → **Schema**
-- `packages/cli/` → **CLI**
+- `src/schema/` → **Schema**
+- `src/cli/` → **CLI**
 - `site/` → **Docs**
 
-If no files fall into any of the four areas, halt: "No changes detected in adr/, packages/schema/, packages/cli/, or site/. Nothing to check."
+If no files fall into any of the four areas, halt: "No changes detected in adr/, src/schema/, src/cli/, or site/. Nothing to check."
 
 Report the file count per area and total at the start of output.
 
@@ -57,13 +57,13 @@ From the ADR extract:
 
 For each area that has changed files (or that the ADR says should be affected), read the relevant changed files and assess:
 
-#### Schema (`packages/schema/`)
+#### Schema (`src/schema/`)
 - Every type/field/enum the ADR declares exists in `src/types/` or `src/enums/`
 - Every schema change is reflected in the JSON schema files under `schema/`
 - `CHANGELOG.md` has an entry for this change under the correct semver bump
 - No field mentioned in the ADR is absent from the types
 
-#### CLI (`packages/cli/`)
+#### CLI (`src/cli/`)
 - Every schema change the ADR says the CLI surfaces is handled (command updated, flag added, output adapted)
 - Help text or command descriptions reference new fields/flags where expected
 - No ADR-declared CLI change is missing from the diff
