@@ -2,6 +2,7 @@
 // Custom Header override for Starlight.
 // Preserves the default header's site title, search, theme toggle, and
 // social icons, and adds right-aligned section links plus a Slack icon.
+import { withBase } from '../utils/withBase';
 import config from 'virtual:starlight/user-config';
 
 import LanguageSelect from 'virtual:starlight/components/LanguageSelect';
@@ -56,9 +57,9 @@ const SLACK_PATHS = [
     <nav class="section-links">
       {SECTION_LINKS.map((link) => (
         <a
-          href={link.href}
+          href={withBase(link.href)}
           class="section-link"
-          aria-current={pathname.startsWith(link.prefix) ? 'page' : undefined}
+          aria-current={pathname.startsWith(withBase(link.prefix)) ? 'page' : undefined}
         >
           {link.label}
         </a>

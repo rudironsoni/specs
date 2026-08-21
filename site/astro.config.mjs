@@ -3,9 +3,40 @@ import starlight from '@astrojs/starlight';
 
 const experimental = { text: 'Experimental', variant: 'default' };
 
+const SITE = 'https://github.rudironsoni.com';
+const BASE = '/specs';
+
+function rehypePrefixBase(base) {
+  const prefix = base.endsWith('/') ? base.slice(0, -1) : base;
+  const isInternal = (value) =>
+    typeof value === 'string' &&
+    value.startsWith('/') &&
+    !value.startsWith('//') &&
+    value !== prefix &&
+    !value.startsWith(`${prefix}/`);
+
+  const rewrite = (node) => {
+    if (node?.properties) {
+      for (const key of ['href', 'src']) {
+        const value = node.properties[key];
+        if (isInternal(value)) node.properties[key] = `${prefix}${value}`;
+      }
+    }
+    if (Array.isArray(node?.children)) {
+      for (const child of node.children) rewrite(child);
+    }
+  };
+
+  return () => (tree) => rewrite(tree);
+}
+
 export default defineConfig({
-  site: 'https://www.specsplugin.com',
+  site: SITE,
+  base: BASE,
   server: { port: 4323 },
+  markdown: {
+    rehypePlugins: [rehypePrefixBase(BASE)],
+  },
   integrations: [
     starlight({
       title: 'Specs',

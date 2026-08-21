@@ -16,7 +16,8 @@ hero:
       icon: right-arrow
 ---
 
-import { LinkCard, LinkButton } from '@astrojs/starlight/components';
+import { LinkButton } from '@astrojs/starlight/components';
+import LinkCard from '../../../components/LinkCard.astro';
 import PreviewCard from '../../../components/PreviewCard.astro';
 import Figure from '../../../components/Figure.astro';
 import cardAnatomy from '../../../assets/plugin/CardAnatomy.png';
@@ -56,7 +57,7 @@ Reshape the spec styling — not just what it contains, but how it looks
 <LinkCard href="/plugin/text/" title="Text" description="Apply text styles so output matches your typography" />
 </div>
 
-<p style="margin-top: 4rem">Also, <a href="/plugin/multi-column-layout/">Multi-Column Layout</a> reshapes how a spec's exhibits are arranged — tiling them into a 2, 3, or 4-column grid instead of one long column — so a spec reads well whether it's a quick one-off or a dense reference sheet.</p>
+<p style="margin-top: 4rem">Also, <a href="multi-column-layout/">Multi-Column Layout</a> reshapes how a spec's exhibits are arranged — tiling them into a 2, 3, or 4-column grid instead of one long column — so a spec reads well whether it's a quick one-off or a dense reference sheet.</p>
 
 <Figure src={homeMultiColumn} alt="The same Alert component's Appearance section shown in 1, 2, and 3-column layouts side by side" maxWidth="none" />
 

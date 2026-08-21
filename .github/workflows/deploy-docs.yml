@@ -26,12 +26,9 @@ jobs:
       - name: Install site dependencies
         working-directory: site
         run: npm ci
-      - name: Generate releases page
-        working-directory: site
-        run: node scripts/build-releases.mjs
       - name: Build site
         working-directory: site
-        run: npx astro build
+        run: npm run build
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
@@ -40,6 +37,9 @@ jobs:
   deploy:
     needs: build
     runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
