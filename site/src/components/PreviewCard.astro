@@ -1,5 +1,6 @@
 ---
 import { Image } from 'astro:assets';
+import { withBase } from '../utils/withBase';
 
 interface Props {
   href: string;
@@ -12,7 +13,7 @@ interface Props {
 const { href, title, description, image, imageAlt = '' } = Astro.props;
 ---
 
-<a class="preview-card" href={href}>
+<a class="preview-card" href={withBase(href)}>
   <span class="preview-card__media">
     {image
       ? <Image src={image} alt={imageAlt} width={640} height={360} />

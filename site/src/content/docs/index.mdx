@@ -27,7 +27,8 @@ head:
     content: '.sl-markdown-content .card{padding:clamp(1rem,calc(0.125rem + 3vw),2.5rem);background-color:var(--sl-color-gray-6);border-radius:4px}.sl-markdown-content .card .body ul{font-size:var(--sl-text-sm);padding-inline-start:0;list-style-position:inside}.guide-gallery .sl-link-card{background-color:var(--sl-color-gray-6);border-radius:4px}.guide-gallery .card-grid>:first-child .sl-link-card,.guide-gallery .card-grid>:first-child.sl-link-card{background-color:var(--sl-color-accent-low);border-color:var(--sl-color-accent)}.guide-gallery .card-grid>:first-child .title{color:var(--sl-color-text-accent)}.feature-grid .sl-link-card{background-color:var(--sl-color-gray-6);border-radius:4px}@media (min-width:72rem){.guide-gallery .card-grid{grid-template-columns:repeat(4,1fr)}.feature-grid .card-grid{grid-template-columns:repeat(3,1fr)}}@media (min-width:50rem){.content-panel .hero{padding-block-end:2rem}}.hero .actions{gap:0.75rem;font-size:var(--sl-text-sm)}.hero .actions>a.primary{margin-inline-end:1rem}.hero .actions>a.minimal{color:var(--sl-color-gray-2)}.hero .actions>a.minimal:hover{color:var(--sl-color-white)}.hero .actions>a.minimal+a.minimal::before{content:"·";margin-inline-end:0.75rem;color:var(--sl-color-gray-4)}.sl-markdown-content .accent-word{color:var(--sl-color-text-accent);font-style:italic}'
 ---
 
-import { CardGrid, LinkCard } from '@astrojs/starlight/components';
+import { CardGrid } from '@astrojs/starlight/components';
+import LinkCard from '../../components/LinkCard.astro';
 import { Image } from 'astro:assets';
 import specsWorkflow from '../../assets/specs-workflow.png';
 import homeHero from '../../assets/plugin/HomeHero.png';

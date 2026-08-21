@@ -11,42 +11,42 @@ Every generated spec follows this tree — from a single-element icon to a compl
 
 <pre style="line-height:1.6">
 components:
-└─ {component name}                        → <a href="/schema/component/">Component</a>
-  ├─ <a href="/schema/anatomy/">anatomy</a>:
+└─ {component name}                        → <a href="component/">Component</a>
+  ├─ <a href="anatomy/">anatomy</a>:
   │ └─ {element name}: { type, slot }
-  ├─ <a href="/schema/props/">props</a>:
+  ├─ <a href="props/">props</a>:
   │ └─ {prop name}: { type, default, … }
-  ├─ default:                              → <a href="/schema/variants/">Variant</a>
-  │ ├─ <a href="/schema/layout/">layout</a>:
+  ├─ default:                              → <a href="variants/">Variant</a>
+  │ ├─ <a href="layout/">layout</a>:
   │ │ └─ - {parent}:
   │ │   └─ - {child}
-  │ └─ <a href="/schema/elements/">elements</a>:
+  │ └─ <a href="elements/">elements</a>:
   │   └─ {element name}:
-  │     ├─ content                         → <a href="/schema/prop-binding/">PropBinding</a>
-  │     ├─ <a href="/schema/children/">children</a>                        → <a href="/schema/children/">Children</a> (slot fills → <a href="/schema/slot-content-ref/">SlotContentRef</a>)
-  │     └─ <a href="/schema/styles/">styles</a>:                      (48 properties)
-  │       ├─ color                         → <a href="/schema/token-reference/">TokenReference</a>, <a href="/schema/gradient-value/">GradientValue</a>
-  │       ├─ spacing, size                 → <a href="/schema/token-reference/">TokenReference</a>, <a href="/schema/conditional/">Conditional</a>
-  │       ├─ layout                        → <a href="/schema/token-reference/">TokenReference</a>, <a href="/schema/conditional/">Conditional</a>
-  │       ├─ <a href="/schema/typography/">typography</a>                  → <a href="/schema/token-reference/">TokenReference</a>
-  │       ├─ <a href="/schema/effects/">effects</a>                     → <a href="/schema/token-reference/">TokenReference</a>
-  │       ├─ cornerRadius                  → <a href="/schema/corners/">Corners</a>
-  │       ├─ padding, strokeWeight         → <a href="/schema/sides/">Sides</a>
-  │       ├─ visibility                    → <a href="/schema/prop-binding/">PropBinding</a>
-  │       └─ …                             <a href="/schema/styles/">see full list</a>
-  ├─ variants:                             → <a href="/schema/variants/">Variant</a>[]
-  │ └─ - <a href="/schema/prop-configurations/">configuration</a>:
-  │     <a href="/schema/layout/">layout</a>:
-  │     <a href="/schema/elements/">elements</a>:                      (layered styling and binding changes)
-  ├─ invalidVariantCombinations:           → <a href="/schema/prop-configurations/">PropConfigurations</a>[]
-  ├─ <a href="/schema/subcomponents/">subcomponents</a>:
+  │     ├─ content                         → <a href="prop-binding/">PropBinding</a>
+  │     ├─ <a href="children/">children</a>                        → <a href="children/">Children</a> (slot fills → <a href="slot-content-ref/">SlotContentRef</a>)
+  │     └─ <a href="styles/">styles</a>:                      (48 properties)
+  │       ├─ color                         → <a href="token-reference/">TokenReference</a>, <a href="gradient-value/">GradientValue</a>
+  │       ├─ spacing, size                 → <a href="token-reference/">TokenReference</a>, <a href="conditional/">Conditional</a>
+  │       ├─ layout                        → <a href="token-reference/">TokenReference</a>, <a href="conditional/">Conditional</a>
+  │       ├─ <a href="typography/">typography</a>                  → <a href="token-reference/">TokenReference</a>
+  │       ├─ <a href="effects/">effects</a>                     → <a href="token-reference/">TokenReference</a>
+  │       ├─ cornerRadius                  → <a href="corners/">Corners</a>
+  │       ├─ padding, strokeWeight         → <a href="sides/">Sides</a>
+  │       ├─ visibility                    → <a href="prop-binding/">PropBinding</a>
+  │       └─ …                             <a href="styles/">see full list</a>
+  ├─ variants:                             → <a href="variants/">Variant</a>[]
+  │ └─ - <a href="prop-configurations/">configuration</a>:
+  │     <a href="layout/">layout</a>:
+  │     <a href="elements/">elements</a>:                      (layered styling and binding changes)
+  ├─ invalidVariantCombinations:           → <a href="prop-configurations/">PropConfigurations</a>[]
+  ├─ <a href="subcomponents/">subcomponents</a>:
   │ └─ {name}: { …same shape as above }
-  ├─ <a href="/schema/metadata/">metadata</a>:
-  │ └─ <a href="/schema/config/">config</a>:
-  ├─ <a href="/schema/instance-examples/">instanceExamples</a>:                   → <a href="/schema/instance-examples/">InstanceExample</a>
+  ├─ <a href="metadata/">metadata</a>:
+  │ └─ <a href="config/">config</a>:
+  ├─ <a href="instance-examples/">instanceExamples</a>:                   → <a href="instance-examples/">InstanceExample</a>
   │ └─ {name}: { title, propConfigurations }
-  └─ <a href="/schema/slot-content/">slotContentExamples</a>:                → <a href="/schema/slot-content/">SlotContent</a>
-    └─ {name}: { <a href="/schema/anatomy/">anatomy</a>, <a href="/schema/elements/">elements</a>, <a href="/schema/layout/">layout</a> }
+  └─ <a href="slot-content/">slotContentExamples</a>:                → <a href="slot-content/">SlotContent</a>
+    └─ {name}: { <a href="anatomy/">anatomy</a>, <a href="elements/">elements</a>, <a href="layout/">layout</a> }
 </pre>
 
 **Start at `default`.** The default variant is the complete baseline — every element fully described with styles, content, and layout. This is the component at rest.

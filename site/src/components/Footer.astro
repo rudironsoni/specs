@@ -2,6 +2,7 @@
 // Custom Footer override for Starlight.
 // Preserves the default per-page "Edit page" / "Last updated" metadata and
 // pagination, and adds a site-wide links row plus a static copyright notice.
+import { withBase } from '../utils/withBase';
 import EditLink from 'virtual:starlight/components/EditLink';
 import LastUpdated from 'virtual:starlight/components/LastUpdated';
 import Pagination from 'virtual:starlight/components/Pagination';
@@ -31,14 +32,14 @@ const COPYRIGHT_YEAR = 2026;
   <div class="site-links sl-flex">
     <nav class="footer-links">
       {FOOTER_LINKS.map((link) => (
-        <a href={link.href} class="footer-link">
+        <a href={withBase(link.href)} class="footer-link">
           {link.label}
         </a>
       ))}
     </nav>
     <p class="attribution">
       Schema and CLI under <a href="https://github.com/rudironsoni/specs/blob/main/src/cli/LICENSE">MIT</a>.
-      See the <a href="/overview/license/">full license</a> page.
+      See the <a href={withBase('/overview/license/')}>full license</a> page.
     </p>
     <p class="copyright">
       © rudironsoni {COPYRIGHT_YEAR} · Independent project, not affiliated with Figma Inc.
