@@ -62,3 +62,14 @@ jobs:
           npm publish --workspace=@rudironsoni/specs-schema
           npm publish --workspace=@rudironsoni/specs-from-figma
           npm publish --workspace=@rudironsoni/specs-cli
+
+      - name: Attach tarballs to GitHub Release
+        if: ${{ needs.please.outputs.tag_name != '' }}
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TAG: ${{ needs.please.outputs.tag_name }}
+        run: |
+          npm pack --workspace=@rudironsoni/specs-schema
+          npm pack --workspace=@rudironsoni/specs-from-figma
+          npm pack --workspace=@rudironsoni/specs-cli
+          gh release upload "$TAG" ./*.tgz --clobber
