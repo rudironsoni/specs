@@ -20,9 +20,9 @@ Specs is a fast, deterministic ecosystem for defining and generating production-
 - Set up for continuous integration
 - Configure the files, formats, and data you need
 
-[Set up the CLI →](https://www.specsplugin.com/cli/getting-started/)
+[Set up the CLI →](https://github.rudironsoni.com/specs/cli/getting-started/)
 
-Both the plugin and CLI generate specs consistent with the [Specs schema](https://www.specsplugin.com/schema/), a specifications model architected to unify component definitions for implementation across web, iOS, Android, and Figma.
+Both the plugin and CLI generate specs consistent with the [Specs schema](https://github.rudironsoni.com/specs/schema/), a specifications model architected to unify component definitions for implementation across web, iOS, Android, and Figma.
 
 ## Repeatable, production-grade specs in seconds
 
@@ -47,7 +47,10 @@ The result is a spec that's compact yet complete — not noisy like Figma's REST
 Command-line interface (CLI) for generating component specifications from Figma design files.
 
 ```sh
-# 1. Install cli globally to run with the command `specs`
+# 1. Install from GitHub Packages (not npmjs). Token needs read:packages.
+# ~/.npmrc must contain:
+#   @rudironsoni:registry=https://npm.pkg.github.com
+#   //npm.pkg.github.com/:_authToken=YOUR_GITHUB_TOKEN
 npm install -g @rudironsoni/specs-cli
 # 2. Initialize a specs.config.yaml file
 specs init
@@ -63,10 +66,10 @@ specs generate
 ```
 
 Helpful documentation includes:
-- [Overview](https://www.specsplugin.com/cli/)
-- [Getting started](https://www.specsplugin.com/cli/getting-started/)
-- [Configuration file](https://www.specsplugin.com/cli/configuration/) details
-- Per [command](https://www.specsplugin.com/cli/commands/) instructions and flags
+- [Overview](https://github.rudironsoni.com/specs/cli/)
+- [Getting started](https://github.rudironsoni.com/specs/cli/getting-started/)
+- [Configuration](https://github.rudironsoni.com/specs/settings/) details
+- Per [command](https://github.rudironsoni.com/specs/cli/) instructions and flags
 
 
 ### `@rudironsoni/specs-schema`
@@ -74,6 +77,7 @@ Helpful documentation includes:
 The shared type system and JSON schema that defines the structure of UI component specifications is a dependency of `specs-cli` and installed when you install the command line interface as above. However, it is also available as a standalone package.
 
 ```sh
+# Same GitHub Packages .npmrc as the CLI.
 npm install @rudironsoni/specs-schema
 ```
 
@@ -83,7 +87,7 @@ Exports include:
 - [TypeScript types](src/schema/) — complete type definitions for all schema entities (`Component`, `Config`, `Styles`, `Element`, `AnyProp`, etc.)
 - `DEFAULT_CONFIG` — a runtime configuration object controlling output shape (format, token resolution, variant depth, etc.)
 
-Learn more in the [Schema docs](https://www.specsplugin.com/schema/), including details on each property including component, variants, styles, props and more.
+Learn more in the [Schema docs](https://github.rudironsoni.com/specs/schema/), including details on each property including component, variants, styles, props and more.
 
 ### `@rudironsoni/specs-from-figma`
 

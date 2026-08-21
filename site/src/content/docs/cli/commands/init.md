@@ -27,22 +27,22 @@ The init command creates a `specs.config.yaml` file with the following structure
 # Specs CLI Configuration (production-ready defaults)
 #
 # This file configures how Specs fetches and processes Figma component data.
-# See: https://www.specsplugin.com/settings/ for complete documentation.
+# See: https://github.rudironsoni.com/specs/settings/ for complete documentation.
 
 # Where fetch writes payloads, and where generate reads from.
-# See: https://docs.specs.dev/settings/data-sources
+# See: https://github.rudironsoni.com/specs/settings/data-sources
 dataDirectory: ./data
 
 # Default location for generated spec files (can override with -o flag).
-# See: https://docs.specs.dev/settings/data-sources
+# See: https://github.rudironsoni.com/specs/settings/data-sources
 outputDirectory: ./specs
 
 # Figma file sources to fetch and process.
-# See: https://docs.specs.dev/settings/data-sources
+# See: https://github.rudironsoni.com/specs/settings/data-sources
 sources: {}
 
 # Processing and output configuration.
-# See: https://docs.specs.dev/settings/
+# See: https://github.rudironsoni.com/specs/settings/
 config:
   processing:
     subcomponents:
@@ -114,7 +114,7 @@ specs init
 #    3. Run: specs scan
 #    4. Run: specs generate
 #
-# 📖 Documentation: https://www.specsplugin.com/settings/
+# Documentation: https://github.rudironsoni.com/specs/settings/
 ```
 
 ### Example 2: Environment-Specific Configs

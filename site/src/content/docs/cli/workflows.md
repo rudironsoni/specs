@@ -103,6 +103,8 @@ Split output into per-component files, subfolders, or separate API and variant f
 
 ### GitHub Actions
 
+`GH_PACKAGES_TOKEN` is a GitHub PAT with `read:packages`. Same-repo `GITHUB_TOKEN` is not enough if the package is private.
+
 ```yaml
 # .github/workflows/generate-specs.yml
 name: Generate Component Specs
@@ -122,15 +124,19 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Setup Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
-          node-version: '18'
+          node-version: '22'
+          registry-url: https://npm.pkg.github.com
+          scope: '@rudironsoni'
 
       - name: Install Specs CLI
         run: npm install -g @rudironsoni/specs-cli
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GH_PACKAGES_TOKEN }}
 
       - name: Fetch Figma data
         run: specs fetch

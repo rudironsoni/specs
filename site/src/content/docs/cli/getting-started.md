@@ -24,9 +24,12 @@ Claude will handle install, config, token setup, fetch, and your first generate 
 
 ## Step 1: Install
 
-Specs CLI requires **[Node.js 18+](https://nodejs.org/)** (LTS recommended). Install it if you haven't already, then install Specs CLI globally:
+Specs CLI requires **[Node.js 18+](https://nodejs.org/)** (LTS recommended). Packages are on GitHub Packages, not npmjs. A GitHub token with `read:packages` is required.
 
 ```bash
+# ~/.npmrc
+#   @rudironsoni:registry=https://npm.pkg.github.com
+#   //npm.pkg.github.com/:_authToken=YOUR_GITHUB_TOKEN
 npm install -g @rudironsoni/specs-cli
 specs --version
 ```
@@ -159,12 +162,16 @@ jobs:
   generate:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
-          node-version: '18'
+          node-version: '22'
+          registry-url: https://npm.pkg.github.com
+          scope: '@rudironsoni'
 
       - run: npm install -g @rudironsoni/specs-cli
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GH_PACKAGES_TOKEN }}
 
       - run: specs fetch
         env:

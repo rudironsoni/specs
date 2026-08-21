@@ -1,6 +1,6 @@
 # Terms of Service
 
-> Also available at: https://www.specsplugin.com/overview/terms-of-service/
+> Also available at: https://github.rudironsoni.com/specs/overview/terms-of-service/
 
 **rudironsoni**
 **Effective Date:** April 6, 2026
