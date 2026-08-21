@@ -3,8 +3,9 @@
 # (changelog notes) and npm publish to GitHub Packages.
 # https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-npm-registry
 #
-# workflow_dispatch publishes the current versions (use this once after the
-# workflow lands on main, so the Packages tab is not empty).
+# workflow_dispatch republishes the versions currently on the default branch.
+# It does not create a tag. It fails if those versions already exist on
+# GitHub Packages.
 
 name: Release
 
