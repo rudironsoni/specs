@@ -28,8 +28,8 @@ Answer "what is impacted if this component changes?" from the dependency graph t
 
 - The target workspace is the current working directory's specs workspace: a directory with `specs.config.yaml` whose `outputDirectory` points at the generated specs. If the cwd is not a specs workspace, ask which workspace to analyze.
 - **Never use the globally installed `specs` binary** — it may be stale. Invoke the locally built CLI:
-  - Inside the `specs` repo: `node packages/cli/dist/specs.js` (run `npm run build --workspace=packages/cli` first if `dist/` is missing or source changed).
-  - In any other workspace: `node <specs-repo>/packages/cli/dist/specs.js`, or the workspace's own installed `@rudironsoni/specs-cli` binary if the specs repo is not checked out locally.
+  - Inside the `specs` repo: `node src/cli/dist/specs.js` (run `npm run build --workspace=src/cli` first if `dist/` is missing or source changed).
+  - In any other workspace: `node <specs-repo>/src/cli/dist/specs.js`, or the workspace's own installed `@rudironsoni/specs-cli` binary if the specs repo is not checked out locally.
 
 ### 3. Regenerate the data
 

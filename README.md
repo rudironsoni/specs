@@ -79,15 +79,15 @@ npm install @rudironsoni/specs-schema
 
 Exports include:
 
-- [JSON Schema](packages/schema/schema/root.schema.json) — the canonical schema for component spec output
-- [TypeScript types](packages/schema/types/) — complete type definitions for all schema entities (`Component`, `Config`, `Styles`, `Element`, `AnyProp`, etc.)
+- [JSON Schema](src/schema/schema/root.schema.json) — the canonical schema for component spec output
+- [TypeScript types](src/schema/) — complete type definitions for all schema entities (`Component`, `Config`, `Styles`, `Element`, `AnyProp`, etc.)
 - `DEFAULT_CONFIG` — a runtime configuration object controlling output shape (format, token resolution, variant depth, etc.)
 
 Learn more in the [Schema docs](https://www.specsplugin.com/schema/), including details on each property including component, variants, styles, props and more.
 
 ### `@rudironsoni/specs-from-figma`
 
-The `specs-from-figma` package is the engine that converts Figma assets into specs. It lives in `packages/from-figma` and the CLI depends on it as a workspace package.
+The `specs-from-figma` package is the engine that converts Figma assets into specs. It lives in `src/from-figma` and the CLI depends on it as a workspace package.
 
 ## Architectural Decision Records
 
@@ -126,9 +126,9 @@ Found a bug or have a feature request? Please check if it already exists in our 
 
 ## Licensing
 
-- **`packages/schema/`** — [MIT](packages/schema/LICENSE)
-- **`packages/cli/`** — [MIT](packages/cli/LICENSE)
-- **`packages/from-figma/`** — [PolyForm Internal Use 1.0.0](packages/from-figma/LICENSE)
+- **`src/schema/`** — [MIT](src/schema/LICENSE)
+- **`src/cli/`** — [MIT](src/cli/LICENSE)
+- **`src/from-figma/`** — [PolyForm Internal Use 1.0.0](src/from-figma/LICENSE)
 
 ---
 

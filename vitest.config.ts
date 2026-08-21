@@ -8,23 +8,23 @@ export default defineConfig({
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),
-      '@rudironsoni/specs-schema': path.resolve(__dirname, './packages/schema/types/index.ts'),
-      '@rudironsoni/specs-from-figma': path.resolve(__dirname, './packages/from-figma/src/index.ts'),
+      '@rudironsoni/specs-schema': path.resolve(__dirname, './src/schema/index.ts'),
+      '@rudironsoni/specs-from-figma': path.resolve(__dirname, './src/from-figma/index.ts'),
     },
   },
   test: {
     environment: 'node',
     globals: true,
-    include: ['packages/*/tests/**/*.test.ts'],
+    include: ['src/*/tests/**/*.test.ts'],
     typecheck: {
-      include: ['packages/*/tests/**/*.test-d.ts'],
+      include: ['src/*/tests/**/*.test-d.ts'],
     },
     exclude: ['node_modules'],
     coverage: {
       provider: 'v8',
       reporter: ['text', 'json', 'html'],
-      include: ['packages/*/src/**/*.ts'],
-      exclude: ['packages/*/src/**/*.test.ts', 'packages/*/src/**/types.ts'],
+      include: ['src/**/*.ts'],
+      exclude: ['src/**/*.test.ts', 'src/**/tests/**', 'src/**/types.ts'],
     },
   },
 });

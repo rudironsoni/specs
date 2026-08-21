@@ -1,0 +1,47 @@
+{
+  "$schema": "https://raw.githubusercontent.com/googleapis/release-please/main/schemas/config.json",
+  "bootstrap-sha": "86cb4f6c80db59336b9e2127039cab7963766664",
+  "include-v-in-tag": true,
+  "include-component-in-tag": false,
+  "bump-minor-pre-major": true,
+  "bump-patch-for-minor-pre-major": false,
+  "packages": {
+    ".": {
+      "release-type": "node",
+      "package-name": "specs",
+      "changelog-path": "CHANGELOG.md",
+      "extra-files": [
+        {
+          "type": "json",
+          "path": "src/schema/package.json",
+          "jsonpath": "$.version"
+        },
+        {
+          "type": "json",
+          "path": "src/from-figma/package.json",
+          "jsonpath": "$.version"
+        },
+        {
+          "type": "json",
+          "path": "src/cli/package.json",
+          "jsonpath": "$.version"
+        },
+        {
+          "type": "json",
+          "path": "src/cli/package.json",
+          "jsonpath": "$.dependencies['@rudironsoni/specs-schema']"
+        },
+        {
+          "type": "json",
+          "path": "src/cli/package.json",
+          "jsonpath": "$.dependencies['@rudironsoni/specs-from-figma']"
+        },
+        {
+          "type": "json",
+          "path": "src/from-figma/package.json",
+          "jsonpath": "$.dependencies['@rudironsoni/specs-schema']"
+        }
+      ]
+    }
+  }
+}

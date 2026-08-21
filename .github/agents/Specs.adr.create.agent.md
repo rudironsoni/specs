@@ -67,7 +67,7 @@ You **MUST** consider the user input before proceeding (if not empty).
    - If `$SPEC_FILE` exists, read it and continue editing rather than overwriting.
    - All paths must be absolute.
 
-3. **Load context**: Read `packages/schema/CONSTITUTION.md` and `adr/adr-template.md` (the output template).
+3. **Load context**: Read `src/schema/CONSTITUTION.md` and `adr/adr-template.md` (the output template).
 
 4. **Targeted exploration**: Using `CHANGE_DESCRIPTION` as your guide, read **only** the specific type and schema files relevant to the proposed change. Do not scan directories broadly. If the user said "border properties on Styles", read `types/Styles.ts` and `schema/Styles.yaml` — not everything in `types/` and `schema/`. Determine:
    - Which schema files in `schema/` are affected

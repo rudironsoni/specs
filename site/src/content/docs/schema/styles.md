@@ -4,7 +4,7 @@ description: "Style properties and value types"
 tableOfContents: false
 ---
 
-The `Styles` object holds visual properties for an element. Every property is optional. Which properties are evaluated depends on the element type. Source: [`packages/schema/types/Styles.ts`](https://github.com/rudironsoni/specs/blob/main/packages/schema/types/Styles.ts).
+The `Styles` object holds visual properties for an element. Every property is optional. Which properties are evaluated depends on the element type. Source: [`src/schema/Styles.ts`](https://github.com/rudironsoni/specs/blob/main/src/schema/Styles.ts).
 
 | Property | Value type | Figma key (if different) |
 |---|---|---|

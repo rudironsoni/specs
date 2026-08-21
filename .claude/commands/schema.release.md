@@ -1,7 +1,7 @@
 ---
-description: Release @rudironsoni/specs-schema to npm. Arg: version (e.g., 0.16.0).
+description: Schema ships with the lockstep Specs GitHub Release.
 ---
 
-Read and follow the instructions in `.github/agents/Schema.release.agent.md`.
+Read `.github/agents/Schema.release.agent.md`. Do not tag or `npm publish` locally.
 
 $ARGUMENTS
