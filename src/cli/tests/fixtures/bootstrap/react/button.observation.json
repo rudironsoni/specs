@@ -1,0 +1,8 @@
+{
+  "id": "react:legacy-kit:Button",
+  "title": "Button",
+  "properties": [{ "name": "variant", "kind": "input", "enumeratedValues": ["primary", "secondary"] }],
+  "events": [{ "name": "onClick", "kind": "output" }],
+  "slots": [{ "name": "children", "kind": "slot" }],
+  "extensions": { "react": { "exportName": "Button" } }
+}

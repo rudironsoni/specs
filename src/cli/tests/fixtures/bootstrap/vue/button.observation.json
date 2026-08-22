@@ -1,0 +1,8 @@
+{
+  "id": "vue:legacy-kit:Button",
+  "title": "Button",
+  "properties": [{ "name": "variant", "kind": "input", "enumeratedValues": ["primary", "secondary"] }],
+  "events": [{ "name": "click", "kind": "output" }],
+  "slots": [{ "name": "default", "kind": "slot" }],
+  "extensions": { "vue": { "component": "Button" } }
+}

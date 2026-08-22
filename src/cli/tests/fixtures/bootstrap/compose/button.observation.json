@@ -1,0 +1,8 @@
+{
+  "id": "kotlin:com.ignite.ui:IgniteButton",
+  "title": "IgniteButton",
+  "properties": [{ "name": "text", "kind": "input", "valueType": "String" }],
+  "events": [{ "name": "onClick", "kind": "output" }],
+  "slots": [],
+  "extensions": { "compose": { "package": "com.ignite.ui", "symbol": "IgniteButton" } }
+}

@@ -13,6 +13,11 @@
 | `scan` | `commands/Scan/` | Discover components in fetched data and build a manifest |
 | `generate` | `commands/Generate/` | Produce structured specs from the manifest |
 | `applyCustomTokens` | `commands/ApplyCustomTokens/` | Inject custom token objects into fetched foundation data |
+| `analyze` | `commands/AnalyzeCommand.ts` | Aggregate reports over generated specs |
+| `transform` | `commands/TransformCommand.ts` | Project contracts into derived files |
+| `bootstrap` | `commands/BootstrapCommand.ts` | Path B: inventory, candidates, compile, Figma plans |
+| `bindings` | `commands/BindingsCommand.ts` | Code Connect templates from bootstrap bindings |
+| `migrate` | `commands/MigrateCommand.ts` | Plan and apply syntax-aware migration rewrites |
 
 ## Key Files
 

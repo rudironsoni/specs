@@ -12,6 +12,12 @@ export interface CliSourceConfig {
   data: CliSourceDataKind[];
 }
 
+export interface BootstrapCliConfig {
+  workspace?: string;
+  variantSetLimit?: number;
+  captureHarness?: string;
+}
+
 export interface CLIConfig {
   dataDirectory?: string;
   outputDirectory?: string;
@@ -19,4 +25,5 @@ export interface CLIConfig {
   config: ResolvedConfig;
   output?: OutputConfig;
   sources?: Record<string, CliSourceConfig>;
+  bootstrap?: BootstrapCliConfig;
 }

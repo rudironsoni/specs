@@ -1,0 +1,8 @@
+{
+  "id": "swift:IgniteUI:IgniteButton",
+  "title": "IgniteButton",
+  "properties": [{ "name": "title", "kind": "input", "valueType": "String" }],
+  "events": [{ "name": "action", "kind": "output" }],
+  "slots": [],
+  "extensions": { "swiftui": { "module": "IgniteUI", "symbol": "IgniteButton" } }
+}

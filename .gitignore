@@ -7,5 +7,14 @@ dist/
 !.env.example
 tests/tmp/
 
+# Bootstrap generated evidence (screenshots, traces, DOM snapshots, run logs)
+.specs/bootstrap/evidence/
+.specs/bootstrap/runs/
+.specs/bootstrap/reports/
+
+# Local agent gate ledgers
+GATES.md
+.unlazy-hook-state.json
+
 # Generated at build time from package CHANGELOGs
 site/src/content/docs/overview/releases.mdx

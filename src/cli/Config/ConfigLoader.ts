@@ -108,6 +108,8 @@ export class ConfigLoader {
       output: this.mergeOutputConfig((parsed as any)?.output),
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       sources: (parsed as any)?.sources,
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      bootstrap: (parsed as any)?.bootstrap,
     };
     
     return config;

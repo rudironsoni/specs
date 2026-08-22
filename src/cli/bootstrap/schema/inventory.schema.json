@@ -1,0 +1,261 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/rudironsoni/specs/cli/bootstrap/inventory.schema.json",
+  "title": "Bootstrap inventory",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "workspace",
+    "sources",
+    "components",
+    "usages",
+    "styles",
+    "renderCases",
+    "documents",
+    "figmaAssets",
+    "failures",
+    "aliases"
+  ],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "workspace": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["repository", "revision"],
+      "properties": {
+        "repository": { "type": "string" },
+        "revision": { "type": "string" }
+      }
+    },
+    "sources": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/InventorySource" }
+    },
+    "components": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/ObservedComponent" }
+    },
+    "usages": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/ObservedUsage" }
+    },
+    "styles": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/ObservedStyle" }
+    },
+    "renderCases": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/ObservedRenderCase" }
+    },
+    "documents": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/ObservedDocument" }
+    },
+    "figmaAssets": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/ObservedFigmaAsset" }
+    },
+    "failures": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/FailureRecord" }
+    },
+    "aliases": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/AliasRecord" }
+    }
+  },
+  "definitions": {
+    "Provenance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "sourceRevision",
+        "sourceFileDigest",
+        "locator",
+        "sourcePath",
+        "rawValue",
+        "normalizedValue",
+        "extractorName",
+        "extractorVersion",
+        "environmentFingerprint",
+        "relatedObservations"
+      ],
+      "properties": {
+        "sourceRevision": { "type": "string" },
+        "sourceFileDigest": { "type": "string" },
+        "locator": { "type": "string" },
+        "sourcePath": { "type": "string" },
+        "rawValue": true,
+        "normalizedValue": true,
+        "extractorName": { "type": "string" },
+        "extractorVersion": { "type": "string" },
+        "environmentFingerprint": { "type": "string" },
+        "relatedObservations": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    },
+    "InventorySource": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "platform", "extractor", "extractorVersion", "revision", "digest"],
+      "properties": {
+        "kind": { "type": "string" },
+        "platform": { "type": "string" },
+        "extractor": { "type": "string" },
+        "extractorVersion": { "type": "string" },
+        "revision": { "type": "string" },
+        "digest": { "type": "string" }
+      }
+    },
+    "ObservedProperty": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "kind"],
+      "properties": {
+        "name": { "type": "string" },
+        "kind": { "enum": ["input", "output", "slot", "other"] },
+        "valueType": { "type": "string" },
+        "enumeratedValues": { "type": "array", "items": { "type": "string" } },
+        "defaultValue": true,
+        "deprecated": { "type": "boolean" }
+      }
+    },
+    "ObservedComponent": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "observationId",
+        "title",
+        "provenance",
+        "properties",
+        "events",
+        "slots",
+        "deprecations",
+        "extensions"
+      ],
+      "properties": {
+        "id": { "type": "string" },
+        "observationId": { "type": "string" },
+        "title": { "type": "string" },
+        "provenance": { "$ref": "#/definitions/Provenance" },
+        "properties": { "type": "array", "items": { "$ref": "#/definitions/ObservedProperty" } },
+        "events": { "type": "array", "items": { "$ref": "#/definitions/ObservedProperty" } },
+        "slots": { "type": "array", "items": { "$ref": "#/definitions/ObservedProperty" } },
+        "deprecations": { "type": "array", "items": { "type": "string" } },
+        "extensions": { "type": "object" }
+      }
+    },
+    "ObservedUsage": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["observationId", "componentId", "kind", "provenance"],
+      "properties": {
+        "observationId": { "type": "string" },
+        "componentId": { "type": "string" },
+        "kind": {
+          "enum": [
+            "imported",
+            "instantiated",
+            "wrapped",
+            "composed",
+            "rendered",
+            "tested",
+            "documented",
+            "deprecated"
+          ]
+        },
+        "fromId": { "type": "string" },
+        "provenance": { "$ref": "#/definitions/Provenance" },
+        "propertyValues": { "type": "object" }
+      }
+    },
+    "NormalizedStyleValue": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "canonical"],
+      "properties": {
+        "type": { "enum": ["color", "dimension", "duration", "font", "shadow", "other"] },
+        "colorSpace": { "type": "string" },
+        "components": { "type": "array", "items": { "type": "number" } },
+        "alpha": { "type": "number" },
+        "value": { "type": "number" },
+        "unit": { "type": "string" },
+        "canonical": { "type": "string" }
+      }
+    },
+    "ObservedStyle": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["observationId", "provenance", "authored", "normalized"],
+      "properties": {
+        "observationId": { "type": "string" },
+        "provenance": { "$ref": "#/definitions/Provenance" },
+        "authored": { "type": "string" },
+        "normalized": { "$ref": "#/definitions/NormalizedStyleValue" },
+        "propertyContext": { "type": "string" },
+        "componentId": { "type": "string" }
+      }
+    },
+    "ObservedRenderCase": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["observationId", "componentId", "name", "provenance"],
+      "properties": {
+        "observationId": { "type": "string" },
+        "componentId": { "type": "string" },
+        "name": { "type": "string" },
+        "provenance": { "$ref": "#/definitions/Provenance" },
+        "inputs": { "type": "object" },
+        "states": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "ObservedDocument": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["observationId", "provenance"],
+      "properties": {
+        "observationId": { "type": "string" },
+        "provenance": { "$ref": "#/definitions/Provenance" },
+        "referencedComponent": { "type": "string" },
+        "referencedProperty": { "type": "string" }
+      }
+    },
+    "ObservedFigmaAsset": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["observationId", "id", "provenance"],
+      "properties": {
+        "observationId": { "type": "string" },
+        "id": { "type": "string" },
+        "fileKey": { "type": "string" },
+        "componentKey": { "type": "string" },
+        "provenance": { "$ref": "#/definitions/Provenance" }
+      }
+    },
+    "FailureRecord": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["code", "message"],
+      "properties": {
+        "code": { "type": "string" },
+        "message": { "type": "string" },
+        "sourcePath": { "type": "string" },
+        "relatedObservations": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "AliasRecord": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["from", "to", "reason"],
+      "properties": {
+        "from": { "type": "string" },
+        "to": { "type": "string" },
+        "reason": { "type": "string" }
+      }
+    }
+  }
+}
