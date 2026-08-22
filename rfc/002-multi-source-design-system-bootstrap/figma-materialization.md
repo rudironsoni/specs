@@ -85,7 +85,7 @@ Screenshots remain references. Plugin API support (verified 2026-08-22): `create
 
 ## Write ownership
 
-Every owned node stores a stable Specs identity in plugin data. The writer updates only owned nodes. Unknown nodes stay untouched. Deletion is disabled unless `--allow-delete`.
+Every owned node stores a stable Specs identity. Plugin MCP forbids `setPluginData`. The MCP script uses a `specs:` name prefix plus a visible annotation text. The in-memory transport still uses plugin data. The writer updates only owned nodes. Unknown nodes stay untouched. Deletion is disabled unless `--allow-delete`.
 
 ---
 
@@ -121,6 +121,8 @@ Transport evaluation order:
 3. Variables REST API for supported variable sync
 
 First implemented transport: in-memory document with REST JSON export for `Components.fromRestApi`.
+
+MCP live path: `specs bootstrap materialize figma --transport mcp --emit-script` writes Plugin API JavaScript. An agent or human runs that script with Figma `use_figma` against a staging file. Node does not call Figma. The script must not contain `generate_figma_design`. Figma variable names cannot contain `.`, `{`, or `}`. The emitter maps token dots to slashes (`color.brand.primary` becomes `color/brand/primary`). Ignite authored Code Connect stays in `@figma/code-connect/html` form. Specs v2 templates are written beside it, not over it.
 
 ### Vendor notes (2026-08-22)
 

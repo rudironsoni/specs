@@ -9,8 +9,56 @@ import { emptyInventory, emptyCandidateFile, emptyDecisionFile, emptyBindingFile
 import { SIDECAR_SCHEMA_VERSION } from '../../../bootstrap/schema/types.js';
 import { BootstrapError } from '../../../bootstrap/errors.js';
 import { allPlatformPacks } from '../../../bootstrap/platforms/index.js';
+import { pickObservedComponent } from '../../../bootstrap/compile/index.js';
+import type { Inventory, ObservedComponent } from '../../../bootstrap/schema/types.js';
 
 describe('bootstrap contracts', () => {
+  it('prefers a real component over a mock with the same logical id', () => {
+    const provenance = {
+      sourceRevision: 'sha',
+      sourceFileDigest: 'abc',
+      locator: 'Button',
+      sourcePath: 'button.ts',
+      rawValue: {},
+      normalizedValue: {},
+      extractorName: 'test',
+      extractorVersion: '1',
+      environmentFingerprint: 'test',
+      relatedObservations: [],
+    };
+    const mock: ObservedComponent = {
+      id: 'angular:ignite:ignt-button',
+      observationId: 'obs:mock',
+      title: 'Mock',
+      provenance: { ...provenance, locator: 'MockAlertActionButtonComponent' },
+      properties: [{ name: 'label', kind: 'input' }],
+      events: [],
+      slots: [],
+      deprecations: [],
+      extensions: { angular: { className: 'MockAlertActionButtonComponent', selector: 'ignt-button' } },
+    };
+    const real: ObservedComponent = {
+      id: 'angular:ignite:ignt-button',
+      observationId: 'obs:real',
+      title: 'IgntButtonComponent',
+      provenance,
+      properties: [
+        { name: 'label', kind: 'input' },
+        { name: 'disabled', kind: 'input' },
+        { name: 'sentiment', kind: 'input' },
+      ],
+      events: [],
+      slots: [],
+      deprecations: [],
+      extensions: { angular: { className: 'IgntButtonComponent', selector: 'ignt-button' } },
+    };
+    const inventory: Inventory = {
+      ...emptyInventory({ repository: 'r', revision: 'sha' }),
+      components: [mock, real],
+    };
+    expect(pickObservedComponent(inventory, 'angular:ignite:ignt-button')?.observationId).toBe('obs:real');
+  });
+
   it('exposes stable failure codes', () => {
     expect(FAILURE_CODES).toContain('STALE_OBSERVATION');
     expect(FAILURE_CODES).toContain('ROUND_TRIP_MISMATCH');

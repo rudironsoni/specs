@@ -37,7 +37,7 @@ This RFC proposes a second ingest path into the existing Specs contract. Path A 
 
 Existing code records the current implementation. It does not automatically define the future design system. Facts, proposals, decisions, materialized outputs, and verified outputs stay separate.
 
-The first implementation lives inside `@rudironsoni/specs-cli`. Angular is the first end-to-end platform. React, Vue, SwiftUI, and Jetpack Compose ship extractors, rewrite, and Code Connect templates in the same CLI. Live Figma Plugin, MCP, and Variables REST transports exist and fail closed without credentials. They are `[UNVERIFIED]` against a real Figma file until credentials are present.
+The first implementation lives inside `@rudironsoni/specs-cli`. Angular is the first end-to-end platform. React, Vue, SwiftUI, and Jetpack Compose ship extractors, rewrite, and Code Connect templates in the same CLI. Live Figma Plugin and Variables REST transports fail closed without credentials and are `[UNVERIFIED]` against a real file. MCP `--emit-script` writes Plugin API JavaScript for `use_figma`. Node does not call Figma. Re-extract with `specs-from-figma` is `[UNVERIFIED]`.
 
 ---
 
@@ -373,8 +373,8 @@ This RFC does not change `specs-schema` in the first implementation.
 
 ## Future work
 
-- Code Connect publish to Figma. This change writes maintained template files only.
-- Live Plugin / MCP / Variables REST writes against a real Figma file. Transports exist. They are `[UNVERIFIED]` without credentials.
+- Code Connect publish to Figma. Specs writes v2 templates. Ignite already uses `@figma/code-connect/html`. Do not overwrite Ignite `*.figma.ts` files.
+- Live MCP writes: emit Plugin API script, run `use_figma` on staging file `O4zcFuN74gx7FHs6f54xeh`. Node does not call Figma. Variables REST still needs an Enterprise Full seat. Re-extract with `specs-from-figma` stays `[UNVERIFIED]` until a REST export exists.
 - A Figma plugin host for the plugin transport. That source is not in this repo.
 - A production migration wave on feverzoneclient after a human picks one base family, one composite, and one token family from the Ignite inventory.
 - Schema ADR for ingest-agnostic metadata if Path B contracts need public provenance.

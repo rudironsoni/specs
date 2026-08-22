@@ -8,9 +8,11 @@ Historical notes for `@rudironsoni/specs-cli` before lockstep:
 
 ### Added
 
-- **`specs bootstrap`** — multi-source design-system bootstrap (RFC 002). Scan, capture, analyze, report, validate, compile, Figma plan/materialize, and reconcile. Internal sidecar contracts live in the CLI. Angular, React, Vue, SwiftUI, and Compose extractors ship. Live Figma Plugin, MCP `use_figma`, and Variables REST transports fail closed without credentials and are `[UNVERIFIED]` against a real file.
+- **`specs bootstrap`** — multi-source design-system bootstrap (RFC 002). Scan, capture, analyze, report, validate, compile, Figma plan/materialize, and reconcile. Internal sidecar contracts live in the CLI. Angular, React, Vue, SwiftUI, and Compose extractors ship. Live Figma Plugin and Variables REST transports fail closed without credentials and are `[UNVERIFIED]` against a real file. MCP `--emit-script` writes Plugin API JavaScript for `use_figma`. Node does not call Figma. Re-extract with `specs-from-figma` is `[UNVERIFIED]`.
 - **`specs bindings generate`** — Code Connect template files from accepted bindings for every bound platform.
 - **`specs migrate plan|apply|verify`** — Syntax-aware rewrites. `apply` writes files. `--dry-run` plans only. `--platform` selects the pack.
+- **`specs bootstrap materialize figma --transport mcp --emit-script`** — writes a Plugin API script for Figma `use_figma`. Node does not call Figma. The script does not use `generate_figma_design`.
+- **Angular style scan** — reads Sass `$name: #hex` declarations and aliases from `.scss`. Spec files are not harvested for loose hex.
 
 ### Removed
 
