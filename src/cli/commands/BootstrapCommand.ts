@@ -142,7 +142,8 @@ materialize
   .option('--apply', 'Apply writes', false)
   .option('--transport <id>', 'memory | plugin | mcp | variables-rest', 'memory')
   .option('--dry-run', 'Show the diff only', false)
-  .addHelpText('after', '\nExamples:\n  specs bootstrap materialize figma --plan .specs/bootstrap/plans/figma-staging.yaml\n  specs bootstrap materialize figma --plan .specs/bootstrap/plans/figma-staging.yaml --apply\n')
+  .option('--emit-script <path>', 'Write a Figma Plugin API script for MCP use_figma')
+  .addHelpText('after', '\nExamples:\n  specs bootstrap materialize figma --plan .specs/bootstrap/plans/figma-staging.yaml\n  specs bootstrap materialize figma --plan .specs/bootstrap/plans/figma-staging.yaml --transport mcp --emit-script ./plans/use_figma.js\n  specs bootstrap materialize figma --plan .specs/bootstrap/plans/figma-staging.yaml --apply\n')
   .action(async (options, cmd: Command) => {
     await withBootstrap('specs bootstrap materialize figma --plan <path> --apply', async () => {
       const apply = Boolean(options.apply) && !options.dryRun;
@@ -155,8 +156,17 @@ materialize
         apply,
         transport,
         outputPath: path.join(resolveWorkspace(workspace).root, 'plans', 'figma-memory.json'),
+        emitScriptPath: options.emitScript,
       });
-      console.log(apply ? `applied ${result.diff.creates.length} creates` : `dry-run ${result.diff.creates.length} creates`);
+      if (options.emitScript) {
+        console.log(`wrote MCP script ${options.emitScript}`);
+      }
+      const mcp = options.transport === 'mcp';
+      console.log(
+        apply && !mcp
+          ? `applied ${result.diff.creates.length} creates`
+          : `dry-run ${result.diff.creates.length} creates`,
+      );
     });
   });
 

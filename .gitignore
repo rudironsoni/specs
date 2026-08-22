@@ -11,6 +11,7 @@ tests/tmp/
 .specs/bootstrap/evidence/
 .specs/bootstrap/runs/
 .specs/bootstrap/reports/
+.specs/ignite-pilot/
 
 # Local agent gate ledgers
 GATES.md

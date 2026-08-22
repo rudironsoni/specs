@@ -6,7 +6,8 @@ import { compiledDigest, runCompile } from '../compile/index.js';
 import { loadBindings, loadDecisions, resolveWorkspace, saveFigmaPlan } from '../workspace.js';
 import { buildFigmaPlan } from './plan.js';
 import { MemoryFigmaTransport } from './transports/memory.js';
-import { pluginTransport, mcpTransport, variablesRestTransport } from './transports/stubs.js';
+import { pluginTransport, variablesRestTransport } from './transports/stubs.js';
+import { emitMcpPluginScript, mcpScriptTransport } from './transports/mcpScript.js';
 import type { FigmaTransport } from './transports/types.js';
 import type { FigmaPlan, FigmaPlanMode } from '../schema/types.js';
 import { BootstrapError } from '../errors.js';
@@ -15,7 +16,7 @@ import { stableStringifyJson } from '../serialize.js';
 export function selectTransport(name: string): FigmaTransport {
   if (name === 'memory') return new MemoryFigmaTransport();
   if (name === 'plugin') return pluginTransport();
-  if (name === 'mcp') return mcpTransport();
+  if (name === 'mcp') return mcpScriptTransport();
   if (name === 'variables-rest') return variablesRestTransport();
   throw new BootstrapError('AUTHENTICATION_REQUIRED', `Unknown transport ${name}`);
 }
@@ -42,16 +43,40 @@ export async function runMaterialize(options: {
   apply: boolean;
   transport: FigmaTransport;
   outputPath?: string;
-}): Promise<{ diff: ReturnType<FigmaTransport['dryRun']>; rest?: unknown }> {
+  emitScriptPath?: string;
+}): Promise<{ diff: ReturnType<FigmaTransport['dryRun']>; rest?: unknown; script?: string }> {
   const raw = parseYaml(await fs.readFile(options.planPath, 'utf8')) as FigmaPlan;
+  const wantsScript = Boolean(options.emitScriptPath) || options.transport.id === 'mcp';
+  const script = wantsScript ? emitMcpPluginScript(raw) : undefined;
+  if (script && options.emitScriptPath) {
+    await fs.outputFile(options.emitScriptPath, script);
+  }
+  if (options.transport.id === 'mcp') {
+    if (options.apply && !options.emitScriptPath) {
+      throw new BootstrapError(
+        'AUTHENTICATION_REQUIRED',
+        'MCP apply is not a Node writer. Emit a Plugin API script with --emit-script and run it through Figma use_figma.',
+      );
+    }
+    return {
+      diff: {
+        creates: raw.operations.create.map((op) => op.id),
+        updates: raw.operations.update.map((op) => op.id),
+        deletes: [],
+      },
+      script,
+    };
+  }
   const diff = options.apply
     ? await Promise.resolve(options.transport.apply(raw))
     : options.transport.dryRun(raw);
   if (options.apply && options.outputPath) {
     await fs.outputFile(options.outputPath, stableStringifyJson(options.transport.exportRest()));
   }
-  return { diff, rest: options.apply ? options.transport.exportRest() : undefined };
+  return { diff, rest: options.apply ? options.transport.exportRest() : undefined, script };
 }
+
+export { emitMcpPluginScript };
 
 export async function loadCompiledComponents(workspace: string): Promise<Record<string, Component>> {
   const paths = resolveWorkspace(workspace);

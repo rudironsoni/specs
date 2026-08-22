@@ -35,6 +35,22 @@ function assertComponentShape(component: Component): void {
   }
 }
 
+function isMockComponent(component: ObservedComponent): boolean {
+  const angular = component.extensions.angular as { className?: string } | undefined;
+  const className = angular?.className ?? component.provenance.locator;
+  return /mock/i.test(className);
+}
+
+export function pickObservedComponent(inventory: Inventory, id: string): ObservedComponent | undefined {
+  const matches = inventory.components.filter((component) => component.id === id);
+  if (matches.length === 0) return undefined;
+  return [...matches].sort((a, b) => {
+    const mockDelta = Number(isMockComponent(a)) - Number(isMockComponent(b));
+    if (mockDelta !== 0) return mockDelta;
+    return b.properties.length - a.properties.length;
+  })[0];
+}
+
 function compileComponent(
   decision: Decision,
   inventory: Inventory,
@@ -55,9 +71,9 @@ function compileComponent(
       throw new BootstrapError('STALE_OBSERVATION', `Decision references missing observation ${ref}`);
     }
   }
-  const include = decision.include ?? candidate.members;
+  const include = [...new Set(decision.include ?? candidate.members)];
   const members: ObservedComponent[] = include
-    .map((id) => inventory.components.find((c) => c.id === id))
+    .map((id) => pickObservedComponent(inventory, id))
     .filter((c): c is ObservedComponent => Boolean(c));
   const appearance = decision.properties?.appearance?.accepted?.map(String)
     ?? (candidate.candidateProperties?.appearance?.observedValues.map(String) ?? []);
@@ -168,8 +184,8 @@ export async function runCompile(workspace: string): Promise<CompileResult> {
         }
         const alreadyBound = bindings.bindings.some((binding) => binding.component === decision.acceptedIdentity);
         if (!alreadyBound && decision.decision !== 'APPROVE_FOR_STAGING') {
-          const included = (decision.include ?? candidate.members)
-            .map((id) => inventory.components.find((c) => c.id === id))
+          const included = [...new Set(decision.include ?? candidate.members)]
+            .map((id) => pickObservedComponent(inventory, id))
             .filter((c): c is ObservedComponent => Boolean(c));
           const impl = acceptedImplementation(decision.acceptedIdentity, platform, included);
           bindings.bindings.push({
@@ -195,12 +211,16 @@ export async function runCompile(workspace: string): Promise<CompileResult> {
       }
     }
     if (candidate.kind === 'TOKEN' && candidate.conflicts.every((c) => c.kind !== 'NEAR_TOKEN') && decision.acceptedIdentity) {
-      const sample = inventory.styles.find((s) => candidate.members.includes(s.observationId));
+      const samples = inventory.styles.filter((style) => candidate.members.includes(style.observationId));
+      const palette = samples.find((style) => (style.propertyContext ?? '').startsWith('$palette-'));
+      const named = samples.find((style) => (style.propertyContext ?? '').startsWith('$'));
+      const sample = palette ?? named ?? samples[0];
+      const sassNames = [...new Set(samples.map((style) => style.propertyContext).filter((name): name is string => Boolean(name?.startsWith('$'))))].sort();
       if (sample?.authored || sample?.normalized.canonical) {
         tokens[decision.acceptedIdentity] = {
           $type: sample.normalized.type === 'color' ? 'color' : sample.normalized.type,
           $value: sample.authored,
-          $description: decision.rationale.join(' '),
+          $description: [decision.rationale.join(' '), sassNames.length > 0 ? `Sass: ${sassNames.join(', ')}` : ''].filter(Boolean).join(' '),
         };
       }
     }

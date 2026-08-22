@@ -19,4 +19,6 @@ specs bootstrap materialize figma --plan .specs/bootstrap/plans/figma-staging.ya
 specs bootstrap reconcile --workspace .specs/bootstrap
 ```
 
-`--apply` is required for Figma writes. The default materialize path is a dry run. `--transport` accepts `memory` (default), `plugin`, `mcp`, or `variables-rest`. Live transports need `FIGMA_PLUGIN_SESSION`, `FIGMA_MCP_SESSION`, or `FIGMA_TOKEN` plus `FIGMA_FILE_KEY`. They are `[UNVERIFIED]` against a real Figma file until those credentials exist.
+`--apply` is required for Figma writes. The default materialize path is a dry run. `--transport` accepts `memory` (default), `plugin`, `mcp`, or `variables-rest`.
+
+`--transport mcp --emit-script <path>` writes Plugin API JavaScript for Figma `use_figma`. Node does not call Figma. Do not use `generate_figma_design`. `--apply` with MCP still does not write Figma. Live plugin and Variables REST still need session or token env vars.
