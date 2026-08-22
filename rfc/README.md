@@ -54,3 +54,4 @@ Not every RFC needs every section. Skip what doesn't apply.
 | # | Title | Status |
 |---|---|---|
 | 001 | [Component Dictionary](001-component-dictionary/) | Proposed |
+| 002 | [Multi-source design-system bootstrap](002-multi-source-design-system-bootstrap/) | Accepted |

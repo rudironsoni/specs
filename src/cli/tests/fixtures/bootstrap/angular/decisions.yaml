@@ -1,0 +1,48 @@
+schemaVersion: 1
+decisions:
+  - candidate: candidate:component:button-family
+    decision: ACCEPT_WITH_CHANGES
+    acceptedIdentity: component:button
+    include:
+      - angular:legacy-kit:legacy-primary-button
+      - angular:legacy-kit:legacy-secondary-button
+    exclude:
+      - angular:legacy-kit:legacy-old-button
+    properties:
+      appearance:
+        accepted:
+          - primary
+          - secondary
+    unresolved:
+      - tertiary behavior
+    approvedBy:
+      role: design-system-owner
+      identity: test
+    rationale:
+      - Primary and secondary share the accepted interaction model.
+  - candidate: candidate:component:button-family
+    decision: APPROVE_FOR_STAGING
+    acceptedIdentity: component:button
+    approvedBy:
+      role: design-system-owner
+      identity: test
+    rationale:
+      - Staging review is allowed for the button family.
+  - candidate: candidate:token:color:srgb:0.102,0.451,0.9098:1
+    decision: ACCEPT
+    acceptedIdentity: color.brand.primary
+    approvedBy:
+      role: design-system-owner
+      identity: test
+    rationale:
+      - Exact duplicate of the brand blue.
+  - candidate: candidate:component:card-family
+    decision: ACCEPT
+    acceptedIdentity: component:card
+    include:
+      - angular:legacy-kit:legacy-card
+    approvedBy:
+      role: design-system-owner
+      identity: test
+    rationale:
+      - Card composes the accepted button.

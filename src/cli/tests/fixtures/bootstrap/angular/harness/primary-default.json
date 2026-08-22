@@ -1,0 +1,12 @@
+{
+  "componentId": "angular:legacy-kit:legacy-primary-button",
+  "name": "Default",
+  "structure": { "role": "button", "name": "Save" },
+  "accessibility": "- button \"Save\"\n",
+  "computedStyles": { "background": "#1a73e8" },
+  "environment": {
+    "viewport": { "width": 1440, "height": 900 },
+    "theme": "light",
+    "locale": "en-GB"
+  }
+}

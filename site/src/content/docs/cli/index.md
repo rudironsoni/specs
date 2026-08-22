@@ -13,6 +13,9 @@ The Specs command-line interface (CLI) generates design system specifications fr
 | [`scan`](/cli/commands/scan/) | List all components in file | Markdown manifest |
 | [`generate`](/cli/commands/generate/) | Generate specs from a manifest or single component | YAML/JSON spec file(s) |
 | [`applyCustomTokens`](/cli/commands/apply-custom-tokens/) | Inject `$custom` objects into fetched data | Modified variables/styles JSON |
+| [`bootstrap`](/cli/commands/bootstrap/) | Multi-source ingest from code into Specs | `.specs/bootstrap/` workspace |
+| [`bindings`](/cli/commands/bindings/) | Code Connect templates from bindings | `.figma.ts` files |
+| [`migrate`](/cli/commands/migrate/) | Plan and apply syntax-aware rewrites | Migration plan YAML and optional source writes |
 
 ### Global Options
 

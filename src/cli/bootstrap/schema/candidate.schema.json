@@ -1,0 +1,67 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/rudironsoni/specs/cli/bootstrap/candidate.schema.json",
+  "title": "Bootstrap candidates",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "candidates"],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "candidates": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/Candidate" }
+    }
+  },
+  "definitions": {
+    "Candidate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "kind",
+        "status",
+        "members",
+        "evidence",
+        "conflicts",
+        "unresolved",
+        "observationRefs",
+        "origin"
+      ],
+      "properties": {
+        "id": { "type": "string" },
+        "kind": { "enum": ["TOKEN", "COMPONENT", "PROPERTY", "VARIANT", "MAPPING"] },
+        "status": { "const": "CANDIDATE" },
+        "members": { "type": "array", "items": { "type": "string" } },
+        "evidence": { "type": "object" },
+        "candidateProperties": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object",
+            "required": ["observedValues"],
+            "properties": {
+              "observedValues": { "type": "array" }
+            }
+          }
+        },
+        "conflicts": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["kind"],
+            "properties": {
+              "kind": { "type": "string" },
+              "value": true,
+              "values": { "type": "array" }
+            }
+          }
+        },
+        "unresolved": { "type": "array", "items": { "type": "string" } },
+        "observationRefs": { "type": "array", "items": { "type": "string" } },
+        "origin": { "enum": ["deterministic", "agent"] },
+        "agentIdentity": { "type": "string" },
+        "modelIdentity": { "type": "string" },
+        "promptVersion": { "type": "string" }
+      }
+    }
+  }
+}

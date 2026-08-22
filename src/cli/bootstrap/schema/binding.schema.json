@@ -1,0 +1,71 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/rudironsoni/specs/cli/bootstrap/binding.schema.json",
+  "title": "Bootstrap bindings",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "bindings"],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "bindings": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/Binding" }
+    }
+  },
+  "definitions": {
+    "Binding": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["component", "implementations", "propertyMappings", "targets"],
+      "properties": {
+        "component": { "type": "string" },
+        "figma": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["fileKey", "componentKey"],
+          "properties": {
+            "fileKey": { "type": "string" },
+            "componentKey": { "type": "string" }
+          }
+        },
+        "implementations": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object",
+            "required": ["symbol"],
+            "properties": {
+              "symbol": { "type": "string" },
+              "selector": { "type": "string" },
+              "exportName": { "type": "string" },
+              "module": { "type": "string" }
+            }
+          }
+        },
+        "propertyMappings": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["contractProperty", "platform", "platformProperty"],
+            "properties": {
+              "contractProperty": { "type": "string" },
+              "platform": { "type": "string" },
+              "platformProperty": { "type": "string" }
+            }
+          }
+        },
+        "targets": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object",
+            "required": ["status"],
+            "properties": {
+              "status": { "enum": ["NOT_STARTED", "MATERIALIZED", "VERIFIED"] },
+              "revision": { "type": "string" }
+            }
+          }
+        }
+      }
+    }
+  }
+}

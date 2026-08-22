@@ -1,0 +1,10 @@
+{
+  "components": [
+    {
+      "name": "PrimaryButtonComponent",
+      "selector": "legacy-primary-button",
+      "description": "Primary action button from Compodoc.",
+      "file": "src/primary-button.component.ts"
+    }
+  ]
+}

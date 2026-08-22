@@ -1,0 +1,55 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/rudironsoni/specs/cli/bootstrap/figma-plan.schema.json",
+  "title": "Bootstrap Figma plan",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "mode",
+    "sourceContractDigest",
+    "expectedTargetDigest",
+    "ownedNodeIdentities",
+    "variables",
+    "components",
+    "componentSets",
+    "bindings",
+    "annotations",
+    "operations"
+  ],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "mode": { "enum": ["STAGING", "APPROVED"] },
+    "sourceContractDigest": { "type": "string" },
+    "expectedTargetDigest": { "type": ["string", "null"] },
+    "ownedNodeIdentities": { "type": "array", "items": { "type": "string" } },
+    "variables": { "type": "array", "items": { "type": "object" } },
+    "components": { "type": "array", "items": { "type": "object" } },
+    "componentSets": { "type": "array", "items": { "type": "object" } },
+    "bindings": { "type": "array", "items": { "type": "object" } },
+    "annotations": { "type": "array", "items": { "type": "object" } },
+    "operations": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["create", "update", "delete"],
+      "properties": {
+        "create": { "type": "array", "items": { "$ref": "#/definitions/Operation" } },
+        "update": { "type": "array", "items": { "$ref": "#/definitions/Operation" } },
+        "delete": { "type": "array", "items": { "$ref": "#/definitions/Operation" } }
+      }
+    }
+  },
+  "definitions": {
+    "Operation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "kind", "payload"],
+      "properties": {
+        "id": { "type": "string" },
+        "kind": { "type": "string" },
+        "target": { "type": "string" },
+        "payload": { "type": "object" }
+      }
+    }
+  }
+}

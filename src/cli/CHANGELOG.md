@@ -6,6 +6,12 @@ Historical notes for `@rudironsoni/specs-cli` before lockstep:
 
 ## Unreleased
 
+### Added
+
+- **`specs bootstrap`** — multi-source design-system bootstrap (RFC 002). Scan, capture, analyze, report, validate, compile, Figma plan/materialize, and reconcile. Internal sidecar contracts live in the CLI. Angular, React, Vue, SwiftUI, and Compose extractors ship. Live Figma Plugin, MCP `use_figma`, and Variables REST transports fail closed without credentials and are `[UNVERIFIED]` against a real file.
+- **`specs bindings generate`** — Code Connect template files from accepted bindings for every bound platform.
+- **`specs migrate plan|apply|verify`** — Syntax-aware rewrites. `apply` writes files. `--dry-run` plans only. `--platform` selects the pack.
+
 ### Removed
 
 - **License keys and paid-tier gating** — `generate` no longer accepts `-l` / `--license`, `SPECS_LICENSE_KEY`, or `ANOVA_LICENSE_KEY`. Generate output is ungated.

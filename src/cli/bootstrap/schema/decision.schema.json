@@ -1,0 +1,62 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/rudironsoni/specs/cli/bootstrap/decision.schema.json",
+  "title": "Bootstrap decisions",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "decisions"],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "decisions": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/Decision" }
+    }
+  },
+  "definitions": {
+    "Decision": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["candidate", "decision", "approvedBy", "rationale"],
+      "properties": {
+        "candidate": { "type": "string" },
+        "decision": {
+          "enum": [
+            "ACCEPT",
+            "ACCEPT_WITH_CHANGES",
+            "REJECT",
+            "MERGE",
+            "SPLIT",
+            "DEPRECATE",
+            "EXCEPTION",
+            "NEEDS_EVIDENCE",
+            "APPROVE_FOR_STAGING"
+          ]
+        },
+        "acceptedIdentity": { "type": "string" },
+        "include": { "type": "array", "items": { "type": "string" } },
+        "exclude": { "type": "array", "items": { "type": "string" } },
+        "properties": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object",
+            "required": ["accepted"],
+            "properties": {
+              "accepted": { "type": "array" }
+            }
+          }
+        },
+        "unresolved": { "type": "array", "items": { "type": "string" } },
+        "approvedBy": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["role", "identity"],
+          "properties": {
+            "role": { "type": "string" },
+            "identity": { "type": "string" }
+          }
+        },
+        "rationale": { "type": "array", "items": { "type": "string" } }
+      }
+    }
+  }
+}
