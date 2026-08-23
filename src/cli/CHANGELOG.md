@@ -13,6 +13,7 @@ Historical notes for `@rudironsoni/specs-cli` before lockstep:
 - **`specs migrate plan|apply|verify`** — Syntax-aware rewrites. `apply` writes files. `--dry-run` plans only. `--platform` selects the pack.
 - **`specs bootstrap materialize figma --transport mcp --emit-script`** — writes a Plugin API script for Figma `use_figma`. Node does not call Figma. The script does not use `generate_figma_design`.
 - **Angular style scan** — reads Sass `$name: #hex` declarations and aliases from `.scss`. Spec files are not harvested for loose hex.
+- **Bootstrap bindings** — Angular compile copies observed `className` and `selector`. It does not invent a selector prefix.
 
 ### Removed
 

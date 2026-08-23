@@ -122,7 +122,7 @@ Transport evaluation order:
 
 First implemented transport: in-memory document with REST JSON export for `Components.fromRestApi`.
 
-MCP live path: `specs bootstrap materialize figma --transport mcp --emit-script` writes Plugin API JavaScript. An agent or human runs that script with Figma `use_figma` against a staging file. Node does not call Figma. The script must not contain `generate_figma_design`. Figma variable names cannot contain `.`, `{`, or `}`. The emitter maps token dots to slashes (`color.brand.primary` becomes `color/brand/primary`). Ignite authored Code Connect stays in `@figma/code-connect/html` form. Specs v2 templates are written beside it, not over it.
+MCP live path: `specs bootstrap materialize figma --transport mcp --emit-script` writes Plugin API JavaScript. An agent or human runs that script with Figma `use_figma` against a staging file. Node does not call Figma. The script must not contain `generate_figma_design`. Figma variable names cannot contain `.`, `{`, or `}`. The emitter maps token dots to slashes (`color.brand.primary` becomes `color/brand/primary`). Specs writes v2 Code Connect templates to `--output`. It does not overwrite authored files in the source tree.
 
 ### Vendor notes (2026-08-22)
 

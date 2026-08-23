@@ -27,36 +27,36 @@ describe('bootstrap contracts', () => {
       relatedObservations: [],
     };
     const mock: ObservedComponent = {
-      id: 'angular:ignite:ignt-button',
+      id: 'angular:kit:app-button',
       observationId: 'obs:mock',
       title: 'Mock',
-      provenance: { ...provenance, locator: 'MockAlertActionButtonComponent' },
+      provenance: { ...provenance, locator: 'MockHostButtonComponent' },
       properties: [{ name: 'label', kind: 'input' }],
       events: [],
       slots: [],
       deprecations: [],
-      extensions: { angular: { className: 'MockAlertActionButtonComponent', selector: 'ignt-button' } },
+      extensions: { angular: { className: 'MockHostButtonComponent', selector: 'app-button' } },
     };
     const real: ObservedComponent = {
-      id: 'angular:ignite:ignt-button',
+      id: 'angular:kit:app-button',
       observationId: 'obs:real',
-      title: 'IgntButtonComponent',
+      title: 'AppButtonComponent',
       provenance,
       properties: [
         { name: 'label', kind: 'input' },
         { name: 'disabled', kind: 'input' },
-        { name: 'sentiment', kind: 'input' },
+        { name: 'variant', kind: 'input' },
       ],
       events: [],
       slots: [],
       deprecations: [],
-      extensions: { angular: { className: 'IgntButtonComponent', selector: 'ignt-button' } },
+      extensions: { angular: { className: 'AppButtonComponent', selector: 'app-button' } },
     };
     const inventory: Inventory = {
       ...emptyInventory({ repository: 'r', revision: 'sha' }),
       components: [mock, real],
     };
-    expect(pickObservedComponent(inventory, 'angular:ignite:ignt-button')?.observationId).toBe('obs:real');
+    expect(pickObservedComponent(inventory, 'angular:kit:app-button')?.observationId).toBe('obs:real');
   });
 
   it('exposes stable failure codes', () => {
