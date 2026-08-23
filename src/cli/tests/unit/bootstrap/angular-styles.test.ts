@@ -42,7 +42,7 @@ describe('angular Sass color extraction', () => {
       sourceRoot: tmp,
       repository: 'test',
       revision: 'sha',
-      packageName: 'ignite',
+      packageName: 'kit',
       workspaceRoot: tmp,
     }, emptyInventory({ repository: 'test', revision: 'sha' }));
     const names = contrib.inventory.styles.map((style) => style.propertyContext);

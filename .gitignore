@@ -7,11 +7,8 @@ dist/
 !.env.example
 tests/tmp/
 
-# Bootstrap generated evidence (screenshots, traces, DOM snapshots, run logs)
-.specs/bootstrap/evidence/
-.specs/bootstrap/runs/
-.specs/bootstrap/reports/
-.specs/ignite-pilot/
+# Generated bootstrap workspaces
+.specs/
 
 # Local agent gate ledgers
 GATES.md

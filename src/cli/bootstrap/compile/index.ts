@@ -119,23 +119,18 @@ function compileComponent(
   return component;
 }
 
-function acceptedImplementation(
+export function acceptedImplementation(
   identity: string,
   platform: string,
   members: ObservedComponent[],
 ): BindingImplementation {
   const title = titleFromIdentity(identity);
   if (platform === 'angular') {
-    const selectors = members
-      .map((member) => (member.extensions.angular as { selector?: string } | undefined)?.selector)
-      .filter((value): value is string => Boolean(value));
-    if (selectors.some((selector) => selector.startsWith('ignt-'))) {
-      return { symbol: `Ignt${title}Component`, selector: `ignt-${kebab(title)}` };
-    }
-    if (selectors.some((selector) => selector.startsWith('ignite-'))) {
-      return { symbol: `Ignite${title}Component`, selector: `ignite-${kebab(title)}` };
-    }
-    return { symbol: `${title}Component`, selector: kebab(title) };
+    const angular = members[0]?.extensions.angular as { className?: string; selector?: string } | undefined;
+    return {
+      symbol: angular?.className ?? `${title}Component`,
+      selector: angular?.selector ?? kebab(title),
+    };
   }
   if (platform === 'react' || platform === 'vue') {
     return { symbol: title, exportName: title, selector: title };

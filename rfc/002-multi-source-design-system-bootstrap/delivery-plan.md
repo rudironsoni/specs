@@ -58,7 +58,7 @@ S Migration harness
 T Production pilot
 ```
 
-This implementation ships A as Accepted, plus B, C, D, E, F, G, H, I, K, L, M, N, O on an in-memory Figma transport, Angular fixture capture (J via FixtureRenderer, Playwright when a harness and Playwright are present), Code Connect template emission without publish, fixture-level S with `specs migrate apply`, and an Ignite inventory scan for T. Live Figma transports exist and remain `[UNVERIFIED]` against a real file.
+This implementation ships A as Accepted, plus B, C, D, E, F, G, H, I, K, L, M, N, O on an in-memory Figma transport, Angular fixture capture (J via FixtureRenderer, Playwright when a harness and Playwright are present), Code Connect template emission without publish, fixture-level S with `specs migrate apply`, and an optional external-source scan for T when `SPECS_BOOTSTRAP_SOURCE` is set. Live Figma transports exist and remain `[UNVERIFIED]` against a real file.
 
 ---
 
@@ -125,9 +125,9 @@ React, Vue, SwiftUI, Compose: fixture scan, compile, Code Connect, and migrate a
 
 ## Production pilot
 
-`Feverup/feverzoneclient` is the intended first product repository. It is `[UNVERIFIED]` until inspected. Do not hardcode its Angular version in RFC 002.
+The first product repository is a consuming Angular tree passed as `--source`. Do not hardcode a product path, selector prefix, or framework version in this RFC.
 
-When access exists, record git revision, Angular version, Node version, lockfile digest, browser, fonts, themes, viewports, locales, Ignite identity, Figma identities, Storybook coverage, tests, and style technologies.
+When access exists, record git revision, Angular version, Node version, lockfile digest, browser, fonts, themes, viewports, locales, source component identities, Figma identities, Storybook coverage, tests, and style technologies.
 
 Do not mix a framework migration with the first evidence baseline.
 

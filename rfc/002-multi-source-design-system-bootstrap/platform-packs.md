@@ -53,13 +53,13 @@ Platform-specific facts live under `extensions`. Example:
 
 ```yaml
 component:
-  id: angular:ignite:button
+  id: angular:kit:button
   properties: []
   events: []
   slots: []
   extensions:
     angular:
-      selector: ignite-button
+      selector: kit-button
       standalone: true
 ```
 

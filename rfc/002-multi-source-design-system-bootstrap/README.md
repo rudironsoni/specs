@@ -373,10 +373,10 @@ This RFC does not change `specs-schema` in the first implementation.
 
 ## Future work
 
-- Code Connect publish to Figma. Specs writes v2 templates. Ignite already uses `@figma/code-connect/html`. Do not overwrite Ignite `*.figma.ts` files.
-- Live MCP writes: emit Plugin API script, run `use_figma` on staging file `O4zcFuN74gx7FHs6f54xeh`. Node does not call Figma. Variables REST still needs an Enterprise Full seat. Re-extract with `specs-from-figma` stays `[UNVERIFIED]` until a REST export exists.
+- Code Connect publish to Figma. Specs writes v2 templates to `--output`. Do not overwrite authored `*.figma.ts` files in the source tree.
+- Live MCP writes: emit Plugin API script, run `use_figma` on a staging file. Node does not call Figma. Variables REST still needs an Enterprise Full seat. Re-extract with `specs-from-figma` stays `[UNVERIFIED]` until a REST export exists.
 - A Figma plugin host for the plugin transport. That source is not in this repo.
-- A production migration wave on feverzoneclient after a human picks one base family, one composite, and one token family from the Ignite inventory.
+- A production migration wave on a consuming repository after a human picks one base family, one composite, and one token family from inventory.
 - Schema ADR for ingest-agnostic metadata if Path B contracts need public provenance.
 
 ---
