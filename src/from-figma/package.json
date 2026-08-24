@@ -1,6 +1,6 @@
 {
   "name": "@rudironsoni/specs-from-figma",
-  "version": "0.30.0",
+  "version": "0.31.0",
   "description": "Clean-room recreation of the specs-from-figma REST engine",
   "type": "module",
   "main": "./dist/index.js",
@@ -36,7 +36,7 @@
     "typecheck": "tsc -p tsconfig.json --noEmit"
   },
   "dependencies": {
-    "@rudironsoni/specs-schema": "^0.30.0",
+    "@rudironsoni/specs-schema": "^0.31.0",
     "yaml": "^2.3.4"
   },
   "devDependencies": {
